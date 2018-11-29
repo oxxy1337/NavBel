@@ -1,21 +1,37 @@
 <?php 
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Authorization, X-Requested-With");
+
 include(".//api/functions.php");
-$op = $_GET['operation'];
+$op = $_GET['op'];
 $token = $_GET['skey'];
-if (tooken($token)) {
-die("nqmq ya akrem raw ymchi");
-/*// signin section a bb  
+
+
+if((tooken($token)) && (!empty($op))) {
+
+// signin section a bb  
 switch ($op) {
 	case 'signin':
 		include("./operations/signin.php");
 		break;
- 	
+ 	case 'check':
+ 		include("./operations/check.php");
+ 		break;
+ 	case 'login':
+ 		include("./operations/login.php");
+ 		break;
+ 		case 'update':
+ 		include("./operations/update.php");
+ 			break;
 	default:
 		die("Opration Not found");
 		break;
 
 }
 
-*/ } else { die("Secure key Error nqmq");}
+ } else { die("Secure key Error ");}
 
 ?>

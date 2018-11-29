@@ -1,17 +1,13 @@
 <?php
-
- 
-// get database connection
-include_once './api/con.php';
- 
-// instantiate student object
-include_once './object/tables.php';
- 
+include("./api/con.php");
+include("./object/tables.php");
 $database = new Database();
 $db = $database->getConnection();
- 
+
 $student = new student($db);
+//$student = new student($db);
  
+// get id of product to be edited
 
 $data =file_get_contents('php://input'); // or whatever json data
 
@@ -24,9 +20,8 @@ $data =preg_replace('/("(.*?)"|(\w+))(\s*:\s*(".*?"|.))/s','"$2$3"$4',$data);
 //system('echo "'.$data.'" >> c.txt');
 
 $data = json_decode($data);
-//echo "$data->level";
 
-// make sure data is not empty  
+// set ID property of product to be edited
 if(
     !empty($data->name) &&
     !empty($data->email) &&
@@ -35,9 +30,7 @@ if(
     !empty($data->date) &&
     !empty($data->year)
 ){
- 
-    // set student property values
-    $student->name =  str_replace('"','',$data->name);
+	$student->name =  str_replace('"','',$data->name);
     $student->email = str_replace('"','',$data->email);
     $student->password = str_replace('"','',$data->password); 
     $student->picture = str_replace('"','',$data->picture); 
@@ -47,34 +40,24 @@ if(
     $student->qsolved = str_replace('"','',$data->qsolved); 
     $student->level = str_replace('"','',$data->level); 
 
-    // create the student
-    if($student->create()){
+    if($student->update()){
  
-        // set response code - 201 created
-        http_response_code(201);
- 
-        // tell the user
-        echo json_encode(array('reponse' =>"1"));
-    }
- 
-    // if unable to create the student, tell the user
-    else{
- 
-        // set response code - 503 service unavailable
-        http_response_code(503);
- 
-        // tell the user
-       echo json_encode(array('reponse' =>"0"));
-    }
-}
- 
-// tell the user data is incomplete
-else{
- 
-    // set response code - 400 bad request
-    http_response_code(400);
+    // set response code - 200 ok
+    http_response_code(200);
  
     // tell the user
-     echo json_encode(array('reponse' =>"0"));
- }
+    echo json_encode(array("reponse" => "1"));
+}
+ 
+// if unable to update the product, tell the user
+else{
+ 
+    // set response code - 503 service unavailable
+    http_response_code(503);
+ 
+    // tell the user
+    echo json_encode(array("reponse" => "0"));
+} } else {
+	http_response_code(400);
+	echo json_encode(array("reponse" => "0"));}
 ?>

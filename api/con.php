@@ -6,7 +6,7 @@ class Database{
     private $db_name = "exos";
     private $username = "root";
     private $password = "catcry";
-    public $conn;
+    public  $conn;
  
     // get the database connection
     public function getConnection(){
