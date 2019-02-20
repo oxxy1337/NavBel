@@ -8,6 +8,7 @@ class student{
     //private $table_name = "users";
     
     // object properties
+    public $imgdata;
     public $id;
     public $name;
     public $email;
@@ -80,7 +81,7 @@ function update(){
     $query = "UPDATE
                 " . $this->table_name . "
             SET
-                 name=:name, email=:email, password=:password, picture=:picture, date=:date, year=:year, point=:point, qsolved=:qsolved, level=:level
+                 name=:name, email=:email, password=:password, picture=:picture, date=:date, year=:year, point=:point, qsolved=:qsolved, level=:level,id=:id
             WHERE
                 email = :email";
  
@@ -96,10 +97,11 @@ function update(){
     $this->year=htmlspecialchars(strip_tags($this->year));
     $this->point=htmlspecialchars(strip_tags($this->point));
     $this->qsolved=htmlspecialchars(strip_tags($this->qsolved));
-     $this->level=htmlspecialchars(strip_tags($this->level));
+    $this->level=htmlspecialchars(strip_tags($this->level));
+    $this->id=htmlspecialchars(strip_tags($this->id));
  
     // bind new values
-$stmt->bindParam(":name", $this->name);
+    $stmt->bindParam(":name", $this->name);
     $stmt->bindParam(":email", $this->email);
     $stmt->bindParam(":password", $this->password);
     $stmt->bindParam(":picture", $this->picture);
@@ -108,7 +110,8 @@ $stmt->bindParam(":name", $this->name);
     $stmt->bindParam(":point", $this->point);
     $stmt->bindParam(":qsolved", $this->qsolved);
     $stmt->bindParam(":level", $this->level);
- 
+     $stmt->bindParam(":id", $this->id);
+
     // execute the query
     if($stmt->execute()){
         return true;
