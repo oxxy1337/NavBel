@@ -26,6 +26,15 @@ switch ($op) {
  		case 'update':
  		include("./operations/update.php");
  			break;
+ 		case 'tests':
+ 		include("./operations/tests.php");	
+ 			break;
+ 		case 'qst':
+ 		include("./operations/qst.php");
+ 			 break;
+ 		case 'img':
+ 		include("./operations/img.php");
+ 			break;
 	default:
 		die("Opration Not found");
 		break;

@@ -4,7 +4,9 @@ class student{
     // database connection and table name
     private $conn;
     private $table_name = "users";
- 
+    private $table_tests = "tests";
+    //private $table_name = "users";
+    
     // object properties
     public $id;
     public $name;
@@ -16,6 +18,10 @@ class student{
     public $point;
     public $qsolved;
     public $level;
+    public $questions;
+    public $description;
+    public $image;
+
 
 
     // constructor with $db as database connection
@@ -111,6 +117,29 @@ $stmt->bindParam(":name", $this->name);
     return false;
 }
 
+
+public function count(){
+    $query = "SELECT COUNT(*) as total_rows FROM " . $this->table_tests . "";
+ 
+    $stmt = $this->conn->prepare( $query );
+    $stmt->execute();
+    $row = $stmt->fetch(PDO::FETCH_ASSOC);
+ 
+    return $row['total_rows'];
+}
+function read(){
+ 
+    // select all query
+    $query = "SELECT * FROM   " . $this->table_tests . " WHERE year LIKE ? ";
+ 
+    // prepare query statement
+    $stmt = $this->conn->prepare($query);
+    $stmt->bindParam(1, $this->year);
+    // execute query
+    $stmt->execute();
+ 
+    return $stmt;
+}
 
  // id,name,email,password,picture,date,birth,years,point,test:noq\,level
 

@@ -6,6 +6,8 @@ include_once './api/con.php';
  
 // instantiate student object
 include_once './object/tables.php';
+include_once './api/functions.php';
+
  
 $database = new Database();
 $db = $database->getConnection();
@@ -13,27 +15,31 @@ $db = $database->getConnection();
 $student = new student($db);
  
 
-$data =file_get_contents('php://input'); // or whatever json data
+$d =file_get_contents('php://input'); // or whatever json data
 
-$data =preg_replace('/("(.*?)"|(\w+))(\s*:\s*(".*?"|.))/s','"$2$3"$4',$data);
+//if (isMobile()) {
+$data = json_decode(preg_replace('/("(.*?)"|(\w+))(\s*:\s*(".*?"|.))/s','"$2$3"$4',$d));/*} else {
 
 //$data=preg_replace('/\s(\w+)\s/i', '"$1"', $data);
 
 //$data=preg_replace('/("(.*?)"|(\w+))(\s*:\s*)\+?(0+(?=\d))?(".*?"|.)/s','"$2$3"$4$6',$data);
 //echo $data ;
-//system('echo "'.$data.'" >> c.txt');
+*/
+if (ispc()) {
 
-$data = json_decode($data);
+system("echo  $d > tmp");
+$data = json_decode(file_get_contents('./tmp'));
+//system("rm tmp");
+system("echo  $d > zx.txt");
 //echo "$data->level";
-
+};
 // make sure data is not empty  
-if(
-    !empty($data->name) &&
+if(1
+   /* !empty($data->name) &&
     !empty($data->email) &&
     !empty($data->password) &&
-    !empty($data->picture) &&
     !empty($data->date) &&
-    !empty($data->year)
+    !empty($data->year)*/
 ){
  
     // set student property values
