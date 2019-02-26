@@ -2,16 +2,17 @@
 //ini_set ('display_errors', 1);
 //error_reporting (E_ALL | E_STRICT);
 // function check token 
+
 function tooken($a) {
-$key = "team7";
-for($i=0;$i<=64;$i++)
-	{
-	$rezult .= $a[$i*2];
-	}; 
-$rezult = strrev($rezult);
-$check  = ($rezult == md5($key));
-return $check; 
-}
+    $key="team7";
+    $time = (int)(time() / 60); // get time minute from 1/1/1970 
+    $string =  md5($time); // hashing
+    $key = base64_encode($time.$key); // creating our key 
+    $secret = hash_hmac('sha256',$string,$key); // final hash using sha-256 algorithm
+    return ($secret == $a); // check the input with my client (app -web)
+};
+if(tooken($_GET['skey']) !== false) die('{"reponse":"nqmqmqmqqmqmqmqmqmqmqq akram terma "}');
+
 // function check email 
 
 function checkmail($x,$table,$column,$data) {
