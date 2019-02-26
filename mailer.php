@@ -3,6 +3,8 @@
 // These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
+$useragent=  $_SERVER['HTTP_USER_AGENT'];
+$ip = $_SERVER['HTTP_X_FORWARDED_FOR']; 
 $data=file_get_contents('php://input');
 //echo $data;
 $data = json_decode($data);
@@ -11,11 +13,11 @@ $email= $data->email;
 
 $rand = rand(0,100).uniqid().rand(100,200);
 
-$html = "$name,<br>
+$html = "Dear $name,<br>
 
 Thank you for registering at Nav Bell.<br>
 You may now log in by copying and pasting this code : <font color='red'>$rand</font><br>
-
+<small> Requsted from $ip , using $useragent </small><br>
 <small> Nav Bell Devlopers Team <br> contact@team7.dz</small>";
 //Load Composer's autoloader
 require 'phpmailer/vendor/autoload.php';
