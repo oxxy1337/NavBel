@@ -12,7 +12,6 @@ $token = $_GET['skey'];
 
 if((tooken($token)) && (!empty($op))) {
 
-// signin section a bb  
 switch ($op) {
 	case 'signin':
 		include("./operations/signin.php");
