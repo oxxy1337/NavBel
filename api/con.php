@@ -5,10 +5,10 @@
 class Database{
  
     
-    private $host = "localhost";
-    private $db_name = "exos";
-    private $username = "root";
-    private $password = "catcry";
+    private $host = "35.203.11.145";
+    private $db_name = "navbell";
+    private $username = "slamat";
+    private $password = "@omg@esi99@";
     public  $conn;
  
     // get the database connection
