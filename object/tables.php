@@ -3,6 +3,7 @@ class student{
  
     // database connection and table name
     private $conn;
+    private $salt = rand(1000,9999);
     private $table_name = "users";
     private $table_tests = "tests";
     //private $table_name = "users";
@@ -36,7 +37,7 @@ class student{
     $query = "INSERT INTO
                 " . $this->table_name . "
             SET
-                name=:name,  email=:email, password=:password, picture=:picture, date=:date, year=:year, point=:point, qsolved=:qsolved, level=:level";
+                name=:name,  email=:email, password=:password,salt=:salt picture=:picture, date=:date, year=:year, point=:point, qsolved=:qsolved, level=:level";
 
  //, email=:email, password=:password, picture=:picture, date=:date, birth=:birth, year=:year, point=:point, qsolved=:qsolved, level=:level
     // prepare query
@@ -44,8 +45,9 @@ class student{
       
     // sanitize
     $this->name=htmlspecialchars(strip_tags($this->name));
+    $this->salt=htmlspecialchars(strip_tags($this->salt));
     $this->email=htmlspecialchars(strip_tags($this->email));
-    $this->password=htmlspecialchars(strip_tags($this->password));
+    $this->password=htmlspecialchars(strip_tags(hash_hmac('md5', $this->password, $salt)));
     $this->picture=htmlspecialchars(strip_tags($this->picture));
     $this->date=htmlspecialchars(strip_tags($this->date));
     $this->year=htmlspecialchars(strip_tags($this->year));
@@ -119,7 +121,13 @@ function update(){
  
     return false;
 }
+/*public function cryptpwd($pass){
 
+    $salt = rand(1000,9999);
+    
+    return hash_hmac('md5', $pass, $salt);
+
+}*/
 
 public function count(){
     $query = "SELECT COUNT(*) as total_rows FROM " . $this->table_tests . "";
@@ -143,7 +151,7 @@ function read(){
  
     return $stmt;
 }
-
+    
  // id,name,email,password,picture,date,birth,years,point,test:noq\,level
 
 }
