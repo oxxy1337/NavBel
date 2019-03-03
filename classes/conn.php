@@ -1,14 +1,16 @@
 <?php
-//ini_set('display_errors', 1);
-//ini_set('display_startup_errors', 1);
-//error_reporting(E_ALL);
+/*
+coded by m.slamat
+*/
+    // Class To connect to database 
+    
 class Database{
  
     
-    private $host = "35.203.11.145";
+    private $host = "127.0.0.1";
     private $db_name = "navbell";
-    private $username = "slamat";
-    private $password = "@omg@esi99@";
+    private $username = "root";
+    private $password = "catcry";
     public  $conn;
  
     // get the database connection

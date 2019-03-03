@@ -4,10 +4,11 @@ coded by m.slamat
 */
 //class contain methodes crud operations in db in & logics 
 
-Class global(){
+class Globals{
+
+
 	private $conn ; 
-	private $tables =array('allstudents' => 'allstudents' , 
-    					   'users-subscribed' => 'users-subscribed' );
+
 	// Propreties 
 	// columns of users-subscribed && allstudents tables
 	public $id ;
@@ -15,7 +16,7 @@ Class global(){
 	public $lname;
 	public $email;
 	public $password;
-	public $salt = base64_encode(rand(100,999));
+	public $salt ;
 	public $picture;
 	public $date;
 	public $nbsolved;
@@ -23,16 +24,17 @@ Class global(){
 	public $currentrank;
 	public $solvedperday;
 	public $ranks;
-    // class constructures 
-		//db connection
+    // [+] class constructures 
     public function __construct($db){
     	$this->conn = $db;
 
     }
-
-    public function check_if_existe_in_esi($con,$email){
-    		$query = $con->prepare( "SELECT email FROM allstudents WHERE email = ?" );
-			$query->bindValue( 1, $email );
+    // [+] class methodes
+   	// checking if email exist in esi maillist 
+    public function check($table,$column,$data){
+    		$db = $this->conn;
+    		$query =$db->prepare( "SELECT $column FROM $table WHERE $column = ?" );
+			$query->bindValue( 1, $data);
 			$query->execute();
 			if ( $query->rowCount() > 0 ) {
 				return true; 
@@ -41,6 +43,21 @@ Class global(){
 				};
 
     }
+    // grabing data 
+    public function grab($table,$c1,$c2,$data1){
+    		 $db = $this->conn;
+  		     $sql = "SELECT $c1 FROM $table WHERE $c2 LIKE ?";
+    		 $q = $db->prepare($sql);
+    		 $q->execute(["$data1"]);
+     		 $q->setFetchMode(PDO::FETCH_ASSOC);
+ 
+    		while ($r = $q->fetch()) {
+      			  return $r["$c1"];
+    }
+}
+
+    
+
 
 	
 
