@@ -17,7 +17,7 @@ $glob->picture = upimg(filter($data->picture));
 
 // save all user profile infos in db 
 if($glob->signin()) {
-	$data = array("fname"=>$glob->fname,"lname"=>$glob->lname,"email"=>$glob->email,"picture"=>$glob->picture);//,"picture"=>$glob->picture); 
+	$data = array("reponse"=>"1","fname"=>$glob->fname,"lname"=>$glob->lname,"email"=>$glob->email,"picture"=>$glob->picture);//,"picture"=>$glob->picture); 
 	$data = json_encode($data);
 	echo $data;
 } else{
