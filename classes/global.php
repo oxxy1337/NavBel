@@ -8,7 +8,7 @@ class Globals{
 
 
 	private $conn ; 
-	private $tables = ["users"];
+	private $tables = ["users","user-banned-ever"];
 	// Propreties 
 	// columns of users-subscribed && allstudents tables
 	public $id ;
@@ -25,6 +25,8 @@ class Globals{
 	public $solvedperday;
 	public $ranks;
 	public $year;
+	public $ip;
+	public $useragent;
     // [+] class constructures 
     public function __construct($db){
     	$this->conn = $db;
@@ -48,7 +50,7 @@ class Globals{
 
     // sign in saving data in our db 
     public function signin(){
-    	echo $this->tables[0];
+    	
 	    	$con = $this->conn ;
 	    	$query = "INSERT INTO ".$this->tables[0]." SET fname=:fname,lname=:lname,email=:email,password=:password,salt=:salt,date=:date,picture=:picture,nbsolved=:nbsolved,point=:point,currentrank=:currentrank,solvedperday=:solvedperday,ranks=:ranks,year=:year";
 	    	$send = $con->prepare($query);
@@ -74,6 +76,23 @@ class Globals{
 
 
     }
+
+    // banne the bad one in hacking case :)
+    public function bannethehacker(){
+    	$con = $this->conn;
+    	$query = "INSERT INTO ".$this->tables[1]." SET date=:date,useragent=:useragent,ip=:ip";
+    	$send = $con->prepare($query);
+    	$send->bindParam(":date",$this->date);
+    	$send->bindParam(":useragent",$this->useragent);
+    	$send->bindParam(":ip",$this->ip);
+    	
+    	if($send->execute()) {
+    		return true;	
+    	}else{
+    		return false;
+    	}
+
+    }  
     
 
 

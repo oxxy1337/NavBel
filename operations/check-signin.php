@@ -3,19 +3,11 @@
 coded by m.slamat
 */
 // checking for who have the right to signin in navbell 
-error_reporting(0);
-include('../functions/functions.php');
-include('../classes/global.php'); // including global class
-include('../classes/conn.php'); // conection to db 
-$data = file_get_contents('php://input'); // import data
-$data = json_decode($data); 
-$email = filter($data->email); 
-$database = new Database(); 
-$db = $database->getConnection();
-$glob = new Globals($db);
+
 $ip = $_SERVER['HTTP_X_FORWARDED_FOR']; // user ip 
+
 // is banned by his ip  (hack attemps) then i return reponse 0 to my client ? 
-if($glob->check('user-banned-ever','ip',$ip)) die(json_encode(value)e(array("reponse"=>"0"))); 
+if($glob->check('user-banned-ever','ip',$ip)) die(json_encode((array("reponse"=>"0")))); 
 // is already subscribed ? then i return 2  
 if($glob->check('users-subscribed','email',$email)) die(json_encode(array("reponse"=>"2")));
 // is not from ESI students ? then i return 3

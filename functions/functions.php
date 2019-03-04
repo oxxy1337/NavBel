@@ -28,21 +28,36 @@ function tooken($a) {
 	/// we don't trust inputs do you ? 
 		/// in this case we are 99.99 % protected against sql injection , XSS attacks , and more 	... but remember NO SYSTEM IS SAFE !
 function filter($input){
-	$out = htmlentities(htmlspecialchars(strip_tags(mysql_real_escape_string($input))),ENT_NOQUOTES);
+	$out = htmlentities(htmlspecialchars(strip_tags($input)),ENT_NOQUOTES);
 	return $out;
 }
 //===========================================================
 
-	/// banne system ! i banne anyone try to get access in db or server how ? 
-	///	the api url stored  in app mobile & web app so what if the app mobile get reversed (reverse engineer) or the web app get owned so in this case api url will be public 
-	/// we protect db & server by storing attacker ip & attacker useragent in db 
-	/// the attacker will be banned for next requests    
+	/* Banne system ! i banne anyone try to get access in db or server how ? 
+		the api url stored  in app mobile & web app so what if the app mobile get reversed (reverse engineer) or the web app get owned so in this case api url will be public 
+	    we protect db & server by storing attacker ip & attacker useragent in db 
+		the attacker will be banned for next requests (forward to 403 error)
+		YES, i know why i use $blacklisted ? ther's no get methodes pass value to DB or pass value to read it 
+		so why i filter sql injecton queries or local file include payloads ? 
+	 	the scenario is the attacker test everything :) */
+	function banne($tooken,$op){
+		$operations = array("check","signin");
+		$blacklisted = array('"',"'","%27",'%00',"php","/etc/passwd");
+		if((!tooken($tooken)) || (!in_array($op, $operations) || 
+		 (in_array($op,$operations) || (in_array($tooken, $blacklisted))))){
+			return true;
+		}  else{
+			return false;
+		}
+
+
+	}    
 //============================================================
 
 /// UTIL FUNCTIONS
 // function to decode base654 image binary and store it in server then he return url of image  
 function upimg($data){
-	define('UPLOAD_DIR', '../images/');
+	define('UPLOAD_DIR', './images/');
 	
 	$data = base64_decode($data);
 	$file = UPLOAD_DIR . uniqid() . '.jpg';
