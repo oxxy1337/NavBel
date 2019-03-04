@@ -1,16 +1,10 @@
 <?php
-// Import PHPMailer classes into the global namespace
-// These must be at the top of your script, not inside a function
+// Import PHPMailer 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
-$data=file_get_contents('php://input');
-//echo $data;
-$data = json_decode($data);
-$name = $data->name;
-$email= $data->email;
-// curl 
-// json -> {"email":"qsdqdqsdqsdqsdqsd",}
-$rand = rand(0,100).uniqid().rand(100,200);
+
+$email = $data->email;
+$rand = substr(sha1(time()), 0, 5);
 
 $html = "$name,<br>
 
@@ -36,20 +30,9 @@ $mail = new PHPMailer(true);                              // Passing `true` enab
     //Recipients
     $mail->setFrom('support@team7.talebweb.com', 'Nav Bell');
     $mail->addAddress($email);     // Add a recipient
-    //$mail->addAddress('ellen@example.com');               // Name is optional
-    //$mail->addReplyTo('info@example.com', 'Information');
-    //$mail->addCC('cc@example.com');
-    //$mail->addBCC('bcc@example.com');
-
-    //Attachments
-    //$mail->addAttachment('/var/tmp/file.tar.gz');         // Add attachments
-    //$mail->addAttachment('/tmp/image.jpg', 'new.jpg');    // Optional name
-
-    //Content
-    $mail->isHTML(true);                                  // Set email format to HTML
+    $mail->isHTML(true);  // Set email format to HTML
     $mail->Subject = "Account details for $name at Nav Bell";
     $mail->Body    = $html;
-    //$mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     if($mail->send()){
         $reponse = array("reponse" => $rand);
