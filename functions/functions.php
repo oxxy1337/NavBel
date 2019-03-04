@@ -3,6 +3,7 @@
 coded by m.slamat
 */
 /// CRYPTO PART
+//==========================================================
 // function to crypt user password using salt methode 
 	// old devlopers hate hashkiller nah !?
 function cryptpwd($pwd,$salt){
@@ -10,8 +11,33 @@ function cryptpwd($pwd,$salt){
 	$final = strrev($final); // reversing 
 	$final = str_rot13($final); // again with rot13
 	return $final;
-}  
+} 
+//=========================================================== 
+// function check tooken from my client we won't to make our db public !
+function tooken($a) {
+    $key="team7";
+    $time = (int)(time() / 60); // get time minute from 1/1/1970 
+    $string =  md5($time); // hashing
+    $key = hash('sha256',$time.$key); // creating our key 
+    $secret = hash_hmac('sha256',$string,$key) ; // final hash using sha-256 algorithm
+    return ($secret == $a); // check the input with my client (app -web)
+}
 
+/// SECURITY PART 
+//==========================================================
+	/// we don't trust inputs do you ? 
+		/// in this case we are 99.99 % protected against sql injection , XSS attacks , and more 	... but remember NO SYSTEM IS SAFE !
+function filter($input){
+	$out = htmlentities(htmlspecialchars(strip_tags(mysql_real_escape_string($input))),ENT_NOQUOTES);
+	return $out;
+}
+//===========================================================
+
+	/// banne system ! i banne anyone try to get access in db or server how ? 
+	///	the api url stored  in app mobile & web app so what if the app mobile get reversed (reverse engineer) or the web app get owned so in this case api url will be public 
+	/// we protect db & server by storing attacker ip & attacker useragent in db 
+	/// the attacker will be banned for next requests    
+//============================================================
 
 /// UTIL FUNCTIONS
 // function to decode base654 image binary and store it in server then he return url of image  

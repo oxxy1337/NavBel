@@ -4,12 +4,12 @@ coded by m.slamat
 */
 // checking for who have the right to signin in navbell 
 error_reporting(0);
-
+include('../functions/functions.php');
 include('../classes/global.php'); // including global class
 include('../classes/conn.php'); // conection to db 
 $data = file_get_contents('php://input'); // import data
 $data = json_decode($data); 
-$email = $data->email; 
+$email = filter($data->email); 
 $database = new Database(); 
 $db = $database->getConnection();
 $glob = new Globals($db);
