@@ -9,10 +9,10 @@ coded by m.slamat
 class Database{
  
     
-    private $host = "127.0.0.1";
+    private $host = "35.203.11.145";
     private $db_name = "navbell";
-    private $username = "root";
-    private $password = "catcry";
+    private $username = "slamat";
+    private $password = "Slamat=x=2x=3x";
     public  $conn;
 
     // get the database connection
