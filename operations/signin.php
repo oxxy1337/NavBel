@@ -5,13 +5,12 @@
 $glob->fname = filter($data->fname);
 $glob->lname = filter($data->lname);
 $glob->email = filter($data->email);
-$glob->password = filter($data->password);
 $glob->salt = md5(microtime()); // random salt 
 $glob->date = $date;
 $glob->year = filter($data->year);
 
 // crypting user password 
-$glob->password = cryptpwd($password,$salt);
+$glob->password = cryptpwd(filter($data->password),$glob->salt);
 // storing user picture data in our server (return url) 
 $glob->picture = upimg(filter($data->picture));
 

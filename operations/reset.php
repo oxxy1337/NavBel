@@ -1,4 +1,7 @@
 <?php
+/* 
+coded by m.slamat
+*/
 // Import PHPMailer 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -10,7 +13,7 @@ $html = "$name,<br>
 
 Thank you for registering at Nav Bell.<br>
 You may now log in by copying and pasting this code : <font color='red'>$rand</font><br>
-
+<br> From $ip <br>
 <small> Nav Bell Devlopers Team <br> contact@team7.dz</small>";
 //Load Composer's autoloader
 require 'phpmailer/vendor/autoload.php';

@@ -44,4 +44,7 @@ switch ($op) {
 	case 'reset':
 		include("./operations/reset.php");
 		break;
+	case 'login':
+		include('./operations/login.php');
+		break;
 }
