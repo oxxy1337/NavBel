@@ -67,7 +67,7 @@ function upimg($data){
 		$success = file_put_contents($file, $data);
 		$url = "http://" . $_SERVER['HTTP_HOST'] . '/project/'.$file;
 	} else { 
-		$url = '0';
+		$url = '';
 	};
 	
 	
