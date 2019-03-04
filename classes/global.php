@@ -66,7 +66,7 @@ class Globals{
     public function signin(){
     	
 	    	$con = $this->conn ;
-	    	$query = "INSERT INTO ".$this->tables[0]." SET fname=:fname,lname=:lname,email=:email,password=:password,salt=:salt,date=:date,picture=:picture,nbsolved=:nbsolved,point=:point,currentrank=:currentrank,solvedperday=:solvedperday,ranks=:ranks,year=:year";
+	    	$query = "INSERT INTO ".$this->tables[0]." SET fname=:fname,lname=:lname,email=:email,password=:password,salt=:salt,date=:date,picture=:picture,year=:year";
 	    	$send = $con->prepare($query);
 	    	$send->bindParam(":fname",$this->fname);
 	    	$send->bindParam(":lname",$this->lname);
@@ -75,11 +75,6 @@ class Globals{
 	    	$send->bindParam(":salt",$this->salt);
 	    	$send->bindParam(":picture",$this->picture);
 	    	$send->bindParam(":date",$this->date);
-	    	$send->bindParam(":nbsolved",$this->nbsolved);
-	    	$send->bindParam(":point",$this->point);
-	    	$send->bindParam(":currentrank",$this->currentrank);
-	    	$send->bindParam(":solvedperday",$this->solvedperday);
-	    	$send->bindParam(":ranks",$this->ranks);
 	    	$send->bindParam(":year",$this->year);
 
 	    	if($send->execute()){

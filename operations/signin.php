@@ -8,11 +8,6 @@ $glob->email = filter($data->email);
 $glob->password = filter($data->password);
 $glob->salt = md5(microtime()); // random salt 
 $glob->date = $date;
-$glob->nbsolved = filter($data->nbsolved);
-$glob->point = filter($data->point);
-$glob->currentrank = filter($data->currentrank);
-$glob->solvedperday = filter($data->solvedperday);
-$glob->ranks = filter($data->ranks);
 $glob->year = filter($data->year);
 
 // crypting user password 
