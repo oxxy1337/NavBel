@@ -15,7 +15,7 @@ $db = $database->getConnection();
 $glob = new Globals($db);
 $ip = $_SERVER['HTTP_X_FORWARDED_FOR']; // user ip 
 // is banned by his ip  (hack attemps) then i return reponse 0 to my client ? 
-if($glob->check('user-banned-ever','ip',$ip)) die(json_encode(array("reponse"=>"0"))); 
+if($glob->check('user-banned-ever','ip',$ip)) die(json_encode(value)e(array("reponse"=>"0"))); 
 // is already subscribed ? then i return 2  
 if($glob->check('users-subscribed','email',$email)) die(json_encode(array("reponse"=>"2")));
 // is not from ESI students ? then i return 3

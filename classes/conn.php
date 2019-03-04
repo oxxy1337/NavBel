@@ -3,6 +3,8 @@
 coded by m.slamat
 */
     // Class To connect to database 
+        // Using PDO prepared statement isn't cool nah ?
+        // why ?? ==> for our safety (secure + fast)
     
 class Database{
  
@@ -12,7 +14,7 @@ class Database{
     private $username = "root";
     private $password = "catcry";
     public  $conn;
- 
+
     // get the database connection
     public function getConnection(){
  
