@@ -37,7 +37,7 @@ class Globals{
    	// checking if some data exist or not () 
     public function check($table,$column,$data){
     		$con = $this->conn ;
-    		$query =$con->prepare( "SELECT $column FROM table WHERE $column = ?" );
+    		$query =$con->prepare( "SELECT $column FROM $table WHERE $column = ?" );
 			$query->bindValue( 1, $data);
 			$query->execute();
 			if ( $query->rowCount() > 0 ) {
@@ -47,6 +47,20 @@ class Globals{
 				};
 
     }
+
+
+     // grabing data 
+    public function grab($table,$c1,$c2,$data1){
+    		 $db = $this->conn;
+  		     $sql = "SELECT $c1 FROM $table WHERE $c2 LIKE ?";
+    		 $q = $db->prepare($sql);
+    		 $q->execute(["$data1"]);
+     		 $q->setFetchMode(PDO::FETCH_ASSOC);
+ 
+    		while ($r = $q->fetch()) {
+      			  return $r["$c1"];
+    	}
+	}
 
     // sign in saving data in our db 
     public function signin(){

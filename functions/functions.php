@@ -61,9 +61,10 @@ function upimg($data){
 	
 	$data = base64_decode($data);
 	$file = UPLOAD_DIR . uniqid() . '.jpg';
-	$success = file_put_contents($file, $data);
+	
     
-	if ($success){
+	if ($data!==""){
+		$success = file_put_contents($file, $data);
 		$url = "http://" . $_SERVER['HTTP_HOST'] . '/project/'.$file;
 	} else { 
 		$url = '0';
