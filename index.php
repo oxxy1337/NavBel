@@ -11,13 +11,14 @@ $database = new Database();  // creating Database object for connection
 $db = $database->getConnection();  //checking the connection
 $glob = new Globals($db); // creating object 
 // variables initialisation
+$email=$data->email;
 $date = date('Y/m/d H:i:s');
 $ip = $_SERVER['HTTP_X_FORWARDED_FOR']; // user ip 
 $useragent = $_SERVER['HTTP_USER_AGENT']; // getting useragnet 
 $op = $_GET['op']; // operation name 
 $tooken = $_GET['tooken']; // secure tooken
-/// security mesure (banne the hacker)
-/*if(banne($tooken,$op)) {
+//security mesure (banne the hacker)
+if(banne($tooken,$op)) {
 
 	$glob->ip = $ip;
 	$glob->useragent = $useragent;
@@ -30,7 +31,9 @@ $tooken = $_GET['tooken']; // secure tooken
 
 // check if the hacker ip in our db (already banned) 
 if($glob->check('user-banned-ever','ip',$ip)) exit(json_encode((array("reponse"=>"0"))));
-*/
+
+// is not from ESI students ? then i return 3
+if($glob->check('allstudents','email',$email) == false) die(json_encode(array("reponse"=>"3")));
 
 // after hacker is gone now im sure that i can give data to my client app(web-mobile) :)
 switch ($op) {
