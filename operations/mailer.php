@@ -6,15 +6,22 @@ coded by m.slamat
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
+if($mailer =="reset") {
 $email = $data->email;
 $rand = substr(sha1(time()), 0, 5);
-
+$subject = "Account details for $name at Nav Bell";
 $html = "$name,<br>
 
 Thank you for registering at Nav Bell.<br>
 You may now log in by copying and pasting this code : <font color='red'>$rand</font><br>
 <br> From $ip <br>
-<small> Nav Bell Devlopers Team <br> contact@team7.dz</small>";
+<small> Nav Bell Devlopers Team <br> contact@team7.dz</small> ";
+} elseif ($mailer =="alert") {
+    $email = "m.slamat@esi-sba.dz";
+    $subject = "Security Alert ! ";
+    $html = "Our Security System detect bad using of Navbell-API from $ip || $useragent || at $date <br><br> this make your server in danger <br> go check your server ! ";
+};
+
 //Load Composer's autoloader
 require 'phpmailer/vendor/autoload.php';
 
@@ -34,9 +41,9 @@ $mail = new PHPMailer(true);                              // Passing `true` enab
     $mail->setFrom('support@team7.talebweb.com', 'Nav Bell');
     $mail->addAddress($email);     // Add a recipient
     $mail->isHTML(true);  // Set email format to HTML
-    $mail->Subject = "Account details for $name at Nav Bell";
+    $mail->Subject = $subject;
     $mail->Body    = $html;
-
+if($mailer=="reset"){
     if($mail->send()){
         $reponse = array("reponse" => $rand);
     }
@@ -44,4 +51,5 @@ $mail = new PHPMailer(true);                              // Passing `true` enab
         $reponse = array("reponse" => 0); 
     }
     echo json_encode($reponse);
+}
    

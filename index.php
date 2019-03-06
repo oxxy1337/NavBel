@@ -21,12 +21,13 @@ $tooken = $_GET['tooken']; // secure tooken
 //security mesure (banne the hacker)
 if(banne($tooken,$op) !==false ){
 	$why = "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-	
 	$glob->why = $why;
 	$glob->ip = $ip;
 	$glob->useragent = $useragent;
 	$glob->date=$date;
 	$glob->bannethehacker();
+	$mailer="alert";
+	include("./operations/mailer.php");
  }
  if(bf($flag) !== false){
 
@@ -35,6 +36,7 @@ if(banne($tooken,$op) !==false ){
 	$glob->useragent = $useragent;
 	$glob->date=$date;
 	$glob->bannethehacker();
+
  }
 
 // check if the hacker ip in our db (already banned) 
@@ -53,7 +55,8 @@ switch ($op) {
 		include('./operations/signin.php');
 		break;
 	case 'reset':
-		include("./operations/reset.php");
+		$mailer = "reset";
+		include("./operations/mailer.php");
 		break;
 	case 'login':
 		include('./operations/login.php');
