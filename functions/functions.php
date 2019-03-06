@@ -47,7 +47,7 @@ function tooken($a) {
 		$blacklisted = array('"',"'","%27",'%00',"php","/etc/passwd");
 		if((!tooken($tooken)) || (!in_array($op, $operations) || 
 		 (in_array($op,$blacklisted) || (in_array($tooken, $blacklisted))))){
-		 	
+
 			return true;
 		}  else{
 			return false;
@@ -81,7 +81,7 @@ function upimg($data){
     
 	if ($data!==""){
 		$success = file_put_contents($file, $data);
-		$url = "http://" . $_SERVER['HTTP_HOST'] . '/project/'.$file;
+		$url = "http://" . $_SERVER['HTTP_HOST'] . '/navbell-api//'.$file;
 	} else { 
 		$url = '';
 	};
