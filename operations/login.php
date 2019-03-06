@@ -31,8 +31,7 @@ if(($email_from_input == $email_from_db) && ($password_from_input == $password_f
 	$currentrank = $glob->grab('users','currentrank','email',$email_from_input);
 	$solvedperday = $glob->grab('users','solvedperday','email',$email_from_input);
 
-	$data = array("reponse"=>"1","id"=>$id,"fname"=>$fname,"lname"=>$lname,"year"=>$year,"point"=>$point,"ranks"=>$ranks,"picture"=>$picture,"date"=>$data,"nbsolved"=>$nbsolved,"currentrank"=>$currentrank,
-		"solvedperday"=>$solvedperday);
+	$data = array("reponse"=>"1","id"=>$id,"fname"=>$fname,"lname"=>$lname,"year"=>$year,"point"=>$point,"ranks"=>$ranks,"picture"=>$picture,"date"=>$date,"nbsolved"=>$nbsolved,"currentrank"=>$currentrank);
 	$data = json_encode($data);
 	echo $data ;
 }else{

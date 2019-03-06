@@ -19,7 +19,7 @@ $useragent = $_SERVER['HTTP_USER_AGENT']; // getting useragnet
 $op = $_GET['op']; // operation name 
 $tooken = $_GET['tooken']; // secure tooken
 //security mesure (banne the hacker)
-/*
+
 if(banne($tooken,$op) !==false ){
 	$why = "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 	$glob->why = $why;
@@ -45,7 +45,7 @@ if($glob->check('userbannedever','ip',$ip)) exit(json_encode((array("reponse"=>"
 
 // is not from ESI students ? then i return 3
 if($glob->check('allstudents','email',$email) == false) die(json_encode(array("reponse"=>"3")));
-*/
+
 // after hacker is gone now im sure that i can give data to my client app(web-mobile) :)
 switch ($op) {
 	case 'check':
