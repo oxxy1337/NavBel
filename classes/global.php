@@ -90,7 +90,7 @@ class Globals{
     // banne the bad one in hacking case :)
     public function bannethehacker(){
     	$con = $this->conn;
-    	$query = "INSERT INTO ".$this->tables[1]." SET why=:why,date=:date,useragent=:useragent,ip=:ip";
+    	$query = "INSERT INTO ".$this->tables[1]." SET date=:date,useragent=:useragent,ip=:ip,why=:why";
     	$send = $con->prepare($query);
     	$send->bindParam(":date",$this->date);
     	$send->bindParam(":useragent",$this->useragent);

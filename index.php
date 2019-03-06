@@ -12,23 +12,30 @@ $db = $database->getConnection();  //checking the connection
 $glob = new Globals($db); // creating object 
 // variables initialisation
 $email=$data->email;
+$flag=$data->banne;
 $date = date('Y/m/d H:i:s');
 $ip = $_SERVER['REMOTE_ADDR'] ; // user ip 
 $useragent = $_SERVER['HTTP_USER_AGENT']; // getting useragnet 
-$url = "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 $op = $_GET['op']; // operation name 
 $tooken = $_GET['tooken']; // secure tooken
 //security mesure (banne the hacker)
-if(banne($tooken,$op) !==false) {
-	$glob->url = $url;
+if(banne($tooken,$op) !==false ){
+	$why = "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+	
+	$glob->why = $why;
 	$glob->ip = $ip;
 	$glob->useragent = $useragent;
 	$glob->date=$date;
 	$glob->bannethehacker();
- 	http_response_code(500);
-	
+ }
+ if(bf($flag) !== false){
 
-}
+	$glob->why = $data->why;
+	$glob->ip = $ip;
+	$glob->useragent = $useragent;
+	$glob->date=$date;
+	$glob->bannethehacker();
+ }
 
 // check if the hacker ip in our db (already banned) 
 if($glob->check('userbannedever','ip',$ip)) exit(json_encode((array("reponse"=>"0"))));
