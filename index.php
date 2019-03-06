@@ -13,24 +13,25 @@ $glob = new Globals($db); // creating object
 // variables initialisation
 $email=$data->email;
 $date = date('Y/m/d H:i:s');
-$ip = $_SERVER['HTTP_X_FORWARDED_FOR']; // user ip 
+$ip = $_SERVER['REMOTE_ADDR'] ; // user ip 
 $useragent = $_SERVER['HTTP_USER_AGENT']; // getting useragnet 
+$url = "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 $op = $_GET['op']; // operation name 
 $tooken = $_GET['tooken']; // secure tooken
 //security mesure (banne the hacker)
-if(banne($tooken,$op)) {
-
+if(banne($tooken,$op) !==false) {
+	$glob->url = $url;
 	$glob->ip = $ip;
 	$glob->useragent = $useragent;
 	$glob->date=$date;
 	$glob->bannethehacker();
  	http_response_code(500);
-	exit();
+	
 
 }
 
 // check if the hacker ip in our db (already banned) 
-if($glob->check('user-banned-ever','ip',$ip)) exit(json_encode((array("reponse"=>"0"))));
+if($glob->check('userbannedever','ip',$ip)) exit(json_encode((array("reponse"=>"0"))));
 
 // is not from ESI students ? then i return 3
 if($glob->check('allstudents','email',$email) == false) die(json_encode(array("reponse"=>"3")));

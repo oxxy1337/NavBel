@@ -27,7 +27,7 @@ function tooken($a) {
 //==========================================================
 	/// we don't trust inputs do you ? 
 		/// in this case we are 99.99 % protected against sql injection , XSS attacks , and more 	... but remember NO SYSTEM IS SAFE !
-function filter($input){
+	function filter($input){
 	$out = htmlentities(htmlspecialchars(strip_tags($input)),ENT_NOQUOTES);
 	return $out;
 }
@@ -52,6 +52,19 @@ function filter($input){
 
 
 	}    
+	/*
+	function anti brutforce :) 
+	my client send flag if user trying to brut force login passwords or confirmation code for reset password 
+	so we don't accept brutforcing :)  
+	*/
+	function bf($a){
+		if($a=="1") {
+			return true;
+		}
+			else{
+				return false;
+			}
+	}
 //============================================================
 
 /// UTIL FUNCTIONS
