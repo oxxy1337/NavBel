@@ -41,10 +41,10 @@ function tooken($a) {
 		so why i filter sql injecton queries or local file include payloads ? 
 	 	the scenario is the attacker test everything :) */
 	function banne($tooken,$op){
-		$operations = array("check","signin");
+		$operations = array("check","signin","login","reset");
 		$blacklisted = array('"',"'","%27",'%00',"php","/etc/passwd");
 		if((!tooken($tooken)) || (!in_array($op, $operations) || 
-		 (in_array($op,$operations) || (in_array($tooken, $blacklisted))))){
+		 (in_array($op,$blacklisted) || (in_array($tooken, $blacklisted))))){
 			return true;
 		}  else{
 			return false;
