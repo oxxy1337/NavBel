@@ -8,7 +8,7 @@ use PHPMailer\PHPMailer\Exception;
 
 if($mailer =="reset") {
 $email = $data->email;
-$rand = substr(sha1(time()), 0, 5);
+$rand = rand(10000,99999);
 $subject = "Account details for $name at Nav Bell";
 $html = "$name,<br>
 
