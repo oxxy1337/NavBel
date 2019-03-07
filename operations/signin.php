@@ -2,17 +2,17 @@
 
 // propreites & parametres  initialisation 
 
-$glob->fname = filter($data->fname);
-$glob->lname = filter($data->lname);
-$glob->email = filter($data->email);
-$glob->salt = md5(microtime()); // random salt 
+$glob->fname = $fname;
+$glob->lname = $lname;
+$glob->email = $email;
+$glob->salt = "$".substr(base64_encode(md5(microtime())), 30)."$"; // random salt 
 $glob->date = $date;
-$glob->year = filter($data->year);
+$glob->year = $year;
 
 // crypting user password 
-$glob->password = cryptpwd(filter($data->password),$glob->salt);
+$glob->password = cryptpwd($password,$glob->salt);
 // storing user picture data in our server (return url) 
-$glob->picture = upimg(filter($data->picture));
+$glob->picture = upimg($picture);
 
 // save all user profile infos in db 
 if($glob->signin()) {

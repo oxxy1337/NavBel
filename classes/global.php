@@ -86,6 +86,19 @@ class Globals{
 
 
     }
+    // Reset password (update with new password)
+    public function updatepwd(){
+    	$con = $this->conn;
+    	$query = "UPDATE ".$this->tables[0]." SET password=:password WHERE email=:email";
+    	$send = $con->prepare($query);
+    	$send->bindParam(":password",$this->password);
+    	$send->bindParam(":email",$this->email);
+    	if($send->execute()){
+    		return true;
+    	}else{
+    		return false;
+    	}
+    }
 
     // banne the bad one in hacking case :)
     public function bannethehacker(){

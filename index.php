@@ -2,7 +2,8 @@
 /*
 coded by m.slamat
 */
-include('./functions/functions.php'); // including our function 
+
+include('./functions/functions.php'); // including our function
 include('./classes/global.php'); // including global class
 include('./classes/conn.php'); // conection to db 
 $data = file_get_contents('php://input'); // import data as json
@@ -10,16 +11,9 @@ $data = json_decode($data); // decoding ...
 $database = new Database();  // creating Database object for connection 
 $db = $database->getConnection();  //checking the connection
 $glob = new Globals($db); // creating object 
-// variables initialisation
-$email=$data->email;
-$flag=$data->banne;
-$date = date('Y/m/d H:i:s');
-$ip = $_SERVER['REMOTE_ADDR'] ; // user ip 
-$useragent = $_SERVER['HTTP_USER_AGENT']; // getting useragnet 
-$op = $_GET['op']; // operation name 
-$tooken = $_GET['tooken']; // secure tooken
+include('./functions/vars.php'); // variables initialisation
 //security mesure (banne the hacker)
-
+/*
 if(banne($tooken,$op) !==false ){
 	$why = "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 	$glob->why = $why;
@@ -39,7 +33,7 @@ if(banne($tooken,$op) !==false ){
 	$glob->bannethehacker();
 
  }
-
+*/
 // check if the hacker ip in our db (already banned) 
 if($glob->check('userbannedever','ip',$ip)) exit(json_encode((array("reponse"=>"0"))));
 
@@ -55,11 +49,14 @@ switch ($op) {
 	case 'signin':
 		include('./operations/signin.php');
 		break;
-	case 'reset':
+	case 'rcode':
 		$mailer = "reset";
 		include("./operations/mailer.php");
 		break;
 	case 'login':
 		include('./operations/login.php');
+		break;
+	case 'reset':
+		include("./operations/reset.php");
 		break;
 }
