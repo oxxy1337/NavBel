@@ -9,8 +9,8 @@ use PHPMailer\PHPMailer\Exception;
 if($mailer =="reset") {
 
 $rand = rand(10000,99999);
-$subject = "Account details for $name at Nav Bell";
-$html = "$name,<br>
+$subject = "Account details for $fame at Nav Bell";
+$html = "$fname,<br>
 
 Thank you for registering at Nav Bell.<br>
 You may now log in by copying and pasting this code : <font color='red'>$rand</font><br>
