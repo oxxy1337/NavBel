@@ -2,7 +2,13 @@
 /*
 coded by m.slamat
 */
-
+/// web header part 
+header("Access-Control-Allow-Origin: *");
+header("Content-Type: application/json; charset=UTF-8");
+header("Access-Control-Allow-Methods: POST");
+header("Access-Control-Max-Age: 3600");
+header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Access-Control-Max-Age ,Access-Control-Allow-Methods");
+/// end header
 include('./functions/functions.php'); // including our function
 include('./classes/global.php'); // including global class
 include('./classes/conn.php'); // conection to db 
@@ -13,7 +19,7 @@ $db = $database->getConnection();  //checking the connection
 $glob = new Globals($db); // creating object 
 include('./functions/vars.php'); // variables initialisation
 //security mesure (banne the hacker)
-/*
+
 if(banne($tooken,$op) !==false ){
 	$why = "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 	$glob->why = $why;
@@ -33,7 +39,7 @@ if(banne($tooken,$op) !==false ){
 	$glob->bannethehacker();
 
  }
-*/
+
 // check if the hacker ip in our db (already banned) 
 if($glob->check('userbannedever','ip',$ip)) exit(json_encode((array("reponse"=>"0"))));
 
