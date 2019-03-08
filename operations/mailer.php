@@ -7,9 +7,9 @@ use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
 
 if($mailer =="reset") {
-
+$fname=$glob->grab('users','fname','email',$email);
 $rand = rand(10000,99999);
-$subject = "Account details for $fame at Nav Bell";
+$subject = "Account details for $fname at Nav Bell";
 $html = "$fname,<br>
 
 Thank you for registering at Nav Bell.<br>
