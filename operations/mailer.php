@@ -9,6 +9,7 @@ use PHPMailer\PHPMailer\Exception;
 if($mailer =="reset") {
 $fname=$glob->grab('users','fname','email',$email);
 $rand = rand(10000,99999);
+$reponse = array("reponse" => $rand);
 $subject = "Account details for $fname at Nav Bell";
 $html = "$fname,<br>
 
@@ -19,8 +20,16 @@ You may now log in by copying and pasting this code : <font color='red'>$rand</f
 } elseif ($mailer =="alert") {
     $email = "m.slamat@esi-sba.dz";
     $subject = "Security Alert ! ";
+    $reponse = array("reponse" => "!");
     $html = "Our Security System detect bad using of Navbell-API from $ip || $useragent || at $date <br><br> this make your server in danger <br> go check your server ! ";
-};
+} elseif ($mailer=="signin") {
+    $fname=$glob->grab('users','fname','email',$email);
+    $subject = "[Navbell] Welcome To Navbell !";
+    $attached =true;
+    $html = "Hi $fname
+
+Thank you for registering with Navbell .<br> Please find attached ";
+    
 
 //Load Composer's autoloader
 require 'phpmailer/vendor/autoload.php';
@@ -43,13 +52,15 @@ $mail = new PHPMailer(true);                              // Passing `true` enab
     $mail->isHTML(true);  // Set email format to HTML
     $mail->Subject = $subject;
     $mail->Body    = $html;
-if($mailer=="reset"){
+    if($attached ) $mail->addAttachment('./Navbell.pdf', 'Navbell.pdf'); 
+};
+
     if($mail->send()){
-        $reponse = array("reponse" => $rand);
+       echo $reponse;
     }
      else {
         $reponse = array("reponse" => 0); 
-    }
+    };
     echo json_encode($reponse);
-}
+
    

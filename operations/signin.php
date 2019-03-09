@@ -19,6 +19,7 @@ if($glob->signin()) {
 	$data = array("reponse"=>"1","fname"=>$glob->fname,"lname"=>$glob->lname,"email"=>$glob->email,"picture"=>$glob->picture,"date"=>$glob->date,"id"=>$glob->grab('users','id','email',$glob->email));
 	$data = json_encode($data);
 	echo $data;
+	include("./operations/mailer.php");
 } else{
 	$data=array("reponse"=>"0");
 	$data=json_encode($data);

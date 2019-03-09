@@ -54,7 +54,9 @@ switch ($op) {
 		break;
 	
 	case 'signin':
+		$mailer = "signin";
 		include('./operations/signin.php');
+		
 		break;
 	case 'rcode':
 		$mailer = "reset";
