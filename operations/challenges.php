@@ -1,5 +1,5 @@
 <?php
 
-$glob->year=$year;
+$glob->year=$_GET['year'];
 echo $glob->challenges();
 ?>
