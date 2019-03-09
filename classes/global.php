@@ -8,7 +8,7 @@ class Globals{
 
 
 	private $conn ; 
-	private $tables = ["users","userbannedever"];
+	private $tables = ["users","userbannedever","challenges"];
 	// Propreties 
 	// columns of users-subscribed && allstudents tables
 	public $id ;
@@ -99,6 +99,35 @@ class Globals{
     		return false;
     	}
     }
+    // get Challenges data 
+    public function challenges(){
+    $con = $this->conn;
+    $query= "SELECT * FROM ".$this->tables[2]." WHERE year LIKE ?";
+    $q = $con->prepare($query);
+    $q->execute([$this->year]);
+    $q->setFetchMode(PDO::FETCH_ASSOC);
+    $ch=array();
+    $ch["reponse"]="1";
+    $ch["challenges"]=array();
+    while ($r = $q->fetch()) {
+
+        $arr = 
+            array('id' =>$r['id'],            
+            'point'=>$r['point'],
+            'module'=>$r['module'],
+            'story'=>$r['story'],
+            'nbOfQuestions'=>$r['nbOfQuestions'],
+            'nbPersonSolved'=>$r['nbPersonSolved'],
+            'resource'=>$r['resource']
+
+               );
+            array_push($ch["challenges"], $arr);
+
+    }
+
+            return json_encode($ch);
+            
+}
 
     // banne the bad one in hacking case :)
     public function bannethehacker(){
@@ -116,7 +145,8 @@ class Globals{
     		return false;
     	}
 
-    }  
+    }
+      
     
 
 
