@@ -57,11 +57,17 @@ class Globals{
     		 $q = $db->prepare($sql);
     		 $q->execute(["$data1"]);
      		 $q->setFetchMode(PDO::FETCH_ASSOC);
- 
+             $arr = array();
+             
     		while ($r = $q->fetch()) {
-      			  return $r["$c1"];
-    	}
-	}
+               
+      			 array_push($arr, $r["$c1"]) ;
+    	       }
+               return $arr; 
+                
+               
+           }
+	
 
     // sign in saving data in our db 
     public function signin(){
@@ -116,7 +122,7 @@ class Globals{
 
         // check if user not solve any challenge yet OR he not solve selected challenge
         if (($flag == false)){
-            echo $r['id'];
+            
             $arr = 
                 array('id' =>$r['id'],
                 'issolved' =>'0',            
@@ -127,8 +133,14 @@ class Globals{
                 'nbPersonSolved'=>$r['nbPersonSolved'],
                 'resource'=>$r['resource']
                    );
-        // Now if he solve the selected challenge 
-        } elseif($challengeid == $r['id']) {
+        } 
+        $i=0;
+        echo "|  ".$r['id']."=>";
+        while ($challengeid[$i]!="") {
+            echo "$challengeid[$i] |";
+            // Now if he solve the selected challenge 
+            if((string)$challengeid[$i] = (string)$r['id']) {
+                
                 $arr = 
                 array('id' =>$r['id'], 
                 'issolved' =>'1',          
@@ -141,18 +153,24 @@ class Globals{
                    ); 
 
         // Now if doesnt solve the selected challenge 
-        } elseif ($challengeid !== $r['id']) {
-            $arr = 
-                array('id' =>$r['id'], 
-                'issolved' =>'0',          
-                'point'=>$r['point'],
-                'module'=>$r['module'],
-                'story'=>$r['story'],
-                'nbOfQuestions'=>$r['nbOfQuestions'],
-                'nbPersonSolved'=>$r['nbPersonSolved'],
-                'resource'=>$r['resource']
-                   );
         }
+            else {
+
+                $arr = 
+                    array('id' =>$r['id'], 
+                    'issolved' =>'0',          
+                    'point'=>$r['point'],
+                    'module'=>$r['module'],
+                    'story'=>$r['story'],
+                    'nbOfQuestions'=>$r['nbOfQuestions'],
+                    'nbPersonSolved'=>$r['nbPersonSolved'],
+                    'resource'=>$r['resource']
+                       );
+            } 
+            $i++;  
+        }
+
+
         array_push($ch["challenges"], $arr);
 
     }
