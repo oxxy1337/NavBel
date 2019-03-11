@@ -8,7 +8,7 @@ class Globals{
 
 
 	private $conn ; 
-	private $tables = ["users","userbannedever","challenges"];
+	private $tables = ["users","userbannedever","challenges","triedchallenges"];
 	// Propreties 
 	// columns of users-subscribed && allstudents tables
 	public $id ;
@@ -99,7 +99,7 @@ class Globals{
     		return false;
     	}
     }
-    // get Challenges data 
+    // get Challenges data ( json array)
     public function challenges(){
     $con = $this->conn;
     $query= "SELECT * FROM ".$this->tables[2]." WHERE year LIKE ?";
@@ -107,24 +107,55 @@ class Globals{
     $q->execute([$this->year]);
     $q->setFetchMode(PDO::FETCH_ASSOC);
     $ch=array();
+    $flag = $this->check($this->tables[3],'userid',$this->id);
+    $challengeid = $this->grab($this->tables[3],'challengeid','userid',$this->id);
     $ch["reponse"]="1";
     $ch["challenges"]=array();
+
     while ($r = $q->fetch()) {
 
-        $arr = 
-            array('id' =>$r['id'],            
-            'point'=>$r['point'],
-            'module'=>$r['module'],
-            'story'=>$r['story'],
-            'nbOfQuestions'=>$r['nbOfQuestions'],
-            'nbPersonSolved'=>$r['nbPersonSolved'],
-            'resource'=>$r['resource']
+        // check if user not solve any challenge yet OR he not solve selected challenge
+        if (($flag == false)){
+            echo $r['id'];
+            $arr = 
+                array('id' =>$r['id'],
+                'issolved' =>'0',            
+                'point'=>$r['point'],
+                'module'=>$r['module'],
+                'story'=>$r['story'],
+                'nbOfQuestions'=>$r['nbOfQuestions'],
+                'nbPersonSolved'=>$r['nbPersonSolved'],
+                'resource'=>$r['resource']
+                   );
+        // Now if he solve the selected challenge 
+        } elseif($challengeid == $r['id']) {
+                $arr = 
+                array('id' =>$r['id'], 
+                'issolved' =>'1',          
+                'point'=>$r['point'],
+                'module'=>$r['module'],
+                'story'=>$r['story'],
+                'nbOfQuestions'=>$r['nbOfQuestions'],
+                'nbPersonSolved'=>$r['nbPersonSolved'],
+                'resource'=>$r['resource']
+                   ); 
 
-               );
-            array_push($ch["challenges"], $arr);
+        // Now if doesnt solve the selected challenge 
+        } elseif ($challengeid !== $r['id']) {
+            $arr = 
+                array('id' =>$r['id'], 
+                'issolved' =>'0',          
+                'point'=>$r['point'],
+                'module'=>$r['module'],
+                'story'=>$r['story'],
+                'nbOfQuestions'=>$r['nbOfQuestions'],
+                'nbPersonSolved'=>$r['nbPersonSolved'],
+                'resource'=>$r['resource']
+                   );
+        }
+        array_push($ch["challenges"], $arr);
 
     }
-
             return json_encode($ch);
             
 }
