@@ -37,7 +37,7 @@ require 'phpmailer/vendor/autoload.php';
 $mail = new PHPMailer(true);                              // Passing `true` enables exceptions
 
     //Server settings
-    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+   /* $mail->SMTPDebug = 0;                                 // Enable verbose debug output
     $mail->isSMTP();                                      // Set mailer to use SMTP
     $mail->Host = 'mail.team7.talebweb.com';  // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
@@ -45,7 +45,7 @@ $mail = new PHPMailer(true);                              // Passing `true` enab
     $mail->Password = '^nR3MbOJTuDy';                           // SMTP password
     $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 465;                                    // TCP port to connect to
-
+*/
     //Recipients
     $mail->setFrom('support@team7.talebweb.com', 'Nav Bell');
     $mail->addAddress($email);     // Add a recipient
