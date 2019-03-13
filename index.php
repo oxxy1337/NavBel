@@ -44,7 +44,7 @@ if(banne($tooken,$op) !==false ){
 if($glob->check('userbannedever','ip',$ip)) exit(json_encode((array("reponse"=>"0"))));
 */
 // is not from ESI students ? then i return 3
-//if($glob->check('allstudents','email',$email) == false) die(json_encode(array("reponse"=>"3")));
+if($glob->check('allstudents','email',$email) == false) die(json_encode(array("reponse"=>"3")));
 
 // after hacker is gone now im sure that i can give data to my client app(web-mobile) :)
 switch ($op) {
