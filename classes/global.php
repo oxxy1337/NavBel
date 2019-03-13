@@ -57,13 +57,11 @@ class Globals{
     		 $q = $db->prepare($sql);
     		 $q->execute(["$data1"]);
      		 $q->setFetchMode(PDO::FETCH_ASSOC);
-             $arr = array();
-             
-    		while ($r = $q->fetch()) {
+    		 while ($r = $q->fetch()) {
                
-      			 array_push($arr, $r["$c1"]) ;
+      			$r["$c1"];
     	       }
-               return $arr; 
+               return $r["$c1"];
                 
                
            }
@@ -109,6 +107,7 @@ class Globals{
     public function challenges(){
     
             $con = $this->conn;
+            // select challenge by year and not solved yet by user 
             $query = "SELECT * FROM ".$this->tables[2]." WHERE  year = ? AND id NOT IN (SELECT challengeid FROM ".$this->tables[3]." where userid=".$this->id.") ";
 
             $s=$con->prepare($query);
