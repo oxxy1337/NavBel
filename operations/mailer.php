@@ -59,7 +59,7 @@ $mail = new PHPMailer(true);                              // Passing `true` enab
        echo $reponse;
     }
      else {
-        $reponse = array("reponse" => 0); 
+        $reponse = array("reponse" => "-1"); 
     };
     echo json_encode($reponse);
 
