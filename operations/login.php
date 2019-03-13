@@ -34,7 +34,7 @@ if(($email == $email_from_db) && ($password == $password_from_db)){
 	echo $data ;
 }else{
 
-	$data=array("reponse"=>"4");
+	$data=array("reponse"=>"-1");
 	$data=json_encode($data);
 	echo $data;
 }

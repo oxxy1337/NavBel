@@ -118,7 +118,7 @@ class Globals{
             
             if($s->rowCount() > 0) $ch["reponse"] = 1; else $ch["reponse"] = 0; 
             while($r= $s->fetch()){
-                $arr = array('id'=>$r['id'],'point'=>$r['point'],'module'=>$r['module'],'story'=>$r['story'],'nbOfQuestions'=>$r['nbOfQuestions'],'nbPersonSolved'=>$r['nbPersonSolved'],'resource'=>$r['resource']);
+                $arr = array('id'=>$r['id'],"url"=>$r['url'],'point'=>$r['point'],'module'=>$r['module'],'story'=>$r['story'],'nbOfQuestions'=>$r['nbOfQuestions'],'nbPersonSolved'=>$r['nbPersonSolved'],'resource'=>$r['resource']);
                 array_push($ch["challenges"], $arr);
 
             }

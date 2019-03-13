@@ -9,9 +9,9 @@ $password = cryptpwd($password,$glob->grab('users','salt','email',$email));
 $glob->password = $password;
 $glob->email=$email;
 if($glob->updatepwd()){
-echo(json_encode(array('reponse' =>"1")));
+	echo(json_encode(array('reponse' =>"1")));
 }else{
-echo(json_encode(array('reponse' =>"4")));
+	echo(json_encode(array('reponse' =>"-1")));
 }
 
 ?>
