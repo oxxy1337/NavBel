@@ -21,7 +21,7 @@ if($glob->signin()) {
 	echo $data;
 	include("./operations/mailer.php");
 } else{
-	$data=array("reponse"=>"0");
+	$data=array("reponse"=>"-1");
 	$data=json_encode($data);
 	echo $data;
 }
