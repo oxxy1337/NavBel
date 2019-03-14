@@ -16,7 +16,7 @@ $glob->picture = upimg($picture);
 
 // save all user profile infos in db 
 if($glob->signin()) {
-	$data = array("reponse"=>"1","fname"=>$glob->fname,"lname"=>$glob->lname,"email"=>$glob->email,"picture"=>$glob->picture,"date"=>$glob->date,"id"=>$glob->grab('users','id','email',$glob->email));
+	$data = array("reponse"=>"1","fname"=>$glob->fname,"lname"=>$glob->lname,"email"=>$glob->email,"picture"=>$glob->picture,"date"=>$glob->date,"id"=>$glob->grab('users','id','email',$glob->email),"year"=>$year);
 	$data = json_encode($data);
 	echo $data;
 	include("./operations/mailer.php");
