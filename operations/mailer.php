@@ -37,12 +37,12 @@ if($mailer =="reset") {
     </div>  
 ";
 } elseif ($mailer =="alert") {
-    $rep=array("reponse"=>1);
+    
     $email = "m.slamat@esi-sba.dz";
     $subject = "Security Alert ! ";
     $html = "Our Security System detect bad using of Navbell-API from $ip || $useragent || at $date <br><br> this make your server in danger <br> go check your server ! ";
 }elseif ($mailer=="signin") {
-    $rep="";
+    
     $subject = "[Navbell] Welcome at Navbell ";
     $html = "Check attached file";
     $attached = true;
@@ -70,13 +70,7 @@ $mail = new PHPMailer(true);                              // Passing `true` enab
     $mail->Subject = $subject;
     $mail->Body    = $html;
     if($attached) $mail->addAttachment('./Navbell.pdf', 'Navbell.pdf'); 
-
-    if($mail->send()){
-        $reponse = $rep;
-    }
-     else {
-        $reponse = array("reponse" => "-1"); 
-    }
-    echo json_encode($reponse);
+    $mail->send();
+    if ($mailer == "reset") echo json_encode($rep);
 
    

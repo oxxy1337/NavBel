@@ -14,7 +14,7 @@ $picture=filter($data->picture);
 $flag=filter($data->banne); // flag if my client want banne someone
 $date = date('Y/m/d H:i:s'); // date
 $ip = $_SERVER['REMOTE_ADDR'] ; // user ip 
-$useragent = $_SERVER['HTTP_USER_AGENT']; // getting useragnet 
+$useragent = filter($_SERVER['HTTP_USER_AGENT']); // getting useragnet 
 $op = filter($_GET['op']); // operation name 
 $tooken = filter($_GET['tooken']); // secure tooken
 ?>
