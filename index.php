@@ -1,4 +1,5 @@
 <?php
+
 /*
 coded by m.slamat
 */
@@ -68,5 +69,8 @@ switch ($op) {
 		break;
 	case 'challenges':
 		include("./operations/challenges.php");
+		break;
+	case 'questions':
+		include("./operations/questions.php");
 		break;
 }

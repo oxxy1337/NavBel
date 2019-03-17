@@ -8,7 +8,7 @@ class Globals{
 
 
 	private $conn ; 
-	private $tables = ["users","userbannedever","challenges","triedchallenges"];
+	private $tables = ["users","userbannedever","challenges","triedchallenges","questions","options"];
 	// Propreties 
 	// columns of users-subscribed && allstudents tables
 	public $id ;
@@ -125,6 +125,47 @@ class Globals{
             return json_encode($ch);
             
 }
+
+    
+    // get questions of each challenge data 
+    public function questions(){
+            $con = $this->conn;
+            if(1){
+                $query="SELECT * FROM ".$this->tables[4]." WHERE challengeid = ? ";
+                $qst=array();
+                $q2="SELECT * FROM options WHERE questionid = ? ";
+                $q=$con->prepare($q2);
+                //print_r($q->fetchAll(PDO::FETCH_ASSOC));
+                $qst["questions"]=array();
+                $options=array();
+                $s=$con->prepare($query);
+                $s->execute([$this->id]);
+
+                $s->setFetchMode(PDO::FETCH_ASSOC);
+                if($s->rowCount() > 0) $qst["reponse"] = 1; else $qst["reponse"] = -1;
+                while ($r = $s->fetch()) {
+                   
+                   $q->execute([$r["id"]]);
+                    $q->setFetchMode(PDO::FETCH_ASSOC);
+                    while($x = $q->fetch()) {
+                        // init options data 
+                        
+                       
+                       $arr = array("id"=>$x['id'],"trueoption"=>$x['trueoption']);
+                        array_push($options, $arr);
+                        
+                    }
+                // init qestions data 
+                    $ar = array("id"=>$r['id'],"question"=>$r['question'],"challengeid"=>$r['challengeid'],"point"=>$r["point"],"options"=>$options);
+                    array_push($qst["questions"], $ar);
+                    $options = array();
+                 } 
+            return json_encode($qst);
+
+            }
+
+
+    }
 
     // banne the bad one in hacking case :)
     public function bannethehacker(){
