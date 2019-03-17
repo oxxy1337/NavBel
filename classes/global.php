@@ -129,41 +129,52 @@ class Globals{
     
     // get questions of each challenge data 
     public function questions(){
-            $con = $this->conn;
-            if(1){
-                $query="SELECT * FROM ".$this->tables[4]." WHERE challengeid = ? ";
-                $qst=array();
-                $q2="SELECT * FROM options WHERE questionid = ? ";
-                $q=$con->prepare($q2);
-                //print_r($q->fetchAll(PDO::FETCH_ASSOC));
-                $qst["questions"]=array();
-                $options=array();
-                $s=$con->prepare($query);
-                $s->execute([$this->id]);
-
-                $s->setFetchMode(PDO::FETCH_ASSOC);
-                if($s->rowCount() > 0) $qst["reponse"] = 1; else $qst["reponse"] = -1;
-                while ($r = $s->fetch()) {
-                   
-                   $q->execute([$r["id"]]);
-                    $q->setFetchMode(PDO::FETCH_ASSOC);
-                    while($x = $q->fetch()) {
-                        // init options data 
-                        
-                       
-                       $arr = array("id"=>$x['id'],"trueoption"=>$x['trueoption']);
-                        array_push($options, $arr);
-                        
-                    }
-                // init qestions data 
-                    $ar = array("id"=>$r['id'],"question"=>$r['question'],"challengeid"=>$r['challengeid'],"point"=>$r["point"],"options"=>$options);
-                    array_push($qst["questions"], $ar);
-                    $options = array();
-                 } 
-            return json_encode($qst);
-
+            
+            if(($this->check($this->tables[2],'id',$this->id) == false)){ // check if challenge still existe 
+                $qst = array("reponse"=>-1);
             }
+                 else {
+                        $con = $this->conn;
 
+                        $query="SELECT * FROM ".$this->tables[4]." WHERE challengeid = ? "; // 1st query for get question by challenge id
+                        
+                        $qst=array();
+                        $q2="SELECT * FROM ".$this->tables[5]." WHERE questionid = ? "; // get option by question id 
+                        $q=$con->prepare($q2);
+                        $qst["questions"]=array(); // array of questions 
+                        $qst["reponse"]=1; // flag of operation successed 
+                        $options=array();
+
+                        $qst["time"]=$this->grab($this->tables[2],'time','id',$this->id); // get time  from challenge
+                        $qst["resource"]=$this->grab($this->tables[2],'resource','id',$this->id); // get resource from challenge 
+                        $s=$con->prepare($query);
+                        $s->execute([$this->id]);
+
+                        $s->setFetchMode(PDO::FETCH_ASSOC);
+                        
+
+                        while ($r = $s->fetch()) { // put question data in array of questions
+                           
+                           $q->execute([$r["id"]]);
+                            $q->setFetchMode(PDO::FETCH_ASSOC);
+                            while($x = $q->fetch()) { // put option data in array of options which stored in question array 
+                                // init options data  
+                                
+                               
+                               $arr = $x['trueoption'];
+                                array_push($options, $arr);
+                                
+                            }
+                        // init qestions data 
+                            $ar = array("question"=>$r['question'],"point"=>$r["point"],"options"=>$options);
+                            array_push($qst["questions"], $ar);
+                            $options = array();
+                 } 
+          
+
+            
+        }
+          return json_encode($qst);
 
     }
 
