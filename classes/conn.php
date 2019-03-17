@@ -8,7 +8,7 @@ coded by m.slamat
     
 class Database{
  
-    
+        // my data is public  don't harm the server or db ....... rak kkbir 
     private $host = "35.203.11.145";
     private $db_name = "navbell";
     private $username = "slamat";
