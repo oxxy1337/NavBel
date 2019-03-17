@@ -62,7 +62,7 @@ switch ($op) {
 		include("./operations/mailer.php");
 		break;
 	case 'login':
-		include('./operations/login.php');
+		include("./operations/login.php");
 		break;
 	case 'reset':
 		include("./operations/reset.php");
@@ -72,5 +72,8 @@ switch ($op) {
 		break;
 	case 'questions':
 		include("./operations/questions.php");
+		break;
+	case 'nbsolved':
+		include("./operations/nbsolved.php");
 		break;
 }
