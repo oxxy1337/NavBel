@@ -147,6 +147,7 @@ class Globals{
 
                         $qst["time"]=$this->grab($this->tables[2],'time','id',$this->id); // get time  from challenge
                         $qst["resource"]=$this->grab($this->tables[2],'resource','id',$this->id); // get resource from challenge 
+                        $qst["resource"] =  urlencode($qst["resource"]);
                         $s=$con->prepare($query);
                         $s->execute([$this->id]);
 
