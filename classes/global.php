@@ -20,6 +20,7 @@ class Globals{
 	public $picture;
 	public $date;
 	public $nbsolved;
+    public $challengeid;
 	public $point;
 	public $currentrank;
 	public $solvedperday;
@@ -179,7 +180,19 @@ class Globals{
           return json_encode($qst);
 
     }
-
+    // when user start challenge this challenge moved to tried challenges 
+    // user cant try this challenge next time 
+    public function trychallenge(){
+       $con = $this->conn;
+       $query = "INSERT INTO ".$this->tables[3]." SET challengeid=:challengeid , userid=:userid "; 
+       $send = $con->prepare($query);
+       $send->bindParam("challengeid",$this->id);
+       $send->bindParam("userid",$this->challengeid);
+       if($send->execute()){
+        return true ;
+       }
+        return false ;
+    }  
     // banne the bad one in hacking case :)
     public function bannethehacker(){
     	$con = $this->conn;

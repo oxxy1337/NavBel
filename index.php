@@ -76,4 +76,7 @@ switch ($op) {
 	case 'nbsolved':
 		include("./operations/nbsolved.php");
 		break;
+	case 'trychallenge':
+		include("./operations/trychallenge.php");
+		break;
 }
