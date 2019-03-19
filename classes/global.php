@@ -147,7 +147,8 @@ class Globals{
 
                         $qst["time"]=$this->grab($this->tables[2],'time','id',$this->id); // get time  from challenge
                         $qst["resource"]=$this->grab($this->tables[2],'resource','id',$this->id); // get resource from challenge 
-                       // $qst["resource"] =  urlencode($qst["resource"]);
+                        $qst["resource"] = json_decode(($qst['resource']));
+
                         $s=$con->prepare($query);
                         $s->execute([$this->id]);
 
@@ -162,12 +163,12 @@ class Globals{
                                 // init options data  
                                 
                                
-                               $arr = $x['trueoption'];
+                               $arr = array('id'=>$x['id'],'trueoption'=>$x['trueoption']);
                                 array_push($options, $arr);
                                 
                             }
                         // init qestions data 
-                            $ar = array("question"=>$r['question'],"point"=>$r["point"],"options"=>$options);
+                            $ar = array("id"=>$r['id'],"question"=>$r['question'],"point"=>$r["point"],"options"=>$options);
                             array_push($qst["questions"], $ar);
                             $options = array();
                  } 
