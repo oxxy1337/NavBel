@@ -9,10 +9,11 @@ coded by m.slamat
 class Database{
  
         // my data is public  don't harm the server or db ....... rak kkbir 
-    private $host = "35.203.11.145";
+    private $host = "projectimg_db_1";
     private $db_name = "navbell";
     private $username = "slamat";
-    private $password = "Slamat=x=2x=3x";
+    private $password = "slamat";
+    private $port ="3306";
     public  $conn;
 
     // get the database connection
@@ -21,7 +22,7 @@ class Database{
         $this->conn = null;
  
         try{
-            $this->conn = new PDO("mysql:host=" . $this->host . ";dbname=" . $this->db_name, $this->username, $this->password);
+            $this->conn = new PDO("mysql:host=" . $this->host . ";port=".$this->port.";dbname=" . $this->db_name, $this->username, $this->password);
             $this->conn->exec("set names utf8");
         }catch(PDOException $exception){
             echo "Connection error: " . $exception->getMessage();

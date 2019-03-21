@@ -1,0 +1,50 @@
+version: "3.1"
+services:
+    api:
+        build: .
+        ports: 
+            - "2019:80"
+        volumes:
+            - ./navbell-api:/var/www/html/
+            - ./backups:/var/backups
+        links:
+            - db
+        networks:
+            - default
+    site:
+        build: .
+        ports: 
+            - "2108:80"
+        volumes:
+            - ./navbell-website:/var/www/html/
+        networks:
+            - default
+
+    db:
+        image: mysql:8.0
+        ports: 
+            - "1337:3306"
+        command: --default-authentication-plugin=mysql_native_password
+        environment:
+            MYSQL_DATABASE: navbell
+            MYSQL_USER: slamat
+            MYSQL_PASSWORD: slamat
+            MYSQL_ROOT_PASSWORD: rootslamat
+        volumes:
+            - ./database:/docker-entrypoint-initdb.d
+            - persistent:/var/lib/mysql
+        networks:
+            - default
+    phpmyadmin:
+        image: phpmyadmin/phpmyadmin
+        links: 
+            - db:db
+        ports:
+            - 1338:80
+        environment:
+            MYSQL_USER: slamat
+            MYSQL_PASSWORD: slamat
+            MYSQL_ROOT_PASSWORD: rootslamat
+
+volumes:
+    persistent:

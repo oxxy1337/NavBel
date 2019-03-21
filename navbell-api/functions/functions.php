@@ -81,7 +81,7 @@ function upimg($data){
     
 	if ($data!==""){
 		$success = file_put_contents($file, $data);
-		$url = "http://" . $_SERVER['HTTP_HOST'] . '/navbell-api//'.$file;
+		$url = "http://" . $_SERVER['HTTP_HOST'] . '/'.$file;
 	} else { 
 		$url = '';
 	};
