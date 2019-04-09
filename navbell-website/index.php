@@ -64,7 +64,7 @@ include("./functions/functions.php");
                               <i class="input-group-text fas fa-envelope"></i>
                             </div>
                           
-                          <input type="text" name="email" class="form-control" placeholder="E-mail"> 
+                          <input type="text" name="login" class="form-control" placeholder="E-mail"> 
                         </div>
                       </div>
 
@@ -190,6 +190,7 @@ include("./functions/functions.php");
 
                   <input type="submit" name="submit" value="Sign up" class="btn btn-primary btn-block mt-4">
                   </form>
+
                   <?php
                   include('./pages/signup.php');
                   ?>
