@@ -1,0 +1,13 @@
+body {
+  margin-top: 100px; }
+
+.navbar {
+  box-shadow: 2px 2px 5px #048ee7;
+  opacity: 0.9;
+  background: #fff; }
+  .navbar .nav-item {
+    font-size: 1.1rem;
+    padding-right: 1.2rem; }
+
+.no-italics {
+  font-style: normal; }
