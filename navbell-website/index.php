@@ -1,9 +1,6 @@
 <?php
-// allow inc files 
-$flag = 1337 ;
-include('./functions/functions.php');
+include("./functions/functions.php");
 ?>
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -24,8 +21,8 @@ include('./functions/functions.php');
   <body>
 
     <!-- Start Here -->
-
     <nav class="navbar navbar-expand-md navbar-light fixed-top py-2" role="navigation">
+      <div class="container">
       <div class="container">
         <a href="index.html" class="navbar-brand">
           <img src="img/navlogo.png" width="80" height="37" />
@@ -44,7 +41,7 @@ include('./functions/functions.php');
               <a  href="#loginModal"  class="nav-link" data-toggle="modal" data-target="#loginModal" >Log in</a>
             </li>
             <li class="nav-item">
-              <a href="#signupModal1" class="nav-link" data-toggle="modal" data-target="#signupModal1">Sign up</a>
+              <a href="#signupModal" class="nav-link" data-toggle="modal" data-target="#signupModal">Sign up</a>
             </li>
           </ul>
         </div>
@@ -60,17 +57,14 @@ include('./functions/functions.php');
                       <button class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                      <form action="" methode="post">
+                      <form action="">
                         <div class="form-group">
                           <div class="input-group mb-3">
                             <div class="input-group-prepend">
                               <i class="input-group-text fas fa-envelope"></i>
                             </div>
                           
-                          <input name = "email" type="text" class="form-control" placeholder="E-mail"> 
-                          
-                         
-
+                          <input type="text" name="email" class="form-control" placeholder="E-mail"> 
                         </div>
                       </div>
 
@@ -80,7 +74,7 @@ include('./functions/functions.php');
                                   <i class="input-group-text fas fa-unlock"></i>
                                 </div>
 
-                                <input type="password" class="form-control" placeholder="Password">
+                                <input type="password" name="password" class="form-control" placeholder="Password">
                              </div>   
                           </div>
 
@@ -97,45 +91,114 @@ include('./functions/functions.php');
                   </div>
                 </div>
               </div>
-     <!-- Sign up _step 1_ Modal -->             
-              <div class="modal" id="signupModal1">
-                  <div class="modal-dialog">
-                    <div class="modal-content">
-                      <div class="modal-header">
-                        <h5 class="modal-title">Sign up</h5>
-                        <button class="close" data-dismiss="modal">&times;</button>
-                      </div>
-                      <div class="modal-body">
-                          <form action="" method="post">
-                              <div class="form-group">
-                                <div class="input-group mb-3">
-                                  <div class="input-group-prepend">
-                                    <i class="input-group-text fas fa-envelope"></i>
-                                  </div>
-                                
-                                  <input name="email" type="text" class="form-control" placeholder="E-mail">
-                                  
-                                </div>
-
-                              </div>
-
-                            <!--
-                              In the sign up form, there are two steps (like the previous non responsive one -meaning: unless we decide not to use 2 steps, then this bug disappear lol) and since it's in a modal window I linked them using a button instead of a input type="submit" and I did that just to show the second step
-
-                              <input type="submit" value="Sign up" class="btn btn-primary btn-block" >--> 
-                            <button name="checkemail" type="text" class="btn btn-primary btn-block " data-toggle="modal" data-target="#signupModal2">Sign up</button>
-                            </form>
+     
+     <!-- Sign up Modal -->   
+     <div class="modal" id="signupModal">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Sign up</h5>
+              <button class="close" data-dismiss="modal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <form action="" method="post">
+                    <div class="form-group">
+                      <div class="input-group mb-4 mt-3">
+                        <div class="input-group-prepend">
+                          <i class="input-group-text fas fa-user"></i>
+                        </div>
+                      
+                        <input type="text" name="fname" class="form-control " placeholder="First Name"> 
                       </div>
                     </div>
-                  </div>
-                </div>
 
-       <?php
+                    <div class="form-group">
+                      <div class="input-group mb-4 mt-3">
+                        <div class="input-group-prepend">
+                          <i class="input-group-text fas fa-user"></i>
+                        </div>
+                      
+                        <input type="text" name="lname" class="form-control " placeholder="Last Name"> 
+                      </div>
+                    </div>
 
-        include('./pages/checkemail.php');
-        ?>
-       
-          
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                          <div class="input-group-prepend">
+                            <i class="input-group-text fas fa-envelope"></i>
+                          </div>
+                        
+                          <input type="text" name="email" class="form-control" placeholder="E-mail"> 
+                        </div>
+                      </div>
+
+                    <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <i class="input-group-text fas fa-unlock"></i>
+                            </div>
+
+                            <input type="password" name="sgpassword"class="form-control" placeholder="Password">
+                         </div>   
+                      </div>
+
+                      <div class="form-group">
+                        <div class="input-group mb-3">
+                            <div class="input-group-prepend">
+                              <i class="input-group-text fas fa-redo"></i>
+                            </div>
+
+                            <input type="password" name="confirmSgpassword" class="form-control" placeholder="Confirm Password">
+                         </div>   
+                      </div>
+
+                    <div class="form-group mb-4">
+                        <div class="input-group mb-4 mt-3">
+                            <div class="input-group-prepend">
+                                <i class="input-group-text "> <span class="no-italics">School Year</span></i>
+                            
+                            </div> 
+                        <select name ="year" class="form-control" id="syear">
+                          <option>
+                            ...
+                          </option>
+                          <option value="1 CPI">
+                            1 CPI
+                          </option>
+                          <option value="2 CPI">  
+                              2 CPI
+                          </option>
+                          <option value="1 CS">
+                              1 CS
+                          </option>
+                          <option value="2 CS">
+                              2 CS
+                          </option>
+                          <option value="3 CS">
+                              3 CS
+                          </option>
+                        </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <div class="custom-file">
+                          <input name="img" type="file" id="myfile">
+                          <label class="custom-file-label" for="myfile">Upload Profile Picture</label>
+                        </div>
+                    </div>
+
+                  <input type="submit" name="submit" value="Sign up" class="btn btn-primary btn-block mt-4">
+                  </form>
+                  <?php
+                  include('./pages/signup.php');
+                  ?>
+            </div>
+          </div>
+        </div>
+      </div>
+            
+
     <script
       src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
       integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"

@@ -41,7 +41,7 @@ CREATE TABLE `allstudents` (
 INSERT INTO `allstudents` (`id`, `email`, `fname`, `lname`, `year`) VALUES
 (1, 'm.slamat@esi-sba.dz', 'SLAMAT', 'MOHAMED SOUHAIB', 2),
 (2, 'a.boutouchent@esi-sba.dz', 'kahina', 'kahina2', 5),
-(5, 'd.benahmed@esi-sba.dz', 'sakura', 'chan', 69);
+(5, 's.hasbellaoui@esi-sba.dz', 'sara', 'sara', 69);
 
 -- --------------------------------------------------------
 
