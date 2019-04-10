@@ -11,7 +11,8 @@ if($mailer =="reset") {
     $rand = rand(10000,99999);
     $subject = "Account details for $fame at Nav Bell";
     $rep=array("reponse"=>1,"code" => $rand);
-    $html = "$fname,
+    $fname2=grab('users','fname','email','email');
+    $html = "Hi $fname2,
     <div class='email-background' style='background: #eee;padding: 10px;'>
 
         <div class='pre-header' style='background: #eee;color: #eee;font-size: 5px;'>

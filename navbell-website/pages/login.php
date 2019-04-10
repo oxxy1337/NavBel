@@ -1,6 +1,7 @@
 <?php
 
-if(isset($_POST["submit"])){
+if(isset($_POST["signin"])){
+	echo "innnn";
 	$op = "login";
 	$data = array("email"=>$_POST["login"],"password"=>$_POST["password"]);
 	$result = postapi($url,$op,$data);

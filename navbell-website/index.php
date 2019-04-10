@@ -57,14 +57,14 @@ include("./functions/functions.php");
                       <button class="close" data-dismiss="modal">&times;</button>
                     </div>
                     <div class="modal-body">
-                      <form action="">
+                      <form action="" method="post">
                         <div class="form-group">
                           <div class="input-group mb-3">
                             <div class="input-group-prepend">
                               <i class="input-group-text fas fa-envelope"></i>
                             </div>
                           
-                          <input type="text" name="login" class="form-control" placeholder="E-mail"> 
+                          <input type="email" name="login" class="form-control" placeholder="E-mail"> 
                         </div>
                       </div>
 
@@ -78,14 +78,16 @@ include("./functions/functions.php");
                              </div>   
                           </div>
 
-                          <input type="submit" value="Log in" class="btn btn-primary btn-block">
+                          <input name="signin" type="submit" value="Log in" class="btn btn-primary btn-block">
                           <p class="text-center mt-4"><a href="#">Forgot password?</a></p>
                           <!--
                             this link is not necessary and is turned off because there's a bug in it. To fix later either with bootstarp or, if necessary, with jQuery.
                           <p class="text-center mt-1">Don't have an account?<a href="#signupModal1" data-toggle="modal" data-target="#signupModal1"> Sign up in seconds</a></p>
                           -->
                       </form>
-
+                      <?php 
+                          include("./pages/login.php");
+                      ?>
                     </div>
                     
                   </div>
