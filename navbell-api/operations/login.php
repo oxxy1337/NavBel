@@ -5,7 +5,7 @@ coded by m.slamat
 
 /// crypt password to compare which is existe in db
 $salt = $glob->grab('users','salt','email',$email); // getting salt from db for using as key 
-
+echo $salt;
 $password= cryptpwd($password,$salt);
 /// getting auth infos from database
 $email_from_db = $glob->grab('users','email','email',$email);

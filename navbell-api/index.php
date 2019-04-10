@@ -1,5 +1,7 @@
 <?php
-error_reporting(0);
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 /*
 coded by m.slamat
 */
@@ -78,5 +80,8 @@ switch ($op) {
 		break;
 	case 'trychallenge':
 		include("./operations/trychallenge.php");
+		break;
+	case 'solve':
+		include("./operations/solveqst.php");
 		break;
 }

@@ -7,7 +7,7 @@
 
 // don't forget filter inputs 
 
-if(isset($_POST["submit"])){
+if(isset($_POST["submit"])){ // empty .... 
 			$op = "check";
 			$data = array("email"=>$_POST["email"]); // testing email 
 			$result = postapi($url,$op,$data);

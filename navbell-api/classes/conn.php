@@ -9,11 +9,11 @@ coded by m.slamat
 class Database{
  
        
-    private $host = "navbellapi_db_1";
+    private $host = "35.203.0.205";
     private $db_name = "navbell";
     private $username = "slamat";
     private $password = "slamat";
-    private $port ="3306";
+    private $port ="1337";
     public  $conn;
 
     // get the database connection

@@ -103,7 +103,9 @@ class Globals{
     	}else{
     		return false;
     	}
-    }
+    } 
+
+
     // get Challenges data ( json array)
     public function challenges(){
     
@@ -192,8 +194,29 @@ class Globals{
         return true ;
        }
         return false ;
-    }  
-    // banne the bad one in hacking case :)
+    } 
+
+    // update if correct pts ++ :D Esist deserve ++ 
+    public function updateifsolved(){
+        $con = $this->conn;
+        $query = "UPDATE ".$this->tables[0]." SET point=:point,nbsolved=:nbsolved,solvedperday=:solvedperday WHERE id=:id";
+        $send = $con->prepare($query);
+        $send->bindParam(":point",$this->point);
+        $send->bindParam(":id",$this->id);
+        $send->bindParam(":nbsolved",$this->nbsolved);
+        $send->bindParam(":solvedperday",$this->solvedperday);
+        if($send->execute()){
+            return true;
+        }else{
+            return false;
+        }
+
+
+    }
+
+
+
+    // banne the bad one in hacking case ;)
     public function bannethehacker(){
     	$con = $this->conn;
     	$query = "INSERT INTO ".$this->tables[1]." SET date=:date,useragent=:useragent,ip=:ip,why=:why";
