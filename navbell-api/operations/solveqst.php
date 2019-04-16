@@ -14,7 +14,7 @@ $out["finalresult"]=array();
 //// range of etudiant
 $cheaterz = 10;
 $elite = 50 ; 
-$bonus = 0.5;
+$bonus = 1;
 $elistebonus = 0;
 $win = 0;
 $timeperc = ( $time * 100 ) / $fulltime ; 
