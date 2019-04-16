@@ -1,5 +1,6 @@
 <?php
 include("./functions/functions.php");
+$falg= 1337;
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -79,7 +80,7 @@ include("./functions/functions.php");
                           </div>
 
                           <input name="signin" type="submit" value="Log in" class="btn btn-primary btn-block">
-                          <p class="text-center mt-4"><a href="?page=recover">Forgot password?</a></p>
+                          <p class="text-center mt-4"><a href="#">Forgot password?</a></p>
                           <!--
                             this link is not necessary and is turned off because there's a bug in it. To fix later either with bootstarp or, if necessary, with jQuery.
                           <p class="text-center mt-1">Don't have an account?<a href="#signupModal1" data-toggle="modal" data-target="#signupModal1"> Sign up in seconds</a></p>
@@ -87,8 +88,6 @@ include("./functions/functions.php");
                       </form>
                       <?php 
                           include("./pages/login.php");
-
-                          include("./pages/resetpwd/r1.php");
                       ?>
                     </div>
                     

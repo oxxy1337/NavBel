@@ -8,7 +8,7 @@ class Globals{
 
 
 	private $conn ; 
-	private $tables = ["users","userbannedever","challenges","triedchallenges","questions","options"];
+	private $tables = ["users","userbannedever","challenges","triedchallenges","questions","options","userbannedtmp"];
 	// Propreties 
 	// columns of users-subscribed && allstudents tables
 	public $id ;
@@ -233,10 +233,23 @@ class Globals{
     	}
 
     }
-      
-    
-
-
+    // banne the cheater :) 
+    public function bannethecheater(){
+        $con = $this->conn;
+        
+        $query = "INSERT INTO ".$this->tables[6]." SET userid=:userid,ip=:ip,challengeid=:challengeid,date=:date";
+        $send = $con->prepare($query);
+        $send->bindParam(":date",$this->date);
+        $send->bindParam(":ip",$this->ip);
+        $send->bindParam(":userid",$this->id);
+        $send->bindParam(":challengeid",$this->challengeid);
+        
+        if($send->execute()) {
+            return true;    
+        }else{
+            return false;
+        }
+    }
 	
 
 
