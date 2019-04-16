@@ -49,7 +49,7 @@ if($glob->check('userbannedever','ip',$ip)) exit(json_encode((array("reponse"=>"
 */
 
 
-// after hacker is gone now im sure that i can give data to my client app(web-mobile) :)
+// after hacker or cheater  is gone now im sure that i can give data to my client app(web-mobile) :)
 switch ($op) {
 	case 'check':
 		include("./operations/check-signin.php");
