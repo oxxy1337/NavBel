@@ -87,4 +87,7 @@ switch ($op) {
 	case 'solve':
 		include("./operations/solveqst.php");
 		break;
+	case 'profile':
+		include("./operations/profile.php");
+		break;
 }

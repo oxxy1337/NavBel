@@ -91,6 +91,19 @@ class Globals{
 
 
     }
+    // send user data by id (needed in profile )
+    public function userdata(){
+        $con= $this->conn;
+        $query = "SELECT * FROM ".$this->tables[0]." WHERE id = ?";
+        $send = $con->prepare($query);
+        if($send->execute([$this->id])){
+            $send->setFetchMode(PDO::FETCH_ASSOC);
+            return $data = $send->fetchall(); 
+        } else {
+            return Null ;
+        };
+
+    }
     // Reset password (update with new password)
     public function updatepwd(){
     	$con = $this->conn;
