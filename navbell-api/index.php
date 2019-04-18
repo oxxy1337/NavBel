@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 coded by m.slamat
 */
 /// web header part 
-error_reporting(0);
+
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
@@ -23,7 +23,7 @@ $db = $database->getConnection();  //checking the connection
 $glob = new Globals($db); // creating object 
 include('./functions/vars.php'); // variables initialisation
 //security mesure (banne the hacker)
-/*
+
 if(banne($tooken,$op) !==false ){
 	$why = "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 	$glob->why = $why;
@@ -45,11 +45,13 @@ if(banne($tooken,$op) !==false ){
  }
 
 // check if the hacker ip in our db (already banned) 
-if($glob->check('userbannedever','ip',$ip)) exit(json_encode((array("reponse"=>"0"))));
-*/
+//if($glob->check('userbannedever','ip',$ip)) exit(json_encode((array("reponse"=>"0"))));
+// check if the user is a cheater :/ 
+if($glob->check('userbannedtmp','userid',$glob->grab('users','id','email',$data->email))) exit(json_encode((array("reponse"=>-2))));
 
 
-// after hacker or cheater  is gone now im sure that i can give data to my client app(web-mobile) :)
+
+// after hacker and cheater  is gone now im sure that i can give data to my client app(web-mobile) :)
 switch ($op) {
 	case 'check':
 		include("./operations/check-signin.php");

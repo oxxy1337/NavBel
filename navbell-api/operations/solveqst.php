@@ -27,7 +27,7 @@ if($timeperc <= $cheaterz) {
 	$glob->date = $date; 
 	$glob->ip = $ip;
 	$glob->bannethecheater(); 
-	die(json_encode(array('reponse' =>  0)));
+	die(json_encode(array('reponse' =>  -2)));
 };
 // time effect :) 
 if(($timeperc>=70)&&($timeperc <80)){

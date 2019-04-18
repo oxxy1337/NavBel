@@ -54,7 +54,7 @@ class Globals{
      // grabing data 
     public function grab($table,$c1,$c2,$data1){
     		 $db = $this->conn;
-  		     $sql = "SELECT $c1 FROM $table WHERE $c2 LIKE ?";
+  		     $sql = "SELECT $c1 FROM $table WHERE $c2 = ?";
     		 $q = $db->prepare($sql);
     		 $q->execute(["$data1"]);
      		 $q->setFetchMode(PDO::FETCH_ASSOC);
