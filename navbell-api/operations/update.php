@@ -15,6 +15,7 @@ $glob->password = cryptpwd($password,$glob->salt);
 $glob->picture = upimg($picture);
 if($glob->updateuser()){
 	$mouh["reponse"]=1;	
+	$mouh["picture"]=$glob->picture;
 }else{
 	$mouh["reponse"]=-1;
 }
