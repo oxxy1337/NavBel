@@ -6,7 +6,7 @@ error_reporting(E_ALL);
 coded by m.slamat
 */
 /// web header part 
-
+error_reporting(0);
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
@@ -47,7 +47,7 @@ if(banne($tooken,$op) !==false ){
 // check if the hacker ip in our db (already banned) 
 //if($glob->check('userbannedever','ip',$ip)) exit(json_encode((array("reponse"=>"0"))));
 // check if the user is a cheater :/ 
-if($glob->check('userbannedtmp','userid',$glob->grab('users','id','email',$data->email))) exit(json_encode((array("reponse"=>-2))));
+//if($glob->check('userbannedtmp','userid',$glob->grab('users','id','email',$data->email))) exit(json_encode((array("reponse"=>-2))));
 
 
 
