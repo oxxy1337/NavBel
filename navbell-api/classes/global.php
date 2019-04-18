@@ -104,6 +104,25 @@ class Globals{
         };
 
     }
+    // update user data (update infos) 
+    public function updateuser(){
+        
+            $con = $this->conn ;
+            $query = "UPDATE ".$this->tables[0]." SET fname=:fname,lname=:lname,password=:password,salt=:salt,picture=:picture WHERE id=:id";
+            $send = $con->prepare($query);
+            $send->bindParam(":fname",$this->fname);
+            $send->bindParam(":lname",$this->lname);
+            $send->bindParam(":password",$this->password);
+            $send->bindParam(":salt",$this->salt);
+            $send->bindParam(":picture",$this->picture);
+            $send->bindParam(":id",$this->id);
+
+            if($send->execute()){
+                return true;
+            } else{
+                return false;
+            }
+    }
     // Reset password (update with new password)
     public function updatepwd(){
     	$con = $this->conn;

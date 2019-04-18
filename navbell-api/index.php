@@ -90,4 +90,8 @@ switch ($op) {
 	case 'profile':
 		include("./operations/profile.php");
 		break;
+	case 'update':
+		include("./operations/update.php");
+		break;
+
 }
