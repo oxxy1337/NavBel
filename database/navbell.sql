@@ -1,13 +1,15 @@
 -- phpMyAdmin SQL Dump
--- version 4.6.6deb5
+-- version 4.8.5
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 19, 2019 at 11:04 PM
--- Server version: 5.7.25-0ubuntu0.18.04.2
--- PHP Version: 7.2.15-0ubuntu0.18.04.1
+-- Host: db
+-- Generation Time: Apr 19, 2019 at 10:06 AM
+-- Server version: 8.0.15
+-- PHP Version: 7.2.14
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
 SET time_zone = "+00:00";
 
 
@@ -39,9 +41,9 @@ CREATE TABLE `allstudents` (
 --
 
 INSERT INTO `allstudents` (`id`, `email`, `fname`, `lname`, `year`) VALUES
-(1, 'm.slamat@esi-sba.dz', 'SLAMAT', 'MOHAMED SOUHAIB', 2),
-(2, 'a.boutouchent@esi-sba.dz', 'kahina', 'kahina2', 5),
-(5, 's.hasbellaoui@esi-sba.dz', 'sara', 'sara', 69);
+(1, 'm.slamat@esi-sba.dz', 'SLAMAT', 'MOHAMED SOUHAIB', 5),
+(2, 's.hasbellaoui@esi-sba.dz', 'sara', 'sara', 5),
+(5, 'd.benahmed@esi-sba.dz', 'sakura', 'chan', 69);
 
 -- --------------------------------------------------------
 
@@ -68,7 +70,7 @@ CREATE TABLE `challenges` (
 
 INSERT INTO `challenges` (`id`, `point`, `module`, `nbPersonSolved`, `url`, `nbOfQuestions`, `story`, `resource`, `year`, `time`) VALUES
 (1, 7, 'harwala', '2', 'https://ichef.bbci.co.uk/news/320/cpsprodpb/37B5/production/_89716241_thinkstockphotos-523060154.jpg', 5, 'hello and welcom', '{\"\": \"\"}', 5, 150),
-(2, 300, 'harwala2', '3', 'https://ichef.bbci.co.uk/news/320/cpsprodpb/37B5/production/_89716241_thinkstockphotos-523060154.jpg', 3, 'hello welcome', '[{\"url\": \"https://i.ebayimg.com/images/g/k5cAAOSwNSxVeEJv/s-l300.jpg\", \"name\": \"helloworld\"}]', 5, 120);
+(2, 131, 'harwala2', '3', 'https://ichef.bbci.co.uk/news/320/cpsprodpb/37B5/production/_89716241_thinkstockphotos-523060154.jpg', 3, 'hello welcome', '[{\"url\": \"https://i.ebayimg.com/images/g/k5cAAOSwNSxVeEJv/s-l300.jpg\", \"name\": \"helloworld\"}]', 5, 100);
 
 -- --------------------------------------------------------
 
@@ -101,7 +103,7 @@ CREATE TABLE `questions` (
   `id` int(11) NOT NULL,
   `question` text NOT NULL,
   `challengeid` int(11) NOT NULL,
-  `option` text NOT NULL,
+  `opt` int(11) NOT NULL,
   `point` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -109,9 +111,9 @@ CREATE TABLE `questions` (
 -- Dumping data for table `questions`
 --
 
-INSERT INTO `questions` (`id`, `question`, `challengeid`, `option`, `point`) VALUES
-(2, 'DO U LOVE KAHINA ?', 2, '7', 187),
-(4, 'u got root ?', 2, '7', 77);
+INSERT INTO `questions` (`id`, `question`, `challengeid`, `opt`, `point`) VALUES
+(2, 'a', 2, 7, 54),
+(4, 'u got root ?', 2, 3, 77);
 
 -- --------------------------------------------------------
 
@@ -139,18 +141,6 @@ INSERT INTO `triedchallenges` (`id`, `userid`, `challengeid`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `user-banned-tmp`
---
-
-CREATE TABLE `user-banned-tmp` (
-  `userid` int(11) NOT NULL,
-  `reason` text NOT NULL,
-  `date` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `userbannedever`
 --
 
@@ -161,6 +151,31 @@ CREATE TABLE `userbannedever` (
   `date` text NOT NULL,
   `why` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `userbannedtmp`
+--
+
+CREATE TABLE `userbannedtmp` (
+  `id` int(11) NOT NULL,
+  `userid` text NOT NULL,
+  `challengeid` int(11) NOT NULL,
+  `date` text NOT NULL,
+  `ip` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `userbannedtmp`
+--
+
+INSERT INTO `userbannedtmp` (`id`, `userid`, `challengeid`, `date`, `ip`) VALUES
+(5, '170', 2, '2019/04/18 20:13:45', '127.0.0.1'),
+(6, '170', 2, '2019/04/18 20:14:36', '127.0.0.1'),
+(7, '170', 2, '2019/04/18 20:14:56', '127.0.0.1'),
+(8, '170', 2, '2019/04/18 20:15:43', '127.0.0.1'),
+(9, '170', 2, '2019/04/18 20:16:49', '127.0.0.1');
 
 -- --------------------------------------------------------
 
@@ -181,18 +196,18 @@ CREATE TABLE `users` (
   `point` int(11) DEFAULT NULL,
   `currentrank` int(11) DEFAULT NULL,
   `solvedperday` int(11) DEFAULT NULL,
+  `ispublic` int(11) DEFAULT NULL,
   `ranks` text,
-  `year` int(11) DEFAULT NULL
+  `year` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `users`
 --
 
-INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `password`, `salt`, `picture`, `date`, `nbsolved`, `point`, `currentrank`, `solvedperday`, `ranks`, `year`) VALUES
-(139, 'kahina', 'kahina2', 'a.boutouchent@esi-sba.dz', 's1qp85sspn68735nr6rs0507poop0487', '$gzOTVlNTQ3YzE=$', 'http://35.203.11.145/navbell-api//./images/5c9000e444818.jpg', '2019/03/18 20:34:44', NULL, NULL, NULL, NULL, NULL, 5),
-(140, 'SLAMAT', 'MOHAMED SOUHAIB', 'm.slamat@esi-sba.dz', 'o919qp28ppo74qqn83585458n9s92195', '$VmOTliMjVlMTM=$', 'http://35.203.11.145/navbell-api//./images/5c900206bfb40.jpg', '2019/03/18 20:39:34', NULL, NULL, NULL, NULL, NULL, 2),
-(141, 'sakura', 'chan', 'd.benahmed@esi-sba.dz', '2n341004n96p59632624q9q97r767697', '$M2OTdkMDRmNzI=$', '', '2019/03/19 00:00:42', NULL, NULL, NULL, NULL, NULL, 69);
+INSERT INTO `users` (`id`, `fname`, `lname`, `email`, `password`, `salt`, `picture`, `date`, `nbsolved`, `point`, `currentrank`, `solvedperday`, `ispublic`, `ranks`, `year`) VALUES
+(170, 'michael', 'lauvain', 'm.slamat@esi-sba.dz', 'pr9n8p65no58s5rqs9ns726rn2snqr8r', '$RiOTAyODg3YzU=$', 'http://35.203.0.205:2019/./images/5cb8fabc71b0c.jpg', '2019/04/10 09:33:35', 27, 1075, NULL, 27, NULL, NULL, '5'),
+(171, 'med', 'med', 'd.benahmed@esi-sba.dz', '84117s50n79o1o4s30nn87son2077o4s', '$hmYzQ4ZjMzMWM=$', '', '2019/04/18 16:37:42', NULL, NULL, NULL, NULL, NULL, NULL, '1 CS');
 
 --
 -- Indexes for dumped tables
@@ -229,15 +244,15 @@ ALTER TABLE `triedchallenges`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `user-banned-tmp`
---
-ALTER TABLE `user-banned-tmp`
-  ADD PRIMARY KEY (`userid`);
-
---
 -- Indexes for table `userbannedever`
 --
 ALTER TABLE `userbannedever`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `userbannedtmp`
+--
+ALTER TABLE `userbannedtmp`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -255,36 +270,50 @@ ALTER TABLE `users`
 --
 ALTER TABLE `allstudents`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
 --
 -- AUTO_INCREMENT for table `challenges`
 --
 ALTER TABLE `challenges`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
 --
 -- AUTO_INCREMENT for table `options`
 --
 ALTER TABLE `options`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
 --
 -- AUTO_INCREMENT for table `questions`
 --
 ALTER TABLE `questions`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
 --
 -- AUTO_INCREMENT for table `triedchallenges`
 --
 ALTER TABLE `triedchallenges`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT for table `userbannedever`
 --
 ALTER TABLE `userbannedever`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=95;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
+
+--
+-- AUTO_INCREMENT for table `userbannedtmp`
+--
+ALTER TABLE `userbannedtmp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=172;
+COMMIT;
+
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

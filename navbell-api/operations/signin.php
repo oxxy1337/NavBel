@@ -8,6 +8,7 @@ $glob->email = $email;
 $glob->salt = "$".substr(base64_encode(md5(microtime())), 30)."$"; // random salt 
 $glob->date = $date;
 $glob->year = $year;
+$glob->ispublic=$ispublic;
 
 // crypting user password 
 $glob->password = cryptpwd($password,$glob->salt);
@@ -16,7 +17,7 @@ $glob->picture = upimg($picture);
 
 // save all user profile infos in db 
 if($glob->signin()) {
-	$data = array("reponse"=>"1","fname"=>$glob->fname,"lname"=>$glob->lname,"email"=>$glob->email,"picture"=>$glob->picture,"date"=>$glob->date,"id"=>$glob->grab('users','id','email',$glob->email),"year"=>$glob->year);
+	$data = array("reponse"=>"1","fname"=>$glob->fname,"lname"=>$glob->lname,"email"=>$glob->email,"picture"=>$glob->picture,"date"=>$glob->date,"id"=>$glob->grab('users','id','email',$glob->email),"year"=>$glob->year,"ispublic"=>$glob->ispublic);
 	$data = json_encode($data);
 	echo $data;
 	include("./operations/mailer.php");

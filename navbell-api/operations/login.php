@@ -18,6 +18,7 @@ if(($email == $email_from_db) && ($password == $password_from_db)){
 	/// variables initialisisation
 	
 	$id = 	 $glob->grab('users','id','email',$email);
+	$ispublic = $glob->grab('users','ispublic','email',$email);
 	$fname = $glob->grab('users','fname','email',$email);
 	$lname = $glob->grab('users','lname','email',$email);
 	$year =  $glob->grab('users','year','email',$email);
@@ -29,7 +30,7 @@ if(($email == $email_from_db) && ($password == $password_from_db)){
 	$currentrank = $glob->grab('users','currentrank','email',$email);
 	$solvedperday = $glob->grab('users','solvedperday','email',$email);
 
-	$data = array("reponse"=>"1","id"=>$id,"fname"=>$fname,"lname"=>$lname,"year"=>$year,"point"=>$point,"ranks"=>$ranks,"picture"=>$picture,"date"=>$date,"nbsolved"=>$nbsolved,"currentrank"=>$currentrank);
+	$data = array("reponse"=>"1","id"=>$id,"ispublic"=>$ispublic,"fname"=>$fname,"lname"=>$lname,"year"=>$year,"point"=>$point,"ranks"=>$ranks,"picture"=>$picture,"date"=>$date,"nbsolved"=>$nbsolved,"currentrank"=>$currentrank);
 	$data = json_encode($data);
 	echo $data ;
 }else{

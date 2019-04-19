@@ -29,6 +29,7 @@ class Globals{
 	public $ip;
 	public $useragent;
 	public $why ;
+    public $ispublic;
     // [+] class constructures 
     public function __construct($db){
     	$this->conn = $db;
@@ -72,7 +73,7 @@ class Globals{
     public function signin(){
     	
 	    	$con = $this->conn ;
-	    	$query = "INSERT INTO ".$this->tables[0]." SET fname=:fname,lname=:lname,email=:email,password=:password,salt=:salt,date=:date,picture=:picture,year=:year";
+	    	$query = "INSERT INTO ".$this->tables[0]." SET fname=:fname,lname=:lname,email=:email,password=:password,salt=:salt,date=:date,picture=:picture,year=:year,ispublic=:ispublic";
 	    	$send = $con->prepare($query);
 	    	$send->bindParam(":fname",$this->fname);
 	    	$send->bindParam(":lname",$this->lname);
@@ -82,6 +83,7 @@ class Globals{
 	    	$send->bindParam(":picture",$this->picture);
 	    	$send->bindParam(":date",$this->date);
 	    	$send->bindParam(":year",$this->year);
+            $send->bindParam(":ispublic",$this->ispublic);
 
 	    	if($send->execute()){
 	    		return true;
@@ -108,7 +110,7 @@ class Globals{
     public function updateuser(){
         
             $con = $this->conn ;
-            $query = "UPDATE ".$this->tables[0]." SET fname=:fname,lname=:lname,password=:password,salt=:salt,picture=:picture WHERE id=:id";
+            $query = "UPDATE ".$this->tables[0]." SET fname=:fname,lname=:lname,password=:password,salt=:salt,picture=:picture,ispublic=:ispublic WHERE id=:id";
             $send = $con->prepare($query);
             $send->bindParam(":fname",$this->fname);
             $send->bindParam(":lname",$this->lname);
@@ -116,6 +118,7 @@ class Globals{
             $send->bindParam(":salt",$this->salt);
             $send->bindParam(":picture",$this->picture);
             $send->bindParam(":id",$this->id);
+            $send->bindParam(":ispublic",$this->ispublic);
 
             if($send->execute()){
                 return true;

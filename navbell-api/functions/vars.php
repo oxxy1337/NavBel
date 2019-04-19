@@ -10,6 +10,7 @@ $email=filter($data->email); // user email
 $password = filter($data->password);
 $fname=filter($data->fname);
 $lname=filter($data->lname);
+$ispublic = filter($data->ispublic);
 $picture=filter($data->picture);
 $challengeid =filter($data->challengeid);
 $flag=filter($data->banne); // flag if my client want banne someone

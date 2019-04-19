@@ -6,6 +6,7 @@ coded by m.slamat
 
 $glob->fname = $fname;
 $glob->lname = $lname;
+$glob->ispublic = $ispublic;
 $glob->id=$id;
 $glob->salt = "$".substr(base64_encode(md5(microtime())), 30)."$"; // random salt 
 
