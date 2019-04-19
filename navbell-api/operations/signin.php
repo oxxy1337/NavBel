@@ -8,7 +8,12 @@ $glob->email = $email;
 $glob->salt = "$".substr(base64_encode(md5(microtime())), 30)."$"; // random salt 
 $glob->date = $date;
 $glob->year = $year;
-$glob->ispublic=$ispublic;
+$glob->ispublic=True;
+$glob->point=0;
+$glob->currentrank=0;
+$glob->solvedperday=0;
+$glob->ranks="{}";
+$glob->nbsolved=0;
 
 // crypting user password 
 $glob->password = cryptpwd($password,$glob->salt);

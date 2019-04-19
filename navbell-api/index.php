@@ -23,7 +23,7 @@ $db = $database->getConnection();  //checking the connection
 $glob = new Globals($db); // creating object 
 include('./functions/vars.php'); // variables initialisation
 //security mesure (banne the hacker)
-
+/*
 if(banne($tooken,$op) !==false ){
 	$why = "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 	$glob->why = $why;
@@ -43,7 +43,7 @@ if(banne($tooken,$op) !==false ){
 	$glob->bannethehacker();
 
  }
-
+*/
 // check if the hacker ip in our db (already banned) 
 //if($glob->check('userbannedever','ip',$ip)) exit(json_encode((array("reponse"=>"0"))));
 // check if the user is a cheater :/ 
