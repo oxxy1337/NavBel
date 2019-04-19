@@ -8,7 +8,5 @@ RUN docker-php-ext-install mysqli
 RUN docker-php-ext-install pdo_mysql 
 # install client
 RUN apt-get install -y mysql-client
-#add permission
-ENTRYPOINT ["/bin/chown","-R","www-data:www-data","/var/www/html/"]
 # clear cache 
 RUN apt-get clean && rm -rf /var/lib/apt/lists/*
