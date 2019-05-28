@@ -6,7 +6,7 @@ coded by m.slamat
 
 
 // is already subscribed ? then i return 2  
-
+$id = $glob->grab('allstudents','id','email',$email);
 if($glob->check('users','id',$id) !== false) die(json_encode(array("reponse"=>"2")));
 // is not from ESI students ? then i return 3
 if($glob->check('allstudents','id',$id) == false) die(json_encode(array("reponse"=>"3")));
