@@ -234,8 +234,8 @@ class Globals{
        $con = $this->conn;
        $query = "INSERT INTO ".$this->tables[3]." SET challengeid=:challengeid , userid=:userid "; 
        $send = $con->prepare($query);
-       $send->bindParam("challengeid",$this->id);
-       $send->bindParam("userid",$this->challengeid);
+       $send->bindParam("challengeid",$this->challengeid);
+       $send->bindParam("userid",$this->id);
        if($send->execute()){
         return true ;
        }
