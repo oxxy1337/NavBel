@@ -11,7 +11,7 @@ if($mailer =="reset") {
     $rand = rand(10000,99999);
     $subject = "Account details for $fame at Nav Bell";
     $rep=array("reponse"=>1,"code" => $rand);
-    $fname2=grab('users','fname','email','email');
+    $fname2=$glob->grab('allstudents','fname','email',$email);
     $html = "Hi $fname2,
     <div class='email-background' style='background: #eee;padding: 10px;'>
 
@@ -57,15 +57,15 @@ $mail = new PHPMailer(true);                              // Passing `true` enab
     //Server settings
     $mail->SMTPDebug = 0;                                 // Enable verbose debug output
     $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'mail.oxxy.talebweb.com';  // Specify main and backup SMTP servers
+    $mail->Host = 'smtp.sendgrid.net';  // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'team7@oxxy.talebweb.com';                 // SMTP username
-    $mail->Password = '^nR3MbOJTuDy';                           // SMTP password
+    $mail->Username = 'azure_1657def2941b355d79074e6ea538831e@azure.com';                 // SMTP username
+    $mail->Password = '0dayismine';                           // SMTP password
     $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 465;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('support@team7.talebweb.com', 'Nav Bell');
+    $mail->setFrom('slamat@navbell.com', 'Nav Bell');
     $mail->addAddress($email);     // Add a recipient
     $mail->isHTML(true);  // Set email format to HTML
     $mail->Subject = $subject;
