@@ -60,7 +60,7 @@ $mail = new PHPMailer(true);                              // Passing `true` enab
     $mail->Host = 'smtp.sendgrid.net';  // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
     $mail->Username = 'azure_1657def2941b355d79074e6ea538831e@azure.com';                 // SMTP username
-    $mail->Password = '0dayismine';                           // SMTP password
+    $mail->Password = '';                           // SMTP password
     $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 465;                                    // TCP port to connect to
 
