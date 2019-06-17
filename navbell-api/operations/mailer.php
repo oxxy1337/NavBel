@@ -57,15 +57,15 @@ $mail = new PHPMailer(true);                              // Passing `true` enab
     //Server settings
     $mail->SMTPDebug = 0;                                 // Enable verbose debug output
     $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'smtp.sendgrid.net';  // Specify main and backup SMTP servers
+    $mail->Host = 'mail.gatoko1.com';  // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'azure_1657def2941b355d79074e6ea538831e@azure.com';                 // SMTP username
-    $mail->Password = '';                           // SMTP password
+    $mail->Username = 'info@gatoko1.com';                 // SMTP username
+    $mail->Password = '0dayismine';                           // SMTP password
     $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 465;                                    // TCP port to connect to
 
     //Recipients
-    $mail->setFrom('slamat@navbell.com', 'Nav Bell');
+    $mail->setFrom('navbel@esi-sba.dz', 'Nav Bell');
     $mail->addAddress($email);     // Add a recipient
     $mail->isHTML(true);  // Set email format to HTML
     $mail->Subject = $subject;
