@@ -93,8 +93,6 @@ switch ($op) {
 	case 'update':
 		include("./operations/update.php");
 		break;
-	case 'solubychlng':
-		include("./operations/soulibychlng.php");
-		break;
+	
 
 }

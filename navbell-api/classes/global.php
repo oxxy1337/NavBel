@@ -191,7 +191,8 @@ class Globals{
                         $q2="SELECT * FROM ".$this->tables[5]." WHERE questionid = ? "; // get option by question id 
                         $q=$con->prepare($q2);
                         $qst["questions"]=array(); // array of questions 
-                        $qst["reponse"]=1; // flag of operation successed 
+                        $qst["reponse"]=1; // flag of operation successed
+                        $qst["id"] = $this->id;
                         $options=array();
 
                         
@@ -241,7 +242,23 @@ class Globals{
        }
         return false ;
     } 
+    /// check if already solved 
 
+    public function checksolv(){
+        $con = $this->conn;
+        $query = "SELECT * FROM ".$this->tables[3]."
+         WHERE challengeid = ".$this->challengeid."
+         AND userid = ".$this->id." ";
+        $send = $con->prepare($query);
+        $send->execute();
+        if ($send->rowCount() > 0 ) {
+            return true;
+        }
+        else{
+            return false;
+        }
+
+    }
     // update if correct pts ++ :D Esist deserve ++ 
     public function updateifsolved(){
         $con = $this->conn;
