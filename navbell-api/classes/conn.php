@@ -9,7 +9,7 @@ coded by m.slamat
 class Database{
  
        
-    private $host = "35.203.0.205";
+    private $host = "23.101.131.75";
     private $db_name = "navbell";
     private $username = "slamat";
     private $password = "slamat";

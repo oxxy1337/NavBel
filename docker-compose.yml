@@ -20,6 +20,15 @@ services:
         networks:
             - default
 
+    dashboard:
+        build: .
+        ports: 
+            - "1999:80"
+        volumes:
+            - ./navbell-dashboard:/var/www/html/
+        networks:
+            - default
+
     db:
         image: mysql:8.0
         ports: 
