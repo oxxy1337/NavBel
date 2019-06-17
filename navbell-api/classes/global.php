@@ -194,7 +194,7 @@ class Globals{
                         $qst["reponse"]=1; // flag of operation successed 
                         $options=array();
 
-                        $qst["time"]=$this->grab($this->tables[2],'time','id',$this->id); // get time  from challenge
+                        
                         $qst["resource"]=$this->grab($this->tables[2],'resource','id',$this->id); // get resource from challenge 
                         $qst["resource"] = json_decode(($qst['resource']));
 
@@ -217,7 +217,7 @@ class Globals{
                                 
                             }
                         // init qestions data 
-                            $ar = array("id"=>$r['id'],"question"=>$r['question'],"point"=>$r["point"],"options"=>$options);
+                            $ar = array("time"=>$r["time"],"id"=>$r['id'],"question"=>$r['question'],"point"=>$r["point"],"options"=>$options);
                             array_push($qst["questions"], $ar);
                             $options = array();
                  } 
@@ -295,6 +295,30 @@ class Globals{
         }else{
             return false;
         }
+    }
+
+
+    //// soulition by challenge ID 
+
+    public function soulibychlng(){
+            $con = $this->conn;
+            $query = "SELECT * FROM ".$this->tables[4]." where challengeid = ?  ";
+            $send = $con->prepare($query);
+            if($send->execute([$this->challengeid])){
+                    $send->setFetchMode(PDO::FETCH_ASSOC);
+                    $arr = $send->fetchall();
+                    
+
+
+            }else{
+                    $arr["reponse"] = 0 ; 
+            };
+            return json_encode($arr);
+
+
+
+
+
     }
 	
 

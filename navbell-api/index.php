@@ -1,7 +1,7 @@
 <?php
-ini_set('display_errors', 1);
+/*ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
+error_reporting(E_ALL);*/
 /*
 coded by m.slamat
 */
@@ -92,6 +92,9 @@ switch ($op) {
 		break;
 	case 'update':
 		include("./operations/update.php");
+		break;
+	case 'solubychlng':
+		include("./operations/soulibychlng.php");
 		break;
 
 }
