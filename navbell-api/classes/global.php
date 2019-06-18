@@ -321,9 +321,11 @@ class Globals{
             $con = $this->conn;
             $query = "SELECT * FROM ".$this->tables[4]." where challengeid = ?  ";
             $send = $con->prepare($query);
-            if($send->execute([$this->challengeid])){
+            if($send->execute([$this->challengeid])){ 
+                    
                     $send->setFetchMode(PDO::FETCH_ASSOC);
-                    $arr = $send->fetchall();
+                    $arr["data"] = $send->fetchall();
+                    $arr["reponse"] = 1 ;
                     
 
 
