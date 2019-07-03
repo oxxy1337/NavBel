@@ -93,6 +93,9 @@ switch ($op) {
 	case 'update':
 		include("./operations/update.php");
 		break;
+	case 'admins':
+		include("./admins/core.php");
+		break;
 	
 
 }
