@@ -1,4 +1,8 @@
 <?php
+/**************************************/
+/* Lets post our data to my lovely restfull API and see what she say :D 
+/* by this function :)  
+/**************************************/
 function post($op2,$data,$tooken){
 		$url = "http://127.0.0.1/project/navbell-api/?tooken=$tooken&op=admins&op2=".$op2;
 		$data = json_encode($data);
@@ -17,5 +21,58 @@ function post($op2,$data,$tooken){
 		$response = json_decode( $result );
 
 		return $response;
+}
+/*************************************************/
+/* ROOT want some controle here he deserve to get all :) 
+/**************************************************/
+function showChallengesToRoot($data){
+foreach ($data as $chlng) {
+	
+if ($chlng->module == null) break; 
+if ($chlng->year <3) $year = "CP" ; else $year = "CS" ;  
+if($chlng->isAproved == 1) {
+	$icone = '<a href="?page=chlnglist&op=aprove&id=1" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+		<i class="zmdi zmdi-delete"></i>
+		</a>';
+	$isaviable = '<span class="status--process">Aviable</span>' ;
+}else{
+	
+	$icone = '<a href="?page=chlnglist&op=aprove&id=1" class="item" data-toggle="tooltip" data-placement="top" title="Aprove">
+			<i class="zmdi zmdi-mail-send"></i>
+			</a>';
+	$isaviable = '<span class="status--denied">Denied</span>' ;
+}
+// 148
+$html .='
+
+<td>
+<span class="block-email">'.$chlng->module.'</span>
+</td>
+<td>
+'.$chlng->createdby.'
+</td>
+<td class="desc">'.$chlng->year.' <small>'.$year.'</small></td>
+<td>'.substr($chlng->story, 0,120).'  . . . .
+<td>
+'.$chlng->nbOfQuestions.'
+</td>
+<td>'.$chlng->date.'</td>
+<td>'.$chlng->nbPersonSolved.'</td>
+<td class="desc">'.$chlng->point.'</td>
+<td>
+'.$isaviable .'
+</td>
+<td>
+<div class="table-data-feature">
+
+'.$icone.'
+
+
+</div>
+</td>
+</tr>';
+
+} 
+return $html;
 }
 ?>

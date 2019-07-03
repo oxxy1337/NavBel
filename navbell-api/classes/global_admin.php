@@ -24,5 +24,16 @@ class Dashboard
 	}
 		return $data;
 	}
+
+	public function getChallenges(){
+			$conn = $this->db;
+			$query = "SELECT * FROM challenges";
+			$pre= $conn->prepare($query);
+			if ($pre->execute()) {
+				$pre->setFetchMode(PDO::FETCH_ASSOC);
+				$data = $pre->fetchall();
+			}
+			return $data ; 
+	}
 }
 ?>

@@ -13,7 +13,9 @@ switch ($op2) {
 	case 'login':
 		include("./admins/op/login.php");
 		break;
-	
+	case 'getchlng':
+		include("./admins/op/getchlng.php");
+		break;
 	default:
 		# code...
 		break;
