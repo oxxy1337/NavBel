@@ -157,7 +157,7 @@ class Globals{
     
             $con = $this->conn;
             // select challenge by year and not solved yet by user 
-            $query = "SELECT * FROM ".$this->tables[2]." WHERE  year = ? AND id NOT IN (SELECT challengeid FROM ".$this->tables[3]." where userid=".$this->id.") ";
+            $query = "SELECT * FROM ".$this->tables[2]." WHERE  year = ? AND isAproved = 1 AND id NOT IN (SELECT challengeid FROM ".$this->tables[3]." where userid=".$this->id.") ";
 
             $s=$con->prepare($query);
             $s->execute([$this->year]);

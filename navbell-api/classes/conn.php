@@ -6,7 +6,7 @@ coded by m.slamat
         // Using PDO prepared statement isn't cool nah ?
         // why ?? ==> for our safety (secure + fast)
     
-class Database{
+class Database {
  
        
     private $host = "23.101.131.75";
@@ -15,7 +15,7 @@ class Database{
     private $password = "slamat";
     private $port ="1337";
     public  $conn;
-
+    
     // get the database connection
     public function getConnection(){
  
@@ -27,7 +27,7 @@ class Database{
         }catch(PDOException $exception){
             echo "Connection error: " . $exception->getMessage();
         }
- 
+         $this->conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING, PDO::MYSQL_ATTR_USE_BUFFERED_QUERY);
         return $this->conn;
     }
 }

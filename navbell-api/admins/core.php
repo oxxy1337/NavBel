@@ -1,7 +1,7 @@
 <?php
 /************************************/
 /* We Decide now we enough for supposing ....  
-*/
+*************************************/
 include("./classes/global_admin.php");
 
 
@@ -21,6 +21,9 @@ switch ($op2) {
 		break;
 	case 'chlng-ap':
 		include("./admins/op/chlng-ap.php");
+		break;
+	case 'chlng-add':
+		include("./admins/op/chlng-add.php");
 		break;
 	default:
 		# code...

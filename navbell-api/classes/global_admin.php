@@ -2,8 +2,18 @@
 /**
 * 
 */
-class Dashboard
+class Dashboard 
 {
+	public $point;
+	public $module;
+	public $nbOfQuestions;
+	public $createdby;
+	public $isAproved;
+	public $image;
+	public $story;
+	public $year;
+	public $resource;
+
 	public $id;
 	public $email;
 	public $password;
@@ -62,6 +72,31 @@ class Dashboard
 				return true ;
 			}
 			return false ; 
+	}
+
+	public function addChallenge(){
+		$conn = $this->db;
+		$query = "INSERT INTO challenges SET date=:date,year=:year,module=:module,isAproved=:isAproved,story=:story,point=:point,createdby=:createdby,
+			nbOfQuestions=:nbOfQuestions,url=:image,resource=:resource
+		";
+		$pre=$conn->prepare($query);
+		$pre->bindParam(":module",$this->module);
+		$pre->bindParam(":date",$this->date);
+		$pre->bindParam(":year",$this->year);
+		$pre->bindParam(":isAproved",$this->isAproved);
+		$pre->bindParam(":story",$this->story);
+		$pre->bindParam(":point",$this->point);
+		$pre->bindParam(":createdby",$this->createdby);
+		$pre->bindParam(":nbOfQuestions",$this->nbOfQuestions);
+		$pre->bindParam(":image",$this->image);
+		$pre->bindParam(":resource",$this->resource);
+			if ($pre->execute()) {
+				 $stmt = $conn->query("SELECT LAST_INSERT_ID()");
+				return $stmt->fetchColumn();		
+			}else{
+				 return 0;
+			}
+
 	}
 	}
 ?>
