@@ -16,6 +16,12 @@ switch ($op2) {
 	case 'getchlng':
 		include("./admins/op/getchlng.php");
 		break;
+	case 'chlng-dl':
+		include("./admins/op/chlng-dl.php");
+		break;
+	case 'chlng-ap':
+		include("./admins/op/chlng-ap.php");
+		break;
 	default:
 		# code...
 		break;

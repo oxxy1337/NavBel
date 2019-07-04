@@ -25,19 +25,21 @@ function post($op2,$data,$tooken){
 /*************************************************/
 /* ROOT want some controle here he deserve to get all :) 
 /**************************************************/
-function showChallengesToRoot($data){
+function showChallengesToRoot($data,$y){
+	
 foreach ($data as $chlng) {
+	if ($y == $chlng->year || empty($y) ) {
 	
 if ($chlng->module == null) break; 
 if ($chlng->year <3) $year = "CP" ; else $year = "CS" ;  
 if($chlng->isAproved == 1) {
-	$icone = '<a href="?page=chlnglist&op=aprove&id=1" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+	$icone = '<a href="?page=chlnglist&op=delete&id='.$chlng->id.'" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
 		<i class="zmdi zmdi-delete"></i>
 		</a>';
 	$isaviable = '<span class="status--process">Aviable</span>' ;
 }else{
 	
-	$icone = '<a href="?page=chlnglist&op=aprove&id=1" class="item" data-toggle="tooltip" data-placement="top" title="Aprove">
+	$icone = '<a href="?page=chlnglist&op=aprove&id='.$chlng->id.'" class="item" data-toggle="tooltip" data-placement="top" title="Aprove">
 			<i class="zmdi zmdi-mail-send"></i>
 			</a>';
 	$isaviable = '<span class="status--denied">Denied</span>' ;
@@ -73,6 +75,7 @@ $html .='
 </tr>';
 
 } 
+}
 return $html;
 }
 ?>

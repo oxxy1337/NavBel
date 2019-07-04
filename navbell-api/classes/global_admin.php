@@ -4,6 +4,10 @@
 */
 class Dashboard
 {
+	public $id;
+	public $email;
+	public $password;
+
 	private $db;
 	function __construct($db)
 	{
@@ -35,5 +39,29 @@ class Dashboard
 			}
 			return $data ; 
 	}
-}
+
+	public function chlngDl(){
+		$conn = $this->db;
+		$query = "UPDATE challenges SET isAproved=0 WHERE id =:id";
+		$pre= $conn->prepare($query);
+		$pre->bindParam(":id",$this->id);
+		print_r($id);
+		if ($pre->execute()) {
+				return true ;
+			}
+			return false ; 
+	}
+	
+
+	public function chlngAp(){
+		$conn = $this->db;
+		$query = "UPDATE challenges SET isAproved=1 WHERE id =:id";
+		$pre= $conn->prepare($query);
+		$pre->bindParam(":id",$this->id);
+		if ($pre->execute()){
+				return true ;
+			}
+			return false ; 
+	}
+	}
 ?>
