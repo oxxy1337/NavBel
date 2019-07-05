@@ -41,9 +41,9 @@ if ($_SESSION["prof_data"]->isAdmin == false) die(print("<script>alert('Onley Ad
 <div class="col-12 col-md-9">
 
 <select name="role" id="select" class="form-control">
-<option value="0">Please select</option>
+<option value="8">Please select</option>
 <option value="1">ADMINISTRATOR</option>
-<option value="2">ENSEIGNANT</option>
+<option value="0">ENSEIGNANT</option>
 </select>
  </div>
 </div>
@@ -65,3 +65,29 @@ name="image" class="form-control-file">
 </div>
 </div>
 </center>
+<?php
+$fname = $_POST["fname"];
+$email = $_POST["email"];
+$password = $_POST["password"];
+$role = $_POST["role"];
+$image =  file_get_contents($_FILES["image"]["tmp_name"]);
+if (($fname!=="")&&($email!=="")&&($image!=="")&&($role!=="")&&($password!=="")) {
+	if($password<8) die(print("<script>alert('Password too short');</script>"));
+
+	$data = array(
+			"fname"=>$fname,
+			"email"=>$email,
+			"isAdmin"=>$role,
+			"password"=>$password,
+			"image"=>base64_encode($image);
+		);
+	$rez = post("addemployer",$data,"");
+	if ($rez->reponse==1) {
+		echo"<script>alert('".$fname." Added successfully ');</script>";
+	}else{
+		echo"<script>alert('".$fname." Already exist ');</script>";
+	}
+}else{
+	echo "<script>alert('Fields are empty');</script>";
+}
+?>
