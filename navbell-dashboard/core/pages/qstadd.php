@@ -1,13 +1,13 @@
 <?php
 
 if ($_SESSION["nbqst"]==($_SESSION["nbqstcount"])) {
-        $buttom = '<input  name="send" value="Done" type="submit" class="btn btn-primary btn-sm">';
+        $buttom = '<input  name="done" value="Done" type="submit" class="btn btn-primary btn-sm">';
     //$_SESSION["nbqstcount"]=0;
 	
 }else{
     ++$_SESSION["nbqstcount"];
     $next =$_SESSION["nbqstcount"]+1;
-    $buttom = '  <input  name="done" value=" Move to question '.$next.' " type="submit" class="btn btn-primary btn-sm">';
+    $buttom = '  <input  name="send" value=" Move to question '.$next.' " type="submit" class="btn btn-primary btn-sm">';
 
 
 }
@@ -18,6 +18,7 @@ $time = $_POST["time"];
 for($i=1;$i<6;$i++){
     if($_POST["op".$i]=="") break;
 $option[$i] = $_POST["op".$i];
+
 }
 $true = $_POST["true"];
 $chid = $_SESSION["chlng-id"];
@@ -35,27 +36,43 @@ if (($qst!=="")&&($pts!=="")&&($time!=="")&&($option!==null)&&($true!=="")) {
 
     );
     $qstid = post("qstadd",$data,""); // getting new fetched column id :D interested nah ? 
+    $qstid = $qstid->id;
     //////////////
     // Posting Options to api 
+    $trueid= array();
     for($i=1;$i<6;$i++){
         if($_POST["op".$i]=="") break;
+        
         $data = array(
-            "questionid"=>$qstid;
-            "trueoption"=>$option[$i];
-            "true"=>$true;
-            
+            "questionid"=>$qstid,
+            "trueoption"=>$option[$i],
+            "true"=>$option[$true] // Bingoooo 
+
 
         );
-        $trueid=post("addoption",$data,""); //// hmmm every paradox has a key ;) enjoying hah ? 
+        
+        array_push($trueid,post("optadd",$data,"")); //// hmmm every paradox has a key ;) enjoying hah ? 
+        
 }
+
+    foreach ($trueid as $key ) {
+
+        if($key->TrueOptionId !== null) { $x = $key ; break;} //// Woah we get the key :D 
+    }
     ////////////
     // put the true option id in question :D
-    post("addsolution",array("id"=>$trueid),""); // our pardox solved now by gold key :D hahaha 
-
+    $trueid = $x;
+    $ok=post("soluadd",array("opt"=>$trueid->TrueOptionId,"id"=>$qstid),""); // our pardox solved now by gold key :D hahaha 
+   
     //////////////
     // if we complete challenge creating move to creat new one :D
 
-    if(isset($_POST["done"]) die(print("<script>alert('Challenge add is done');window.location.replace('?page=chlngadd');</script>"));
+    if(isset($_POST["done"]) && ($ok->reponse==1) ){
+     $_SESSION["nbqstcount"]=null;
+     $_SESSION["chlng-id"]=null;
+     $_SESSION["nbqst"]=null;
+     die(print("<script>alert('Challenge waiting approuvemment of Adminstrator');window.location.replace('?page=chlngadd');</script>"));
+    }
     
 }
 else{
@@ -127,7 +144,7 @@ else{
                                                         <option value="2">Option 2</option>
                                                         <option value="3">Option 3</option>
                                                         <option value="4">Option 4</option>
-                                                        <option value="4">Option 5</option>
+                                                        <option value="5">Option 5</option>
                                                     </select>
                                                 </div>
                                             </div>

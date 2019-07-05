@@ -117,6 +117,9 @@ $image = file_get_contents($_FILES["image"]["tmp_name"]);
 $resource[1]=$_POST["url1"]; 
 $resource[2]= $_POST["url2"];
 $resource[3]=$_POST["url3"];
+$_SESSION["nbqstcount"]=null;
+$_SESSION["chlng-id"]=null;
+$_SESSION["nbqst"]=null;
 /*********************************************/
 /* some logical things here :v 
 /**********************************************/

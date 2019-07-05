@@ -6,9 +6,9 @@ $admin->id=$data->id;
 $admin->question=$data->question;
 $admin->time=$data->time;
 $admin->point=$data->point;
-
-if($admin->addQuestion() !== 0){
-	$data = array("id"=>$admin->addQuestion(),"reponse"=>1);
+$ok=$admin->addQuestion() ;
+if($ok!== 0){
+	$data = array("id"=>$ok,"reponse"=>1);
 }else{
 	$data = array("reponse"=>0);
 }

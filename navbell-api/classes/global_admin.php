@@ -141,6 +141,23 @@ class Dashboard
 
 	}
 
+	public function addSolution(){
+		$conn = $this->db;
+		$query = "UPDATE questions SET opt=:opt WHERE id=:id";
+		$pre=$conn->prepare($query);
+		$pre->bindParam(":opt",$this->opt);
+		
+		$pre->bindParam(":id",$this->id);
+
+			if ($pre->execute()) {
+				return 1;
+					
+			}else{
+				 return 0;
+			}
+
+	}
+
 
 	}
 ?>

@@ -31,6 +31,9 @@ switch ($op2) {
 	case 'optadd':
 		include("./admins/op/opt-add.php");
 		break;
+	case 'soluadd':
+		include("./admins/op/solu-add.php");
+		break;
 	default:
 		# code...
 		break;
