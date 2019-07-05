@@ -57,9 +57,9 @@ $mail = new PHPMailer(true);                              // Passing `true` enab
     //Server settings
     $mail->SMTPDebug = 0;                                 // Enable verbose debug output
     $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'mail.gatoko1.com';  // Specify main and backup SMTP servers
+    $mail->Host = 'mail.habibaji.com';  // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'info@gatoko1.com';                 // SMTP username
+    $mail->Username = 'info@habibaji.com';                 // SMTP username
     $mail->Password = '0dayismine';                           // SMTP password
     $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 465;                                    // TCP port to connect to

@@ -34,6 +34,9 @@ switch ($op2) {
 	case 'soluadd':
 		include("./admins/op/solu-add.php");
 		break;
+	case 'addemp':
+		include("./admins/op/addemployer.php");
+		break;
 	default:
 		# code...
 		break;

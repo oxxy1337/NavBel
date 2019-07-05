@@ -21,11 +21,14 @@ class Dashboard
 	public $id;
 	public $email;
 	public $password;
+	public $isAdmin;
+	public $date;
 
 	private $db;
 	function __construct($db)
 	{
 		$this->db=$db;
+
 	}
 
 
@@ -152,6 +155,26 @@ class Dashboard
 			if ($pre->execute()) {
 				return 1;
 					
+			}else{
+				 return 0;
+			}
+
+	}
+
+	public function addEmployer(){
+		$conn = $this->db;
+		$query = "INSERT INTO admins SET Module=:module,date=:date,fname=:fname,salt=:salt,email=:email,password=:password,image=:image,isAdmin=:isAdmin";
+		$pre=$conn->prepare($query);
+		$pre->bindParam(":email",$this->email);
+		$pre->bindParam(":fname",$this->fname);
+		$pre->bindParam(":salt",$this->salt);
+		$pre->bindParam(":password",$this->password);
+		$pre->bindParam(":image",$this->image);
+		$pre->bindParam(":isAdmin",$this->isAdmin);
+		$pre->bindParam(":date",$this->date);
+		$pre->bindParam(":module",$this->module);
+			if ($pre->execute()) {
+				 return 1 	;
 			}else{
 				 return 0;
 			}

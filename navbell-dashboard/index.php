@@ -1,4 +1,10 @@
 <!DOCTYPE html>
+<?php
+session_start();
+error_reporting(0);
+if ($_SESSION["logged"] == 1) die(print("<script>window.location.replace('./home');</script>"));
+
+?>
 <html lang="en">
 <head>
 	<title>Login V1</title>
@@ -32,7 +38,7 @@
 
 				<form method="post" action="?login=1" class="login100-form validate-form">
 					<span class="login100-form-title">
-						Member Login
+						NAVBEL PORTAL
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -52,8 +58,8 @@
 					</div>
 					
 					<div class="container-login100-form-btn">
-						<input type="submit" class="login100-form-btn">
-							Login
+						<input value="Login" type="submit" class="login100-form-btn">
+							
 						</input>
 					</div>
 
@@ -66,12 +72,7 @@
 						</a>
 					</div>
 
-					<div class="text-center p-t-136">
-						<a class="txt2" href="#">
-							Create your Account
-							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
-						</a>
-					</div>
+					
 				</form>
 			</div>
 		</div>
@@ -100,7 +101,7 @@
 </body>
 </html>
 <?php
-session_start();
+
 include("./core/functions/functions.php");
 $EMAIL = $_POST["email"];
 $PASSWORD = $_POST["pass"];

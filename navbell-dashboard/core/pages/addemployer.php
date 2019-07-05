@@ -8,7 +8,7 @@ if ($_SESSION["prof_data"]->isAdmin == false) die(print("<script>alert('Onley Ad
 <div class="card">
 <div class="card-header">Add Employer</div>
 <div class="card-body card-block">
-<form action="" method="post" class="">
+<form action="" method="post" enctype="multipart/form-data" class="">
 <div class="form-group">
 <div class="input-group">
 <div class="input-group-addon">
@@ -17,7 +17,14 @@ if ($_SESSION["prof_data"]->isAdmin == false) die(print("<script>alert('Onley Ad
 <input id="username" name="fname" placeholder="Full Name" class="form-control" type="text">
 </div>
 </div>
-
+<div class="form-group">
+<div class="input-group">
+<div class="input-group-addon">
+<i class="fas fa-copy"></i>
+</div>
+<input id="email" name="module" placeholder="Module" class="form-control" type="text">
+</div>
+</div>
 <div class="form-group">
 <div class="input-group">
 <div class="input-group-addon">
@@ -53,12 +60,11 @@ if ($_SESSION["prof_data"]->isAdmin == false) die(print("<script>alert('Onley Ad
  </div>
 <div class="col-12 col-md-9">
 
-<input type="file" id="file-input" 
-name="image" class="form-control-file">
+<input type="file" id="file-input" name="image" class="form-control-file">
 <div class="form-actions form-group">
 </div></div></div>
 	<br><br>
-<button type="submit" class="btn btn-success btn-sm">Add Employer</button>
+<input type="submit" name="submit" value="Add Employer" class="btn btn-success btn-sm"></input>
 </div>
 </form>
 </div>
@@ -66,22 +72,29 @@ name="image" class="form-control-file">
 </div>
 </center>
 <?php
+$module = $_POST["module"];
 $fname = $_POST["fname"];
 $email = $_POST["email"];
 $password = $_POST["password"];
 $role = $_POST["role"];
-$image =  file_get_contents($_FILES["image"]["tmp_name"]);
+$image = file_get_contents($_FILES["image"]["tmp_name"]);
+
+if ((isset($_POST["submit"]))) {
+	# code...
+
 if (($fname!=="")&&($email!=="")&&($image!=="")&&($role!=="")&&($password!=="")) {
 	if($password<8) die(print("<script>alert('Password too short');</script>"));
 
 	$data = array(
+			"module"=>$module,
 			"fname"=>$fname,
 			"email"=>$email,
 			"isAdmin"=>$role,
 			"password"=>$password,
-			"image"=>base64_encode($image);
+			"image"=>base64_encode($image),
+			"date"=>date("Y-m-d h:i:sa")
 		);
-	$rez = post("addemployer",$data,"");
+	$rez = post("addemp",$data,"");
 	if ($rez->reponse==1) {
 		echo"<script>alert('".$fname." Added successfully ');</script>";
 	}else{
@@ -89,5 +102,6 @@ if (($fname!=="")&&($email!=="")&&($image!=="")&&($role!=="")&&($password!==""))
 	}
 }else{
 	echo "<script>alert('Fields are empty');</script>";
+}
 }
 ?>
