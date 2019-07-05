@@ -1,16 +1,16 @@
-
-<!DOCTYPE html>
 <?php
-session_start();
 error_reporting(0);
+session_start();
 /////////////////////////////
 // SOME TESTES BEFORE WE BEGING :) (js cant bypass this ;) root-me nah ? ) 
 /////////////////////////////
 if($_GET["page"]=="logout") unset($_SESSION["logged"]);
-if ($_SESSION["logged"] != 1) die(print("<script>window.location.replace('..');</script>"));
+if ($_SESSION["logged"] !== 1) die(print("<script>window.location.replace('..');</script>"));
 
 
 ?>
+
+<!DOCTYPE html>
 <html lang="en">
 
 <head>

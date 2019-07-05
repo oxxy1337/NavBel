@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+
 <?php
 error_reporting(0);
 session_start();
@@ -6,6 +6,7 @@ session_start();
 if ($_SESSION["logged"] == 1) die(print("<script>window.location.replace('./dashboard');</script>"));
 
 ?>
+<!DOCTYPE html>
 <html lang="en">
 <head>
 	<title>Dashboard | Login</title>
