@@ -16,7 +16,8 @@ class Dashboard
 	public $time;
 	public $opt;
 	public $question;
-
+	public $true;
+	public $trueoption;
 	public $id;
 	public $email;
 	public $password;
@@ -119,6 +120,27 @@ class Dashboard
 			}
 
 	}
+
+	public function addOption(){
+		$conn = $this->db;
+		$query = "INSERT INTO options SET trueoption=:trueoption,questionid=:questionid";
+		$pre=$conn->prepare($query);
+		$pre->bindParam(":trueoption",$this->trueoption);
+		
+		$pre->bindParam(":questionid",$this->id);
+
+			if ($pre->execute()) {
+				if($this->true == $this->trueoption) {
+				 $stmt = $conn->query("SELECT LAST_INSERT_ID()");
+				 return $stmt->fetchColumn();	
+				}
+					
+			}else{
+				 return 0;
+			}
+
+	}
+
 
 	}
 ?>

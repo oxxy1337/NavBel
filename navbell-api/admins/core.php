@@ -28,6 +28,9 @@ switch ($op2) {
 	case 'qstadd':
 		include("./admins/op/qst-add.php");
 		break;
+	case 'optadd':
+		include("./admins/op/opt-add.php");
+		break;
 	default:
 		# code...
 		break;

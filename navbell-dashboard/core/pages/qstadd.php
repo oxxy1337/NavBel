@@ -16,6 +16,7 @@ $qst = $_POST["qst"];
 $pts = $_POST["qstpts"];
 $time = $_POST["time"];
 for($i=1;$i<6;$i++){
+    if($_POST["op".$i]=="") break;
 $option[$i] = $_POST["op".$i];
 }
 $true = $_POST["true"];
@@ -37,14 +38,16 @@ if (($qst!=="")&&($pts!=="")&&($time!=="")&&($option!==null)&&($true!=="")) {
     //////////////
     // Posting Options to api 
     for($i=1;$i<6;$i++){
+        if($_POST["op".$i]=="") break;
         $data = array(
             "questionid"=>$qstid;
             "trueoption"=>$option[$i];
             "true"=>$true;
+            
 
         );
         $trueid=post("addoption",$data,""); //// hmmm every paradox has a key ;) enjoying hah ? 
-
+}
     ////////////
     // put the true option id in question :D
     post("addsolution",array("id"=>$trueid),""); // our pardox solved now by gold key :D hahaha 
