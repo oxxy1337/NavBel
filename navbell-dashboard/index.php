@@ -3,12 +3,12 @@
 error_reporting(0);
 session_start();
 
-if ($_SESSION["logged"] == 1) die(print("<script>window.location.replace('./home');</script>"));
+if ($_SESSION["logged"] == 1) die(print("<script>window.location.replace('./dashboard');</script>"));
 
 ?>
 <html lang="en">
 <head>
-	<title>Login V1</title>
+	<title>Dashboard | Login</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -115,7 +115,7 @@ if(isset($_POST) && (!empty($EMAIL)) && (!empty($PASSWORD)) ) {
 	if ($data->reponse == true ) {
 		$_SESSION["logged"] = 1;
 		$_SESSION["prof_data"]= $data;
-		die(print("<script>window.location.replace('./home');</script>"));
+		die(print("<script>window.location.replace('./dashboard');</script>"));
 		
 
 	}else{
