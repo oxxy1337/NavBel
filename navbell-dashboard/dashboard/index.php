@@ -1,5 +1,4 @@
 <?php
-error_reporting(0);
 session_start();
 /////////////////////////////
 // SOME TESTES BEFORE WE BEGING :) (js cant bypass this ;) root-me nah ? ) 
