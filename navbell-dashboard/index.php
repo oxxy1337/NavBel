@@ -1,7 +1,8 @@
 <!DOCTYPE html>
 <?php
-session_start();
 error_reporting(0);
+session_start();
+
 if ($_SESSION["logged"] == 1) die(print("<script>window.location.replace('./home');</script>"));
 
 ?>
