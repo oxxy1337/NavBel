@@ -1,6 +1,6 @@
 <?php
 /************************************/
-/* We Decide now we enough for supposing ....  
+/* We Decide to enough of supposing ....  
 *************************************/
 include("./classes/global_admin.php");
 
@@ -24,6 +24,9 @@ switch ($op2) {
 		break;
 	case 'chlng-add':
 		include("./admins/op/chlng-add.php");
+		break;
+	case 'qstadd':
+		include("./admins/op/qst-add.php");
 		break;
 	default:
 		# code...

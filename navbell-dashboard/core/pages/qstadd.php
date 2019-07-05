@@ -1,10 +1,63 @@
 <?php
 
-if ($_SESSION["nbqst"] != $_SESSION["nbqstcount"]) {
-	$_SESSION["nbqstcount"]+=1;
+if ($_SESSION["nbqst"]==($_SESSION["nbqstcount"])) {
+        $buttom = '<input  name="send" value="Done" type="submit" class="btn btn-primary btn-sm">';
+    //$_SESSION["nbqstcount"]=0;
+	
 }else{
-	$_SESSION["nbqstcount"]=0;
-	$buttom = "Done";
+    ++$_SESSION["nbqstcount"];
+    $next =$_SESSION["nbqstcount"]+1;
+    $buttom = '  <input  name="done" value=" Move to question '.$next.' " type="submit" class="btn btn-primary btn-sm">';
+
+
+}
+
+$qst = $_POST["qst"];
+$pts = $_POST["qstpts"];
+$time = $_POST["time"];
+for($i=1;$i<6;$i++){
+$option[$i] = $_POST["op".$i];
+}
+$true = $_POST["true"];
+$chid = $_SESSION["chlng-id"];
+if ((isset($_POST["send"])) || isset($_POST["done"]))  {
+
+if (($qst!=="")&&($pts!=="")&&($time!=="")&&($option!==null)&&($true!=="")) {
+    ////////////
+    // Posting question to api 
+
+    $data = array(
+        "question"=>$qst,
+        "id"=>$chid,
+        "point"=>$pts,
+        "time"=>$time
+
+    );
+    $qstid = post("qstadd",$data,""); // getting new fetched column id :D interested nah ? 
+    //////////////
+    // Posting Options to api 
+    for($i=1;$i<6;$i++){
+        $data = array(
+            "questionid"=>$qstid;
+            "trueoption"=>$option[$i];
+            "true"=>$true;
+
+        );
+        $trueid=post("addoption",$data,""); //// hmmm every paradox has a key ;) enjoying hah ? 
+
+    ////////////
+    // put the true option id in question :D
+    post("addsolution",array("id"=>$trueid),""); // our pardox solved now by gold key :D hahaha 
+
+    //////////////
+    // if we complete challenge creating move to creat new one :D
+
+    if(isset($_POST["done"]) die(print("<script>alert('Challenge add is done');window.location.replace('?page=chlngadd');</script>"));
+    
+}
+else{
+    echo "<script>alert('Fields are empty');</script>";
+}
 }
 ?>
 <br><br><br><br><br><br><center>
@@ -21,10 +74,11 @@ if ($_SESSION["nbqst"] != $_SESSION["nbqstcount"]) {
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Question : </label>
+                                                    <label for="textarea-input" class=" form-control-label">Question</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="text-input" name="qst" placeholder="" class="form-control">
+                                                    <textarea name="qst" id="textarea-input" rows="6" placeholder="QUESTION CONTENT" class="form-control"></textarea>
+                                       
                                                     <small class="form-text text-muted">Please Enter your question</small>
                                                 </div>
                                             </div>
@@ -39,25 +93,38 @@ if ($_SESSION["nbqst"] != $_SESSION["nbqstcount"]) {
                                             </div>
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="text-input" class=" form-control-label">Options : </label><br>
+                                                    <label for="text-input" class=" form-control-label">Question Time : </label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                	 --------
-                                                    <small class="form-text text-muted">Please Enter Question Option</small>
+                                                    <input type="text" id="text-input" name="time" placeholder="" class="form-control">
+                                                    <small class="form-text text-muted">Please put Question Time</small>
+                                                </div>
+                                            </div>
+                                            <div class="row form-group">
+                                                <div class="col col-md-3">
+                                                    <label for="file-multiple-input" class=" form-control-label">Question Options : </label>
+                                                </div>
+                                                 <div class="col-12 col-md-9">
+                                                    <input type="text" id="text-input" name="op1" placeholder="Option 1 " class="form-control">
+                                                    <input type="text" id="text-input" name="op2" placeholder="Option 2" class="form-control">
+                                                    <input type="text" id="text-input" name="op3" placeholder="Option 3 " class="form-control">
+                                                    <input type="text" id="text-input" name="op4" placeholder="Option 4 " class="form-control">
+                                                    <input type="text" id="text-input" name="op5" placeholder="Option 5 " class="form-control">
+                                                    <small class="form-text text-muted">Please Enter your Question options</small>
                                                 </div>
                                             </div>
                                            <div class="row form-group">
                                                 <div class="col col-md-3">
-                                                    <label for="select" class=" form-control-label">YEAR</label>
+                                                    <label for="select" class=" form-control-label">True Option</label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <select name="year" id="select" class="form-control">
+                                                    <select name="true" id="select" class="form-control">
                                                         <option value="0">Please select</option>
-                                                        <option value="1">1 CPI</option>
-                                                        <option value="2">2 CPI</option>
-                                                        <option value="3">1 CS</option>
-                                                        <option value="4">2 CS</option>
-                                                        <option value="4">3 CS</option>
+                                                        <option value="1">Option 1 </option>
+                                                        <option value="2">Option 2</option>
+                                                        <option value="3">Option 3</option>
+                                                        <option value="4">Option 4</option>
+                                                        <option value="4">Option 5</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -66,47 +133,20 @@ if ($_SESSION["nbqst"] != $_SESSION["nbqstcount"]) {
               
                                                 
                                             </div>
-                                            <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="textarea-input" class=" form-control-label">Story</label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                    <textarea name="story" id="textarea-input" rows="9" placeholder="Challenge Description" class="form-control"></textarea>
-                                                </div>
-                                            </div>
+                                            
                                             
                                          
                                             </div>
                                             
-                                            <div class="row form-group">
-                                                <div class="col col-md-3">
 
-                                                    <label for="file-input" class=" form-control-label">Challenge Image </label>
-                                                </div>
-
-                                                <div class="col-12 col-md-9">
-                                                    <input type="file" id="file-input" 
-                                                    name="image" class="form-control-file">
-
-                                                </div>
-
-                                            </div>
-                                            <div class="row form-group">
-                                                <div class="col col-md-3">
-                                                    <label for="file-multiple-input" class=" form-control-label">Challenge Courses</label>
-                                                </div>
-                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" id="text-input" name="url1" placeholder="URL 1 " class="form-control">
-                                                    <input type="text" id="text-input" name="url2" placeholder="URL 2 " class="form-control">
-                                                    <input type="text" id="text-input" name="url3" placeholder="URL 3 " class="form-control">
-                                                    <small class="form-text text-muted">Please put challenge Coures (url)</small>
-                                                </div>
-                                            </div>
+                                            
                                         
                                     </div>
                                     <div class="card-footer">
 
-                                        <input  name="send" value=" Move to questions" type="submit" class="btn btn-primary btn-sm">
+                                      <?php
+                                        echo $buttom;
+                                      ?>
                                             
                                         </input>
                                         <button type="reset" class="btn btn-danger btn-sm">
@@ -115,13 +155,3 @@ if ($_SESSION["nbqst"] != $_SESSION["nbqstcount"]) {
                                     </div>
                                 </div>
                                 </form>
-<script>
-$(function() {
-  $("#addMore").click(function(e) {
-    e.preventDefault();
-    $("#fieldList").append("<li>&nbsp;</li>");
-    $("#fieldList").append("<li><input type='text' option='option[]' placeholder='Name' /></li>");
-
-  });
-});
-</script>

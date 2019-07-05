@@ -13,6 +13,9 @@ class Dashboard
 	public $story;
 	public $year;
 	public $resource;
+	public $time;
+	public $opt;
+	public $question;
 
 	public $id;
 	public $email;
@@ -98,5 +101,24 @@ class Dashboard
 			}
 
 	}
+
+	public function addQuestion(){
+		$conn = $this->db;
+		$query = "INSERT INTO questions SET question=:question,point=:point,time=:time,challengeid=:challengeid";
+		$pre=$conn->prepare($query);
+		$pre->bindParam(":question",$this->question);
+		
+		$pre->bindParam(":point",$this->point);
+		$pre->bindParam(":time",$this->time);
+		$pre->bindParam(":challengeid",$this->id);
+			if ($pre->execute()) {
+				 $stmt = $conn->query("SELECT LAST_INSERT_ID()");
+				return $stmt->fetchColumn();		
+			}else{
+				 return 0;
+			}
+
+	}
+
 	}
 ?>
