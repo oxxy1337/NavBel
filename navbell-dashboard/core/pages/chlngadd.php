@@ -68,7 +68,7 @@
                                             </div>
                                             
                                          
-                                            </div>
+                                          
                                             
                                             <div class="row form-group">
                                                 <div class="col col-md-3">
@@ -88,9 +88,37 @@
                                                     <label for="file-multiple-input" class=" form-control-label">Challenge Courses</label>
                                                 </div>
                                                  <div class="col-12 col-md-9">
-                                                    <input type="text" id="text-input" name="url1" placeholder="URL 1 " class="form-control">
-                                                    <input type="text" id="text-input" name="url2" placeholder="URL 2 " class="form-control">
-                                                    <input type="text" id="text-input" name="url3" placeholder="URL 3 " class="form-control">
+         
+
+                                                    <div class="row form-group">
+<div class="col col-md-4">
+<input name="c1" placeholder="Course 1 Name" class="form-control" type="text">
+</div>
+<div class="col col-md-8">
+<input name="u1" placeholder="URL 1 " class="form-control" type="text">
+</div>
+
+</div>
+<div class="row form-group">
+<div class="col col-md-4">
+<input name="c2" placeholder="Course 2 Name" class="form-control" type="text">
+</div>
+<div class="col col-md-8">
+<input name="u2"  placeholder="URL 2" class="form-control" type="text">
+</div>
+
+</div>
+<div class="row form-group">
+<div class="col col-md-4">
+<input name="c3" placeholder="Course 3 Name" class="form-control" type="text">
+</div>
+<div class="col col-md-8">
+<input name="u3" placeholder="URL 3" class="form-control" type="text">
+</div>
+
+</div>
+  
+
                                                     <small class="form-text text-muted">Please put challenge Coures (url)</small>
                                                 </div>
                                             </div>
@@ -113,10 +141,14 @@ $story = $_POST["story"];
 $chpoint = $_POST["chlngpts"];
 $year = $_POST["year"];
 $nbqst = $_POST["nbqst"];
-$image = file_get_contents($_FILES["image"]["tmp_name"]);
-$resource[1]=$_POST["url1"]; 
-$resource[2]= $_POST["url2"];
-$resource[3]=$_POST["url3"];
+@$image = file_get_contents($_FILES["image"]["tmp_name"]);
+for($i=1;$i<4;$i++){
+    $resource[$i]=$_POST["u".$i];
+    $rname[$i] =  $_POST["c".$i];
+
+}
+
+
 $_SESSION["nbqstcount"]=null;
 $_SESSION["chlng-id"]=null;
 $_SESSION["nbqst"]=null;
@@ -126,8 +158,8 @@ $_SESSION["nbqst"]=null;
 if (isset($_POST["send"])) {
 	if (($nbqst !== "")&&($name!=="")&&($story!=="")&&($chpoint!=="")&&($year!=="")&&($image!=="")&&($resource != null)) {
 				$res = array();
-				foreach ($resource as $r) {
-					array_push($res, array("url"=>$r)); // data consume array of json for courses
+                    for($i=1;$i<4;$i++){				
+				    	array_push($res, array("url"=>$resource[$i],"name"=>$rname[$i])); // data consume array of json for courses
 				}
 
 			$data = array(

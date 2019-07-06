@@ -1,14 +1,12 @@
 <?php
-
-if ($_SESSION["nbqst"]==($_SESSION["nbqstcount"])) {
-        $buttom = '<input  name="done" value="Done" type="submit" class="btn btn-primary btn-sm">';
-    //$_SESSION["nbqstcount"]=0;
-	
-}else{
-    ++$_SESSION["nbqstcount"];
+if (($_SESSION["nbqst"]) > ($_SESSION["nbqstcount"])+1) {
+     $_SESSION["nbqstcount"]++;
     $next =$_SESSION["nbqstcount"]+1;
     $buttom = '  <input  name="send" value=" Move to question '.$next.' " type="submit" class="btn btn-primary btn-sm">';
-
+}else{
+    $_SESSION["nbqstcount"]++; // for showing 
+    $buttom = '<input  name="done" value="Done" type="submit" class="btn btn-primary btn-sm">';
+    
 
 }
 
