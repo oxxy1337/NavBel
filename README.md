@@ -32,3 +32,5 @@ The Docker Daemon should start 5 containers
 - web serveur : container that's run Apache web-server
 - dashboard : container that's run control panel (Administartion panel)
 - web-site : container that's conain navbel web site
+#### android side 
+we adopt clean architecture to build this android application 
