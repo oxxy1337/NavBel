@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(0);
 /////////////////////////////
 // SOME TESTES BEFORE WE BEGING :) (js cant bypass this ;) root-me nah ? ) 
 /////////////////////////////
@@ -171,7 +172,23 @@ if ($_SESSION["logged"] !== 1) die(print("<script>window.location.replace('..');
             </div>
             <div class="menu-sidebar__content js-scrollbar1">
                 <nav class="navbar-sidebar">
+
                     <ul class="list-unstyled navbar__list">
+                        <li class="active has-sub">
+<a class="js-arrow" href="#">
+<i class="fas fa-desktop"></i>Esi Students</a>
+<ul class="list-unstyled navbar__sub-list js-sub-list">
+<li>
+<a href="?page=allstudent">All Students</a>
+</li>
+<li>
+<a href="?page=substudent">Subscribed Student</a>
+</li>
+<li>
+<a href="?page=banstudent">Banned Student</a>
+</li>
+</ul>
+</li>
                         <li class="active has-sub">
 
                         
