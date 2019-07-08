@@ -77,9 +77,10 @@ if ($_GET["op"] == "delete") {
     
 }
 /**********************************/
-/* SHOW CHALLENGES TABLE*/ 
+/* SHOW CHALLENGES TABLE           */ 
 /**********************************/
 $data = post("getchlng","","");
+
 print showChallengesToRoot($data,$_GET["order"]);
 
 

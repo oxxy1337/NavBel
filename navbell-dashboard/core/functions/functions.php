@@ -5,6 +5,7 @@
 /**************************************/
 function post($op2,$data,$tooken){
 		$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
+		//$host = "http://127.0.0.7/project/navbell-api/";
 		$url = $host."/?tooken=$tooken&op=admins&op2=".$op2;
 		$data = json_encode($data);
 		$options = array(
@@ -26,8 +27,11 @@ function post($op2,$data,$tooken){
 /*************************************************/
 /* ROOT want some controle here he deserve to get all :) 
 /**************************************************/
+   /************************************************/
+   /* 	Function to show table of challenge 	   */
+   /************************************************/
 function showChallengesToRoot($data,$y){
-	
+$html= "";	
 foreach ($data as $chlng) {
 	if ($y == $chlng->year || empty($y) ) {
 	
@@ -79,4 +83,85 @@ $html .='
 }
 return $html;
 }
+
+
+	/************************************************/
+   /*Function to show table of AllStudents 	        */
+   /************************************************/
+function showAllStudentToRoot($d,$y){
+	
+foreach ($d as $data) {
+	if ($y == $data->year || empty($y) ) {
+	
+if ($data->fname == null) break; 
+if ($data->year <3) $year = "CP" ; else $year = "CS" ;  
+$icone = '<a href="?page=allstudent&op=delete&email='.$data->email.'" class="item" data-toggle="tooltip" data-placement="top" title="Delete">
+		<i class="zmdi zmdi-delete"></i>
+		</a>';
+
+//if($data->isSub == 0){
+
+	//$modal = '<button type="button" class="btn btn-danger btn-lg active">Unsubscribe</button>'
+/*}else{*/
+	$modal = '
+
+	<button type="button" class="btn btn-success btn-lg active" data-toggle="modal" data-target="#smallmodal">
+	Subscribed
+	</button>
+
+	<div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true" >
+	<div class="modal-dialog modal-sm" role="document">
+	<br><br><br><br><br><br><br><br><br><br>
+	<div class="modal-content">
+
+	<div class="modal-header">
+
+	<h5 class="modal-title" id="smallmodalLabel">Small Modal</h5>
+	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+	<span aria-hidden="true">&times;</span>
+	</button>
+	</div>
+	<div class="modal-body">
+	<p>
+
+	</p>
+	</div>
+	<div class="modal-footer">
+	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
+	<button type="button" class="btn btn-primary">Confirm</button>
+	</div>
+	</div>
+	</div>
+	</div>
+
+
+
+
+'
+
+;
+//}
+// 148
+$html .='
+<td>'.$data->fname.'</td>
+<td>'.$data->lname.' </td>
+<td>'.$data->email.' </td>
+<td>'.$data->year.' '.$year.'</td>
+<td>'.$modal. ' </td>
+<td>
+<div class="table-data-feature">
+
+'.$icone.'
+
+
+</div>
+</td>
+</tr>';
+
+} 
+}
+return $html;
+}
+
 ?>

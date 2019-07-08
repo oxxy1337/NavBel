@@ -181,6 +181,42 @@ class Dashboard
 
 	}
 
+	public function getAllStduent(){
+		$conn = $this->db ; 
+		$query = "SELECT * FROM allstudents "; 
+		$pre = $conn->prepare($query);
+
+		if ($pre->execute()) {
+			$pre->setFetchMode(PDO::FETCH_ASSOC);
+			return  $pre->fetchall();
+
+		}else{
+			return 0 ;
+		}
+
+
+
+	}
+
+
+	public function killUser(){
+		$con=$this->db;
+		$q1 = "DELETE FROM allstudents WHERE email = ? ";
+		$pre1 = $con->prepare($q1);
+		if (($pre1->execute([$this->email]))) {
+			$q2 = "DELETE FROM users WHERE email = ? "; 
+			$pre2= $con->prepare($q2);
+			$pre2->execute([$this->email]);
+			return 1 ;
+		}
+		else {
+			return 0 ;
+		}
+
+	}
+
+
+
 
 	}
 ?>

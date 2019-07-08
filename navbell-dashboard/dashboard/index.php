@@ -174,9 +174,12 @@ if ($_SESSION["logged"] !== 1) die(print("<script>window.location.replace('..');
                 <nav class="navbar-sidebar">
 
                     <ul class="list-unstyled navbar__list">
-                        <li class="active has-sub">
-<a class="js-arrow" href="#">
-<i class="fas fa-desktop"></i>Esi Students</a>
+
+    <?php
+    if ($_SESSION["prof_data"]->isAdmin == true) {
+        print('                        <li class="active has-sub">
+
+<a class="js-arrow" href="#"><i class="fas fa-desktop"></i>Esi Students</a>
 <ul class="list-unstyled navbar__sub-list js-sub-list">
 <li>
 <a href="?page=allstudent">All Students</a>
@@ -188,14 +191,18 @@ if ($_SESSION["logged"] !== 1) die(print("<script>window.location.replace('..');
 <a href="?page=banstudent">Banned Student</a>
 </li>
 </ul>
-</li>
-                        <li class="active has-sub">
+</li>');
+    }
+
+    ?>
+
+                        
 
                         
                         
                         <?php
                         if ($_SESSION["prof_data"]->isAdmin == true) {
-                            print (' <li>
+                            print (' <li class="active has-sub"><li>
                             <a href="?page=chlnglist">
                                 <i class="far fa-check-square"></i>Challenge List</a>
                         </li>');
@@ -431,6 +438,9 @@ if ($_SESSION["logged"] !== 1) die(print("<script>window.location.replace('..');
                         break;
                     case 'addemployer':
                          include('../core/pages/addemployer.php');
+                        break;
+                    case 'allstudent':
+                        include('../core/pages/allstudent.php');
                         break;
                     default:
                         # code...
