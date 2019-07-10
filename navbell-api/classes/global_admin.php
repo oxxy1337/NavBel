@@ -215,6 +215,34 @@ class Dashboard
 
 	}
 
+	public function userInfo(){
+		$con = $this->db;
+		$query = "SELECT * FROM users WHERE email = ? ";
+		$pre = $con->prepare($query);
+		if ($pre->execute([$this->email])) {
+			$pre->setFetchMode(PDO::FETCH_ASSOC);
+			return  $pre->fetchall()[0];
+		}else{
+			return 0 ; 
+		}
+	}
+
+	public function addUser(){
+		$con = $this->db;
+		$query = "INSERT INTO allstudents SET email=:email,fname=:fname,lname=:lname,year=:year";
+		$pre = $con->prepare($query);
+		$pre->bindParam(":email",$this->email);
+		$pre->bindParam(":fname",$this->fname);
+		$pre->bindParam(":lname",$this->lname);
+		$pre->bindParam(":year",$this->year);
+
+		if ($pre->execute()) {
+			return  1 ;
+		}else{
+			return 0 ;
+		}
+	}
+
 
 
 

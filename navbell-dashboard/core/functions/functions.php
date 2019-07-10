@@ -4,8 +4,8 @@
 /* by this function :)  
 /**************************************/
 function post($op2,$data,$tooken){
-		$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
-		//$host = "http://127.0.0.7/project/navbell-api/";
+		//$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
+		$host = "http://127.0.0.7/project/navbell-api/";
 		$url = $host."/?tooken=$tooken&op=admins&op2=".$op2;
 		$data = json_encode($data);
 		$options = array(
@@ -99,49 +99,55 @@ $icone = '<a href="?page=allstudent&op=delete&email='.$data->email.'" class="ite
 		<i class="zmdi zmdi-delete"></i>
 		</a>';
 
-//if($data->isSub == 0){
+$x=post("userinfo",array("email"=>"m.slamat@esi-sba.dz"),"");
 
-	//$modal = '<button type="button" class="btn btn-danger btn-lg active">Unsubscribe</button>'
-/*}else{*/
+if($x->isSub !== 1){
+
+	$modal = '<button type="button" class="btn btn-danger btn-lg active">Unsubscribe</button>';
+}else {
 	$modal = '
 
-	<button type="button" class="btn btn-success btn-lg active" data-toggle="modal" data-target="#smallmodal">
+	<a href="?page=allstudent&userinfo=1" type="button" class="btn btn-success btn-lg active" data-toggle="modal" data-target="#smallmodal">
 	Subscribed
-	</button>
+	</a>
+	';
+}
 
-	<div class="modal fade" id="smallmodal" tabindex="-1" role="dialog" aria-labelledby="smallmodalLabel" aria-hidden="true" >
-	<div class="modal-dialog modal-sm" role="document">
-	<br><br><br><br><br><br><br><br><br><br>
-	<div class="modal-content">
+$userinfo = '<div class="modal fade show" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" style="display: block;">
+<div class="modal-dialog modal-lg" role="document">
+<br><br><br><br><br>
+<div class="modal-content">
+<div class="modal-header">
+<h5 class="modal-title" id="mediumModalLabel">'.$x->data->lname.' '.$x->data->fname.'</h5>
+<a href="?page=allstudent" type="button" class="close" data-dismiss="modal" aria-label="Close"></a>
+<span aria-hidden="true">×</span>
+</button>
+</div>
+<div class="modal-body">
+		<p>Date of inscription : '.$x->data->date.' </p>
+ 		<p>Point : '.$x->data->point.' </p>
+ 		<p>Challenge Solved : '.$x->data->nbsolved.'</p> 
+ 		<p>Picture :  </p><p> <img src = "'.$x->data->picture.'"  width="120" height="60" > </p>
 
-	<div class="modal-header">
+</div>
+<div class="modal-footer">
 
-	<h5 class="modal-title" id="smallmodalLabel">Small Modal</h5>
-	<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+</div>
+</div>
+</div>
+</div>
+	
 
-	<span aria-hidden="true">&times;</span>
-	</button>
-	</div>
-	<div class="modal-body">
-	<p>
-
-	</p>
-	</div>
-	<div class="modal-footer">
-	<button type="button" class="btn btn-secondary" data-dismiss="modal">Cancel</button>
-	<button type="button" class="btn btn-primary">Confirm</button>
-	</div>
-	</div>
-	</div>
-	</div>
+	
+	
 
 
 
 
-'
+';
+if ($_GET["userinfo"] == 1) print($userinfo);
 
-;
-//}
+
 // 148
 $html .='
 <td>'.$data->fname.'</td>

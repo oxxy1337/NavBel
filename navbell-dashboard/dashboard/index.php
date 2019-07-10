@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 /////////////////////////////
 // SOME TESTES BEFORE WE BEGING :) (js cant bypass this ;) root-me nah ? ) 
 /////////////////////////////
@@ -185,10 +185,10 @@ if ($_SESSION["logged"] !== 1) die(print("<script>window.location.replace('..');
 <a href="?page=allstudent">All Students</a>
 </li>
 <li>
-<a href="?page=substudent">Subscribed Student</a>
+<a href="?page=banstudent">Banned Student</a>
 </li>
 <li>
-<a href="?page=banstudent">Banned Student</a>
+<a href="?page=addstudents">Add Student</a>
 </li>
 </ul>
 </li>');
@@ -441,6 +441,9 @@ if ($_SESSION["logged"] !== 1) die(print("<script>window.location.replace('..');
                         break;
                     case 'allstudent':
                         include('../core/pages/allstudent.php');
+                        break;
+                    case 'addstudents':
+                        include('../core/pages/addstudent.php');
                         break;
                     default:
                         # code...

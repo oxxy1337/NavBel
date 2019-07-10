@@ -43,6 +43,12 @@ switch ($op2) {
 	case 'killuser':
 		include("./admins/op/killuser.php");
 		break;
+	case 'userinfo':
+		include("./admins/op/userinfo.php");
+		break;
+	case 'addstudent':
+		include("./admins/op/addstudent.php");
+		break;
 	default:
 		# code...
 		break;
