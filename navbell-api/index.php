@@ -96,6 +96,10 @@ switch ($op) {
 	case 'admins':
 		include("./admins/core.php");
 		break;
+	default:
+		include("./default.php");
+		break;
+
 	
 
 }
