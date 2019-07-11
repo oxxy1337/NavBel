@@ -75,7 +75,7 @@ $pwd2 = $_POST["password2"];
 if (isset($_POST["submit"])) {
 	if (($img !== "")&&($eml!== "")&&($nme !== "")&&($module !== "")&&($pwd1 !== "")&&($pwd2 !== "")) {
 		if($pwd1 !== $pwd2) die(print("<script>alert('Password missmatch');</script>"));
-		if($pwd1 < 8 ) die(print("<script>alert('Password weak length');</script>"));
+		if(strlen($pwd1) < 8 ) die(print("<script>alert('Password weak length');</script>"));
 		$data = array(
 				"image"=>base64_encode($img),
 				"fname"=>$nme,
