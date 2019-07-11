@@ -5,7 +5,7 @@ coded by m.slamat
 /// CRYPTO PART
 //==========================================================
 // function to crypt user password using salt methode 
-	// old devlopers hate hashkiller nah !?
+	// old devlopers hate hashkiller.co.uk nah !?
 function cryptpwd($pwd,$salt){
 	$final = hash_hmac('md5', $pwd, $salt); // crypt pwd using md5 algorithme with salt as key  
 	$final = strrev($final); // reversing 

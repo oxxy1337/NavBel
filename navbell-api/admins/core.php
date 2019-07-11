@@ -49,7 +49,11 @@ switch ($op2) {
 	case 'addstudent':
 		include("./admins/op/addstudent.php");
 		break;
+	case 'settings':
+		include("./admins/op/settings.php");
+		break;
 	default:
+
 		# code...
 		break;
 }

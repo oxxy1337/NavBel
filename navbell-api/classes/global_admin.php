@@ -243,6 +243,25 @@ class Dashboard
 		}
 	}
 
+	public function updateProfile(){
+		$con = $this->db;
+		$query = "UPDATE admins SET email=:email,password=:password,fname=:fname,Module=:module,image=:image WHERE id=:id ";
+		$pre = $con->prepare($query);
+		$pre->bindParam(":email",$this->email);
+		$pre->bindParam(":fname",$this->fname);
+		$pre->bindParam(":image",$this->image);
+		$pre->bindParam(":module",$this->module);
+		$pre->bindParam(":password",$this->password);
+		$pre->bindParam(":id",$this->id);
+		if($pre->execute()) {
+			return 1 ; 
+		}else
+		{
+			return 0 ;
+		}
+
+	}
+
 
 
 

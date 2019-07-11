@@ -1,6 +1,6 @@
 <?php
 session_start();
-//error_reporting(0);
+error_reporting(0);
 /////////////////////////////
 // SOME TESTES BEFORE WE BEGING :) (js cant bypass this ;) root-me nah ? ) 
 /////////////////////////////
@@ -388,12 +388,9 @@ if ($_SESSION["logged"] !== 1) die(print("<script>window.location.replace('..');
                                                 </div>
                                             </div>
                                             <div class="account-dropdown__body">
+                                                
                                                 <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                        <i class="zmdi zmdi-account"></i>Account</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
+                                                    <a href="?page=settings">
                                                         <i class="zmdi zmdi-settings"></i>Setting</a>
                                                 </div>
                                                 <div class="account-dropdown__item">
@@ -444,6 +441,9 @@ if ($_SESSION["logged"] !== 1) die(print("<script>window.location.replace('..');
                         break;
                     case 'addstudents':
                         include('../core/pages/addstudent.php');
+                        break;
+                    case 'settings':
+                        include('../core/pages/settings.php');
                         break;
                     default:
                         # code...

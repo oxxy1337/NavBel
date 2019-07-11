@@ -4,6 +4,8 @@
 
 $admin->email = $data->email;
 
+
+
 if($admin->killUser() !== 0 )
 	$d["reponse"] = 1;
 	else

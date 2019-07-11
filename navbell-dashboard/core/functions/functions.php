@@ -4,8 +4,8 @@
 /* by this function :)  
 /**************************************/
 function post($op2,$data,$tooken){
-		//$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
-		$host = "http://127.0.0.7/project/navbell-api/";
+		$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
+		//$host = "http://127.0.0.7/project/navbell-api/";
 		$url = $host."/?tooken=$tooken&op=admins&op2=".$op2;
 		$data = json_encode($data);
 		$options = array(
@@ -99,7 +99,7 @@ $icone = '<a href="?page=allstudent&op=delete&email='.$data->email.'" class="ite
 		<i class="zmdi zmdi-delete"></i>
 		</a>';
 
-$x=post("userinfo",array("email"=>"m.slamat@esi-sba.dz"),"");
+$x=post("userinfo",array("email"=>$data->email),"");
 
 if($x->isSub !== 1){
 
