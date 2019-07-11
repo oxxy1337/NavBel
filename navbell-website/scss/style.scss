@@ -1,0 +1,38 @@
+$primary: #048ee7;
+$primary-overlay: rgba(4, 142, 231, 0.8);
+
+body {
+  margin-top: 100px;
+}
+
+.marg {
+  margin-top: 52px;
+  background: rgb(245, 245, 245);
+}
+
+.navbar {
+  box-shadow: 2px 2px 5px $primary;
+  opacity: 0.9;
+  background: #fff;
+
+  .nav-item {
+    font-size: 1rem;
+    padding-right: 1.1rem;
+  }
+}
+
+.navi {
+  box-shadow: 2px 1px 1px #f8f9fa;
+  opacity: 1.2;
+
+  margin: 0;
+}
+
+.no-italics {
+  font-style: normal;
+}
+
+#fp-modal-content,
+#fpf-modal-content {
+  display: none;
+}
