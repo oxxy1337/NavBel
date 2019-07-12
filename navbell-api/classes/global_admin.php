@@ -262,6 +262,67 @@ class Dashboard
 
 	}
 
+	public function countStudent(){
+		$con = $this->db;
+		$query = "SELECT * from users";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		return $pre->rowCount();
+	}
+	public function countEnseignant(){
+		$con = $this->db;
+		$query = "SELECT * from admins";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		return $pre->rowCount();
+	}
+	public function countAllusers(){
+		$con = $this->db;
+		$query = "SELECT * from allstudents";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		return $pre->rowCount();
+	}
+	public function countProvedchallenge(){
+		$con = $this->db;
+		$query = "SELECT * from challenges where isAproved = 1";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		return $pre->rowCount();
+	}
+	public function countAdminstrators(){
+		$con = $this->db;
+		$query = "SELECT * from admins where isAdmin = 1";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		return $pre->rowCount();
+	}
+	public function countChallenges(){
+		$con = $this->db;
+		$query = "SELECT * from challenges";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		return $pre->rowCount();
+	}
+	public function countrewards(){
+		$con = $this->db;
+		$query = "SELECT * from rewards";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		return $pre->rowCount();
+	}
+	public function topUsers(){
+		$con = $this->db;
+		$query = "SELECT nbsolved,fname FROM users ORDER BY nbsolved DESC";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		$pre->setFetchMode(PDO::FETCH_ASSOC);
+			return  $pre->fetchall();
+
+	}
+
+	
+
 
 
 

@@ -52,6 +52,12 @@ switch ($op2) {
 	case 'settings':
 		include("./admins/op/settings.php");
 		break;
+	case 'count':
+		include("./admins/op/count.php");
+		break;
+	case 'topusers':
+		include("./admins/op/topusers.php");
+		break;
 	default:
 
 		# code...

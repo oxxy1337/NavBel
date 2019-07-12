@@ -5,7 +5,7 @@
 /**************************************/
 function post($op2,$data,$tooken){
 		$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
-		//$host = "http://127.0.0.7/project/navbell-api/";
+		//$host = "http://127.0.0.7/project/NavBel/navbell-api/";
 		$url = $host."/?tooken=$tooken&op=admins&op2=".$op2;
 		$data = json_encode($data);
 		$options = array(
