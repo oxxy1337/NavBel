@@ -93,9 +93,15 @@ switch ($op) {
 	case 'update':
 		include("./operations/update.php");
 		break;
+	case 'getReward':
+		include("./operations/reward.php");
+		break;
+	case 'sendReward':
+		include('./operations/sendreward.php');
 	case 'admins':
 		include("./admins/core.php");
 		break;
+
 	default:
 		include("./default.php");
 		break;

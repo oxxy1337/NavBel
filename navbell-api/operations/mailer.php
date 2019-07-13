@@ -47,7 +47,15 @@ if($mailer =="reset") {
     $subject = "[Navbell] Welcome at Navbell ";
     $html = "Check attached file";
     $attached = true;
-};
+}elseif($mailer == "sendreward"){
+$email = $useremail;
+$subject = "[NavBel] Congratulation you get new reward ";
+$html = $rewardhtml;
+
+}
+
+
+;
 
 //Load Composer's autoloader
 require 'phpmailer/vendor/autoload.php';

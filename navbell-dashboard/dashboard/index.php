@@ -14,7 +14,7 @@ include("../core/fusioncharts.php");
 <html lang="en">
 
 <head>
-    
+    <script src="https://cdn.ckeditor.com/ckeditor5/12.3.0/classic/ckeditor.js"></script>
     <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
     <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
     <!-- Required meta tags-->
@@ -59,7 +59,7 @@ include("../core/fusioncharts.php");
         <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
-                <a href="#">
+                <a href="?page=main">
                     <img src="images/icon/logo.png"/>
                 </a>
             </div>
@@ -120,7 +120,7 @@ include("../core/fusioncharts.php");
                         <?php
                         if ($_SESSION["prof_data"]->isAdmin == true) {
                             print (' <li>
-                            <a href="#">
+                            <a href="?page=addreward">
                                 <i class="fas fa-calendar-alt"></i>Rewards</a>
                         </li>');
                         }
@@ -226,6 +226,9 @@ include("../core/fusioncharts.php");
                         break;
                     case 'settings':
                         include('../core/pages/settings.php');
+                        break;
+                    case 'addreward':
+                        include('../core/pages/reward.php');
                         break;
                     default:
                         include('../core/pages/main.php');
