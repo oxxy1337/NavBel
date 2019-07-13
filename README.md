@@ -1,4 +1,5 @@
 
+
 # 2cpi Projet pluridisciplinaire NavBel 
 
 ## introduction
@@ -8,8 +9,7 @@ the platform is an android application and web site
 check our android app source code from here //url
 
 ## Overview 
- //TODO  add screen shoot here later
- 
+//TODO screenshots 
  ##   Technologies used
 #### Server side
 - Docker 
@@ -25,7 +25,8 @@ check our android app source code from here //url
 - XML 
 ## Project Architecture
 #### server side
-//TODO diagrame
+![alt](https://raw.githubusercontent.com/roiacult/NavBel-1/master/art/diagrame.png?token=AJCK3HMXVG2QUJNJN3CMFCS5FGWVA)
+
 The Docker Daemon should start 5 containers
 -   api :  is the container that is contains restful api used by android ,dashboard,web  application 
 - db : container that's run mysql image , MySQL Database  is used by restfull api to manipulate data
@@ -34,3 +35,4 @@ The Docker Daemon should start 5 containers
 - web-site : container that's conain navbel web site
 #### android side 
 we adopt clean architecture to build this android application 
+//TODO finish it later
