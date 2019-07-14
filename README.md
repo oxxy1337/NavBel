@@ -28,6 +28,7 @@ check our android app source code from [here](https://github.com/roiacult/NavBel
 #### server side
 ![alt](https://i.imgur.com/AjgPbEo.png)
 
+
 The Docker Daemon should start 5 containers
 -   api :  is the container that is contains restful api used by android ,dashboard,web  application 
 - db : container that's run mysql image , MySQL Database  is used by restfull api to manipulate data

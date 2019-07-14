@@ -181,6 +181,150 @@ class Dashboard
 
 	}
 
+	public function getAllStduent(){
+		$conn = $this->db ; 
+		$query = "SELECT * FROM allstudents "; 
+		$pre = $conn->prepare($query);
+
+		if ($pre->execute()) {
+			$pre->setFetchMode(PDO::FETCH_ASSOC);
+			return  $pre->fetchall();
+
+		}else{
+			return 0 ;
+		}
+
+
+
+	}
+
+
+	public function killUser(){
+		$con=$this->db;
+		$q1 = "DELETE FROM allstudents WHERE email = ? ";
+		$pre1 = $con->prepare($q1);
+		if (($pre1->execute([$this->email]))) {
+			$q2 = "DELETE FROM users WHERE email = ? "; 
+			$pre2= $con->prepare($q2);
+			$pre2->execute([$this->email]);
+			return 1 ;
+		}
+		else {
+			return 0 ;
+		}
+
+	}
+
+	public function userInfo(){
+		$con = $this->db;
+		$query = "SELECT * FROM users WHERE email = ? ";
+		$pre = $con->prepare($query);
+		if ($pre->execute([$this->email])) {
+			$pre->setFetchMode(PDO::FETCH_ASSOC);
+			return  $pre->fetchall()[0];
+		}else{
+			return 0 ; 
+		}
+	}
+
+	public function addUser(){
+		$con = $this->db;
+		$query = "INSERT INTO allstudents SET email=:email,fname=:fname,lname=:lname,year=:year";
+		$pre = $con->prepare($query);
+		$pre->bindParam(":email",$this->email);
+		$pre->bindParam(":fname",$this->fname);
+		$pre->bindParam(":lname",$this->lname);
+		$pre->bindParam(":year",$this->year);
+
+		if ($pre->execute()) {
+			return  1 ;
+		}else{
+			return 0 ;
+		}
+	}
+
+	public function updateProfile(){
+		$con = $this->db;
+		$query = "UPDATE admins SET email=:email,password=:password,fname=:fname,Module=:module,image=:image WHERE id=:id ";
+		$pre = $con->prepare($query);
+		$pre->bindParam(":email",$this->email);
+		$pre->bindParam(":fname",$this->fname);
+		$pre->bindParam(":image",$this->image);
+		$pre->bindParam(":module",$this->module);
+		$pre->bindParam(":password",$this->password);
+		$pre->bindParam(":id",$this->id);
+		if($pre->execute()) {
+			return 1 ; 
+		}else
+		{
+			return 0 ;
+		}
+
+	}
+
+	public function countStudent(){
+		$con = $this->db;
+		$query = "SELECT * from users";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		return $pre->rowCount();
+	}
+	public function countEnseignant(){
+		$con = $this->db;
+		$query = "SELECT * from admins";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		return $pre->rowCount();
+	}
+	public function countAllusers(){
+		$con = $this->db;
+		$query = "SELECT * from allstudents";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		return $pre->rowCount();
+	}
+	public function countProvedchallenge(){
+		$con = $this->db;
+		$query = "SELECT * from challenges where isAproved = 1";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		return $pre->rowCount();
+	}
+	public function countAdminstrators(){
+		$con = $this->db;
+		$query = "SELECT * from admins where isAdmin = 1";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		return $pre->rowCount();
+	}
+	public function countChallenges(){
+		$con = $this->db;
+		$query = "SELECT * from challenges";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		return $pre->rowCount();
+	}
+	public function countrewards(){
+		$con = $this->db;
+		$query = "SELECT * from rewards";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		return $pre->rowCount();
+	}
+	public function topUsers(){
+		$con = $this->db;
+		$query = "SELECT nbsolved,fname FROM users ORDER BY nbsolved DESC";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		$pre->setFetchMode(PDO::FETCH_ASSOC);
+			return  $pre->fetchall();
+
+	}
+
+	
+
+
+
 
 	}
 ?>

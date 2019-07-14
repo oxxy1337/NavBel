@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 if ($_SESSION["logged"] == 1) die(print("<script>window.location.replace('./dashboard');</script>"));
 
 ?>

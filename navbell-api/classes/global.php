@@ -12,6 +12,7 @@ class Globals{
 	// Propreties 
 	// columns of users-subscribed && allstudents tables
 	public $id ;
+    public $rewardid;
 	public $fname;
 	public $lname;
 	public $email;
@@ -339,6 +340,41 @@ class Globals{
 
 
     }
+
+    /// Send reward info :) 
+    public function sendReward(){
+        $con= $this->conn;
+        $query="SELECT * FROM rewards ";
+        $send = $con->prepare($query);
+        if ($send->execute()) {
+            $send->setFetchMode(PDO::FETCH_ASSOC);
+            $arr["data"] = $send->fetchall();
+            $arr["reponse"] = 1;
+        }else{
+            $arr["reponse"] = 0 ;
+        }
+        return $arr;
+
+    }
+
+    /// update user point 
+    public function chngPoint(){
+        $con = $this->conn;
+        $query = "UPDATE ".$this->tables[0]." SET point=:point WHERE id=:id";
+        $send = $con->prepare($query);
+        $send->bindParam(":point",$this->point);
+        $send->bindParam(":id",$this->id);
+        if($send->execute()){
+            return true;
+        }else{
+            return false;
+        }
+
+
+    }
+
+
+    
 	
 
 

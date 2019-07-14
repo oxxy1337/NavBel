@@ -37,7 +37,29 @@ switch ($op2) {
 	case 'addemp':
 		include("./admins/op/addemployer.php");
 		break;
+	case 'getallstudent':
+		include("./admins/op/allstudent.php");
+		break;
+	case 'killuser':
+		include("./admins/op/killuser.php");
+		break;
+	case 'userinfo':
+		include("./admins/op/userinfo.php");
+		break;
+	case 'addstudent':
+		include("./admins/op/addstudent.php");
+		break;
+	case 'settings':
+		include("./admins/op/settings.php");
+		break;
+	case 'count':
+		include("./admins/op/count.php");
+		break;
+	case 'topusers':
+		include("./admins/op/topusers.php");
+		break;
 	default:
+
 		# code...
 		break;
 }

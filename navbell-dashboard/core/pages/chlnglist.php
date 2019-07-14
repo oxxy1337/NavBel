@@ -3,7 +3,7 @@
 /* challenge tables controle only by Root :) 
 /*******************************************/
 // lets check if is really have right to ... u know !  
-error_reporting(0);
+//error_reporting(0);
 if ($_SESSION["prof_data"]->isAdmin != 1) die("Only Director have right to delete or accept challenges :) ");
 
 
@@ -77,9 +77,10 @@ if ($_GET["op"] == "delete") {
     
 }
 /**********************************/
-/* SHOW CHALLENGES TABLE*/ 
+/* SHOW CHALLENGES TABLE           */ 
 /**********************************/
 $data = post("getchlng","","");
+
 print showChallengesToRoot($data,$_GET["order"]);
 
 

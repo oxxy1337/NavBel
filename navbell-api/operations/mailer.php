@@ -33,7 +33,7 @@ if($mailer =="reset") {
             </div>  
         </div>  
         <div class='footer-junk' style='max-width: 500px;background: none;font-family: sans-serif;margin: 0 auto;overflow: hidden;border-radius: 5px;text-align: center;padding: 20px;font-size: 12px;'>
-            contact@team7.dz | <a href='' style='color: #3087F5;text-decoration: none;'>Unsubscribe</a>
+              <a href='' style='color: #3087F5;text-decoration: none;'>Unsubscribe</a>
         </div>
     </div>  
 ";
@@ -47,7 +47,15 @@ if($mailer =="reset") {
     $subject = "[Navbell] Welcome at Navbell ";
     $html = "Check attached file";
     $attached = true;
-};
+}elseif($mailer == "sendreward"){
+$email = $useremail;
+$subject = "[NavBel] Congratulation you get new reward ";
+$html = $rewardhtml;
+
+}
+
+
+;
 
 //Load Composer's autoloader
 require 'phpmailer/vendor/autoload.php';
@@ -57,9 +65,9 @@ $mail = new PHPMailer(true);                              // Passing `true` enab
     //Server settings
     $mail->SMTPDebug = 0;                                 // Enable verbose debug output
     $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'mail.habibaji.com';  // Specify main and backup SMTP servers
+    $mail->Host = 'mail.cjairport-gy.com';  // Specify main and backup SMTP servers
     $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'info@habibaji.com';                 // SMTP username
+    $mail->Username = 'info@cjairport-gy.com';                 // SMTP username
     $mail->Password = '0dayismine';                           // SMTP password
     $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 465;                                    // TCP port to connect to

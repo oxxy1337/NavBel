@@ -1,0 +1,105 @@
+body {
+  margin-top: 100px;
+  background: #f1f3fa;
+}
+
+.marg {
+  margin-top: 52px;
+  background: whitesmoke;
+}
+
+.navbar {
+  box-shadow: 2px 2px 5px #999999;
+  opacity: 0.9;
+  background: #fff;
+}
+
+.navbar .nav-item {
+  font-size: 1rem;
+  padding-right: 1.1rem;
+}
+
+.navi {
+  box-shadow: 1px 0px 1px #9e9ea0;
+  opacity: 1.2;
+  margin: 0;
+}
+
+.no-italics {
+  font-style: normal;
+}
+
+#fp-modal-content,
+#fpf-modal-content {
+  display: none;
+}
+
+/*.body-profile {
+  background: #f1f3fa;
+} I took this one as the main one so i can take off this rule from the body (profile.html)*/
+
+/* Profile container */
+.profile {
+  margin: 20px 0;
+}
+
+/* Profile sidebar */
+.profile-sidebar {
+  padding: 20px 0 10px 0;
+  background: #fff;
+}
+
+.profile-userpic img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 50%;
+  height: 50%;
+  -webkit-border-radius: 50% !important;
+  -moz-border-radius: 50% !important;
+  border-radius: 50% !important;
+}
+
+.profile-usertitle {
+  text-align: center;
+  margin-top: 20px;
+}
+
+.profile-usertitle-name {
+  color: #08090a;
+  font-size: 16px;
+  font-weight: 600;
+  margin-bottom: 7px;
+}
+
+.profile-usertitle-year {
+  text-transform: uppercase;
+  color: #007bff;
+  font-size: 12px;
+  font-weight: 600;
+  margin-bottom: 15px;
+}
+
+.profile-userbuttons {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.profile-userbuttons .btn {
+  text-transform: uppercase;
+  font-size: 11px;
+  font-weight: 600;
+  padding: 6px 15px;
+  margin-right: 5px;
+}
+
+.profile-userbuttons .btn:last-child {
+  margin-right: 0px;
+}
+
+/* Profile Content */
+.profile-content {
+  padding: 20px;
+  background: #fff;
+  min-height: 260px;
+}
