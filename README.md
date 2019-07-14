@@ -50,7 +50,7 @@ In this layer all the rules that a business must comply with are business. For t
    * repository : interface contain all calls from data sources
    * models : modularisation of the app (entities classes)
 ##### data-layer
-layer is the one that performs the logic of data access. Your responsibility is to obtain them and check where they are, deciding where to look at each moment
+is the one that performs the logic of data access. he obtain data and check where they are, deciding where to look at each moment
    * repository-impl : class thats provide implementation of repository from domain layer  
    * local-dataSource : it's controlle all access in local database (SQLite requests)
    * remote-dataSource : responsable of http requests to the server (api)
