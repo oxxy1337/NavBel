@@ -26,7 +26,7 @@ check our android app source code from here //url
 - XML 
 ## Project Architecture
 #### server side
-![alt](https://i.imgur.com/dNh2pkD.png)
+![alt](https://i.imgur.com/AjgPbEo.png)
 
 The Docker Daemon should start 5 containers
 -   api :  is the container that is contains restful api used by android ,dashboard,web  application 
