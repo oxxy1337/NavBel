@@ -6,7 +6,7 @@
 
 Navel is education platform that allows you to learn and enjoy and gain rewards (like gifts cards , coupons ...) in same time
 the platform is an android application and web site 
-check our android app source code from here //url
+check our android app source code from [here](https://github.com/roiacult/NavBel-App) 
 
 ## Overview 
 //TODO screenshots 
