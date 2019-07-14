@@ -25,7 +25,7 @@ check our android app source code from here //url
 - XML 
 ## Project Architecture
 #### server side
-![alt](https://raw.githubusercontent.com/roiacult/NavBel-1/master/art/diagrame.png?token=AJCK3HMXVG2QUJNJN3CMFCS5FGWVA)
+![alt](https://raw.githubusercontent.com/oxxy1337/NavBel/master/art/diagrame.png?token=AJCK3HK3XMVDRSJRAYN5SIS5FMEME)
 
 The Docker Daemon should start 5 containers
 -   api :  is the container that is contains restful api used by android ,dashboard,web  application 
