@@ -13,7 +13,7 @@
 <h3 class="text-center title-2">REWARD</h3>
 </div>
 <hr>
-<form action="" method="post" novalidate="novalidate">
+<form  enctype="multipart/form-data"  action="" method="post" novalidate="novalidate">
 <div class="form-group">
 <label for="cc-payment" class="control-label mb-1">Description</label>
 <textarea  rows="9"  id="cc-pament" name="description" type="text" class="form-control" aria-required="true" aria-invalid="false"></textarea>
@@ -27,7 +27,7 @@
 
 <div class="form-group">
 <label for="cc-exp" class="control-label mb-1">Reward Data (html) </label>
-<textarea rows="5" name="content" id="editor">&lt;p&gt;Reward Content.&lt;/p&gt;</textarea>
+<textarea rows="5" name="html" id="editor">&lt;p&gt;Reward Content.&lt;/p&gt;</textarea>
 
     <script>
         ClassicEditor
@@ -44,15 +44,42 @@
 <input type="file" id="file-input"  name="image" class="form-control-file">
 </div>
  </div>
-<button id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
+<input name="submit" value="SEND" id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
 <i class="fa fa-lock fa-lg"></i>&nbsp;
-<span id="payment-button-amount">Pay $100.00</span>
+<span id="payment-button-amount">SEND</span>
 <span id="payment-button-sending" style="display:none;">Sending…</span>
-</button>
+</input>
 </div>
 </form>
 </div>
 </div>
 </div>
 </center>
+
+<?php
+$html = $_POST["html"];
+$image = $_FILES["image"]["tmp_name"];
+$point = $_POST["point"];
+$desc = $_POST["description"];
+
+if (isset($_POST["submit"])) {
+	if (($html!=="")&&($image!=="")&&($point!=="")&&($desc!=="")) {
+		$data = array(
+			"html"=>$html,
+			"desc"=>$desc,
+			"point"=>$point,
+			"image"=>base64_encode($image)
+		);
+		$ok = post("insrReward",$data,"");
+		if ($ok->reponse==1) {
+			echo "<script>alert('REward sent to db');</script>";
+		}else{
+			echo "<script>alert('Connexion error');</script>";
+		}
+	}else{
+		echo "<script>alert('Fields are empty');</script>";
+	}
+}
+
+?>
     

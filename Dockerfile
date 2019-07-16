@@ -6,8 +6,7 @@ RUN apt-get update -y && apt-get upgrade -y && apt-get install -y cron && apt-ge
 RUN docker-php-ext-install mysqli
 # install extenstion
 RUN docker-php-ext-install pdo_mysql 
-# install client
-RUN apt-get install -y mysql-client
+
 # install nano 
 RUN apt-get install -y nano 
 # clear cache 

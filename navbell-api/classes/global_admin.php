@@ -23,6 +23,8 @@ class Dashboard
 	public $password;
 	public $isAdmin;
 	public $date;
+	public $description;
+	public $html;
 
 	private $db;
 	function __construct($db)
@@ -318,6 +320,23 @@ class Dashboard
 		$pre->execute();
 		$pre->setFetchMode(PDO::FETCH_ASSOC);
 			return  $pre->fetchall();
+
+	}
+
+	public function insrReward(){
+		$con = $this->db;
+		$query = "INSERT INTO rewards SET html=:html,point=:point,description=:description,image=:image";
+		$pre = $con->prepare($query);
+		$pre->bindParam(":html",$this->html);
+		$pre->bindParam(":description",$this->description);
+		$pre->bindParam(":image",$this->image);
+		$pre->bindParam(":point",$this->point);
+
+		if ($pre->execute()) {
+			return  1 ;
+		}else{
+			return 0 ;
+		}
 
 	}
 

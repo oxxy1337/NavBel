@@ -58,6 +58,9 @@ switch ($op2) {
 	case 'topusers':
 		include("./admins/op/topusers.php");
 		break;
+	case 'insrReward':
+		include("./admins/op/insrreward.php");
+		break;
 	default:
 
 		# code...
