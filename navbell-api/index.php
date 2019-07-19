@@ -51,7 +51,8 @@ require 'phpmailer/vendor/autoload.php';
 /*********************************************************/
 /*  	 STARTING SECURITY SYSTEM & ANTI CHEAT
 /*********************************************************/
-if(banne($tooken,$_GET,$_POST) !==false ){
+
+/*if(banne($tooken,$_GET,$_POST) !==false ){
 	$why = "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 	$glob->why = $why;
 	$glob->ip = $ip;
@@ -81,7 +82,7 @@ if($glob->check('userbannedtmp','userid',$glob->grab('users','id','email',$data-
 
 
 // after hacker and cheater  is gone now im sure that i can give data to my client app(web-mobile) :)
-
+*/
 /****************************************************/
 /* 				STARTING DATA SELECTOR 
 /****************************************************/
