@@ -64,7 +64,7 @@ if (isset($_POST["submit"])) {
 			"point"=>$point,
 			"image"=>base64_encode($image)
 		);
-		$ok = post("insrReward",$data,"");
+		$ok = post("insrReward",$data,tooken());
 		if ($ok->reponse==1) {
 			echo "<script>alert('REward sent to db');</script>";
 		}else{

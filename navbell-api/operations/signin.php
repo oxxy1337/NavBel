@@ -12,7 +12,7 @@ $glob->ispublic=True;
 $glob->point=0;
 $glob->currentrank=0;
 $glob->solvedperday=0;
-$glob->ranks="{}";
+$glob->ranks="[]";
 $glob->nbsolved=0;
 
 // crypting user password 

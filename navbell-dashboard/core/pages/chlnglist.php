@@ -69,17 +69,17 @@ if ($_SESSION["prof_data"]->isAdmin != 1) die("Only Director have right to delet
 if ($_GET["op"] == "delete") {
     $data = array("id"=>$_GET["id"]);
     print_r(json_encode($data));
-    post("chlng-dl",$data,"");
+    post("chlng-dl",$data,tooken());
     
 }elseif ($_GET["op"] == "aprove") {
     $data = array("id"=>$_GET["id"]);
-    post("chlng-ap",$data,"");
+    post("chlng-ap",$data,tooken());
     
 }
 /**********************************/
 /* SHOW CHALLENGES TABLE           */ 
 /**********************************/
-$data = post("getchlng","","");
+$data = post("getchlng","",tooken());
 
 print showChallengesToRoot($data,$_GET["order"]);
 

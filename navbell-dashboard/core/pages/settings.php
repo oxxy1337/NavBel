@@ -86,7 +86,7 @@ if (isset($_POST["submit"])) {
 
 		);
 
-		$ok = post("settings",$data,"");
+		$ok = post("settings",$data,tooken());
 		if ($ok->reponse == 1) {
 			echo "<script>alert('Profile was updated ');</script>";
 			unset($_SESSION["logged"]);

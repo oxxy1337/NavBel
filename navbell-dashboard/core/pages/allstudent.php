@@ -54,7 +54,7 @@ if ($_SESSION["prof_data"]->isAdmin == false) die(print("<script>alert('Onley Ad
 /****************************/
 if ($_GET["op"] == "delete" ) {
 	$data=array("email"=>$_GET["email"]);
-	post("killuser",$data,"");
+	post("killuser",$data,tooken());
 	echo "<script>alert('Etudiant Deleted !');</script>";
 }
 /**********************************/

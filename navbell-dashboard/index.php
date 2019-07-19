@@ -1,6 +1,9 @@
 <?php
 session_start();
-//error_reporting(0);
+error_reporting(0);
+include("./core/functions/functions.php");
+
+
 if ($_SESSION["logged"] == 1) die(print("<script>window.location.replace('./dashboard');</script>"));
 
 ?>
@@ -102,13 +105,12 @@ if ($_SESSION["logged"] == 1) die(print("<script>window.location.replace('./dash
 </html>
 <?php
 
-include("./core/functions/functions.php");
 $EMAIL = $_POST["email"];
 $PASSWORD = $_POST["pass"];
 if(isset($_POST) && (!empty($EMAIL)) && (!empty($PASSWORD)) ) {
 
 	$data = array("email"=>$EMAIL,"password"=>$PASSWORD);
-	$data = post("login",$data,$tooken);
+	$data = post("login",$data,tooken());
 	
 	
 	if ($data->reponse == true ) {

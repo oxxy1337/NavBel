@@ -1,12 +1,26 @@
 <?php
-/**************************************/
+
+/**************************************************************/
+/* 		CREATING VALIDATE TOOKEN 							
+/**************************************************************/
+
+function tooken() {
+    $key="team7";
+    $time = (int)(time() / 60); // get time in minute from 1/1/1970 
+    $string =  md5($time); // hashing
+    $key = hash('sha256',$time.$key); // creating our key 
+    $secret = hash_hmac('sha256',$string,$key) ; // final hash using sha-256 algorithm
+    return $secret; 
+}
+/*********************************************************************/
 /* Lets post our data to my lovely restfull API and see what she say :D 
 /* by this function :)  
 /**************************************/
-function post($op2,$data,$tooken){
+function post($op2,$data,$host){
+		$t = tooken();
 		//$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
 		$host = "http://127.0.0.7/project/NavBel/navbell-api/";
-		$url = $host."/?tooken=$tooken&op=admins&op2=".$op2;
+		$url = $host."/?tooken=$t&op=admins&op2=".$op2;
 		$data = json_encode($data);
 		$options = array(
 		  'http' => array(

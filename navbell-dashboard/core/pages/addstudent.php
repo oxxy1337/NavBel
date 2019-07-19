@@ -51,7 +51,7 @@ if (isset($_POST["submt"])) {
 					"fname"=>$user[2],
 					"year" =>$user[3]
 				);
-		$ok = post("addstudent",$data,"");
+		$ok = post("addstudent",$data,tooken());
 		if($ok->reponse == 0 ) die(print("<script>alert('".$user[0]." Etudiant add ERROR');</script>"));
 
 		}

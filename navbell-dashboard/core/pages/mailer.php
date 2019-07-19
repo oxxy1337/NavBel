@@ -66,7 +66,7 @@ if (isset($_POST["submit"])) {
 			"subject"=>$subject,
 			"to"=>$to	
 		);
-		$ok = post("sndMails",$data,"");
+		$ok = post("sndMails",$data,tooken());
 		print_r($ok);
 		if ($ok->reponse==1) {
 			echo '<script>alert("'.$ok->n.' Message Sent");</script>';
