@@ -16,11 +16,11 @@ function tooken() {
 /* Lets post our data to my lovely restfull API and see what she say :D 
 /* by this function :)  
 /**************************************/
-function post($op2,$data,$host){
-		$t = tooken();
-		//$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
-		$host = "http://127.0.0.7/project/NavBel/navbell-api/";
-		$url = $host."/?tooken=$t&op=admins&op2=".$op2;
+function post($op2,$data,$t){
+		
+		$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
+		//$host = "http://127.0.0.7/project/NavBel/navbell-api/";
+		$url = $host."/?tooken=".$t."&op=admins&op2=".$op2;
 		$data = json_encode($data);
 		$options = array(
 		  'http' => array(
