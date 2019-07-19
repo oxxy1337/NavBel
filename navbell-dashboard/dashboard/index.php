@@ -1,12 +1,12 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 /////////////////////////////
 // SOME TESTES BEFORE WE BEGING :) (js cant bypass this ;) root-me nah ? ) 
 /////////////////////////////
 if($_GET["page"]=="logout") unset($_SESSION["logged"]);
 if ($_SESSION["logged"] !== 1) die(print("<script>window.location.replace('..');</script>"));
-
+include("../core/functions/functions.php");
 include("../core/fusioncharts.php");
 ?>
 
@@ -183,7 +183,6 @@ include("../core/fusioncharts.php");
 
             <?php
                 $page = $_GET["page"];
-                include("../core/functions/functions.php");
                  
                 switch ($page) {
                     case 'chlnglist':

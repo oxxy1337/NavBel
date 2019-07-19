@@ -1,7 +1,7 @@
 <?php
-$count = post("count","","");
-$topUsers = post("topusers","","");
-$challenges=post("getchlng","","");
+$count = post("count","", tooken());
+$topUsers = post("topusers","",tooken());
+$challenges=post("getchlng","",tooken());
 /**************************************************************************/
 /*    COLUMN CHART top 10 player by number solved challenge               */
 /**************************************************************************/
@@ -22,7 +22,7 @@ $challenges=post("getchlng","","");
    
 
     for($i=0;$i<10;$i++){
-
+        if ($topUsers == null) break; 
         array_push($arrChartData, array($topUsers[$i]->fname,$topUsers[$i]->nbsolved));
     }
     //print_r($arrChartData);
