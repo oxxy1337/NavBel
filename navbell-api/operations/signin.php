@@ -14,6 +14,7 @@ $glob->currentrank=0;
 $glob->solvedperday=0;
 $glob->ranks="[]";
 $glob->nbsolved=0;
+$glob->bio = "Etudiant ". $year . "year";
 
 // crypting user password 
 $glob->password = cryptpwd($password,$glob->salt);

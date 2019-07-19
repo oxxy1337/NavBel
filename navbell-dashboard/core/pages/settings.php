@@ -1,4 +1,8 @@
 <?php
+if ($_SESSION["prof_data"]->isAdmin == false) die(print("<script>alert('Onley Administrator have right to');</script>"));
+?>
+
+<?php
 $name = $_SESSION["prof_data"]->fname;
 $email = $_SESSION["prof_data"]->email;
 $image = $_SESSION["prof_data"]->image;

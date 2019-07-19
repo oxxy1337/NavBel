@@ -1,5 +1,5 @@
-<?php
-?><br><br><br><br><br><br><center>
+
+<br><br><br><br><br><br><center>
                             <div class="col-lg-6">
                                 <div class="card">
                                     <div class="card-header">
@@ -178,7 +178,7 @@ if (isset($_POST["send"])) {
 			);
 			
 			$_SESSION["nbqst"] = $nbqst;
-			$api = post("chlng-add",$data,"");
+			$api = post("chlng-add",$data,tooken());
 			$_SESSION["chlng-id"] = $api->id;
 			die(print("<script>window.location.replace('?page=qstadd');</script>"));
 

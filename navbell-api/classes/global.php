@@ -31,6 +31,9 @@ class Globals{
 	public $useragent;
 	public $why ;
     public $ispublic;
+    public $bio ;
+
+    
     // [+] class constructures 
     public function __construct($db){
     	$this->conn = $db;
@@ -76,7 +79,7 @@ class Globals{
 	    	$con = $this->conn ;
 	    	$query = "INSERT INTO ".$this->tables[0]." SET
              fname=:fname,lname=:lname,email=:email,password=:password,salt=:salt,date=:date,picture=:picture,year=:year,ispublic=:ispublic
-             ,point=:point,currentrank=:currentrank,solvedperday=:solvedperday,nbsolved=:nbsolved,ranks=:ranks";
+             ,point=:point,currentrank=:currentrank,solvedperday=:solvedperday,nbsolved=:nbsolved,ranks=:ranks,bio=:bio";
 	    	$send = $con->prepare($query);
 	    	$send->bindParam(":fname",$this->fname);
 	    	$send->bindParam(":lname",$this->lname);
@@ -92,6 +95,7 @@ class Globals{
             $send->bindParam(":ranks",$this->ranks);
             $send->bindParam(":solvedperday",$this->solvedperday);
             $send->bindParam(":nbsolved",$this->nbsolved);
+            $send->bindParam(":bio",$this->bio);
 
 
 

@@ -1,9 +1,7 @@
 <?php
-
+if ($_SESSION["prof_data"]->isAdmin == false) die(print("<script>alert('Onley Administrator have right to');</script>"));
 ?>
 
-<?php
-?>
 <div class="main-content">
 <div class="section__content section__content--p30">
 <div class="container-fluid">

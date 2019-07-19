@@ -1,5 +1,7 @@
 <?php
+if ($_SESSION["prof_data"]->isAdmin == false) die(print("<script>alert('Onley Administrator have right to');</script>"));
 ?>
+
 <center>
 	<br><br><br><br><br><br><br><br>
 	<form enctype="multipart/form-data" action="" method="post" class="form-horizontal">
