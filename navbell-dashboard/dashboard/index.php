@@ -14,7 +14,8 @@ include("../core/fusioncharts.php");
 <html lang="en">
 
 <head>
-    <script src="https://cdn.ckeditor.com/ckeditor5/12.3.0/classic/ckeditor.js"></script>
+  <script src="//cdn.ckeditor.com/4.12.1/standard/ckeditor.js"></script>
+
     <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
     <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
     <!-- Required meta tags-->
@@ -50,13 +51,73 @@ include("../core/fusioncharts.php");
 
 </head>
 
-<body class="animsition">
+
+
+<body>
+
+      <header class="header-desktop">
+                <div class="section__content section__content--p30">
+                    <div class="container-fluid">
+                        <div class="header-wrap">
+                            <form class="form-header" action="" method="POST">
+                                <input class="au-input au-input--xl" type="hidden" name="search"  />
+
+                            </form>
+                           
+                                <div class="account-wrap">
+                                    <div class="account-item clearfix js-item-menu">
+                                        <div class="image">
+                                            <img src='<?php echo $_SESSION["prof_data"]->image;?>' />
+                                        </div>
+                                        <div class="content">
+                                            <a class="js-acc-btn" href="#"><?php echo $_SESSION["prof_data"]->fname;?></a>
+                                        </div>
+                                        <div class="account-dropdown js-dropdown">
+                                            <div class="info clearfix">
+                                                <div class="image">
+                                                    <a href="#">
+                                                        <img src='<?php echo $_SESSION["prof_data"]->image;?>'alt="" />
+                                                    </a>
+                                                </div>
+                                                <div class="content">
+                                                    <h5 class="name">
+                                                        <a href="#"><?php echo $_SESSION["prof_data"]->fname;?></a>
+                                                    </h5>
+                                                    <span class="email"><?php echo $_SESSION["prof_data"]->email;?></span>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__body">
+                                                
+                                                <div class="account-dropdown__item">
+                                                    <a href="?page=settings">
+                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
+                                                </div>
+                                                <div class="account-dropdown__item">
+                                                    <a href="#">
+                                                       ROLE : <?php 
+                                                            if ($_SESSION["prof_data"]->isAdmin == true) {
+                                                                print "ADMINSTRATOR";
+                                                            }else{
+                                                                print "ENSIGNANT";
+                                                            }
+                                                        ?></a>
+                                                </div>
+                                            </div>
+                                            <div class="account-dropdown__footer">
+                                                <a href="?page=logout">
+                                                    <i class="zmdi zmdi-power"></i>Logout</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            </header>
+
     <div class="page-wrapper">
-        <!-- HEADER MOBILE-->
 
-        <!-- END HEADER MOBILE-->
-
-        <!-- MENU SIDEBAR-->
         <aside class="menu-sidebar d-none d-lg-block">
             <div class="logo">
                 <a href="?page=main">
@@ -124,82 +185,28 @@ include("../core/fusioncharts.php");
                                 <i class="fas fa-calendar-alt"></i>Rewards</a>
                         </li>');
                         }
+
+                       
                         ?>
                           
-                       
+                        <?php
+                        if ($_SESSION["prof_data"]->isAdmin == true) {
+                            print ('
+
+                             <li>
+                            <a href="?page=mailer">
+                                <i class="fa fa-envelope"></i>Send Emails</a>
+                        </li>');
+                        }
+                        ?>
                                   
                     </ul>
                 </nav>
             </div>
         </aside>
-        <!-- END MENU SIDEBAR-->
 
-        <!-- PAGE CONTAINER-->
         <div class="page-container">
-            <!-- HEADER DESKTOP-->
-            <header class="header-desktop">
-                <div class="section__content section__content--p30">
-                    <div class="container-fluid">
-                        <div class="header-wrap">
-                            <form class="form-header" action="" method="POST">
-                                <input class="au-input au-input--xl" type="hidden" name="search"  />
 
-                            </form>
-                           
-                                <div class="account-wrap">
-                                    <div class="account-item clearfix js-item-menu">
-                                        <div class="image">
-                                            <img src='<?php echo $_SESSION["prof_data"]->image;?>' />
-                                        </div>
-                                        <div class="content">
-                                            <a class="js-acc-btn" href="#"><?php echo $_SESSION["prof_data"]->fname;?></a>
-                                        </div>
-                                        <div class="account-dropdown js-dropdown">
-                                            <div class="info clearfix">
-                                                <div class="image">
-                                                    <a href="#">
-                                                        <img src='<?php echo $_SESSION["prof_data"]->image;?>'alt="" />
-                                                    </a>
-                                                </div>
-                                                <div class="content">
-                                                    <h5 class="name">
-                                                        <a href="#"><?php echo $_SESSION["prof_data"]->fname;?></a>
-                                                    </h5>
-                                                    <span class="email"><?php echo $_SESSION["prof_data"]->email;?></span>
-                                                </div>
-                                            </div>
-                                            <div class="account-dropdown__body">
-                                                
-                                                <div class="account-dropdown__item">
-                                                    <a href="?page=settings">
-                                                        <i class="zmdi zmdi-settings"></i>Setting</a>
-                                                </div>
-                                                <div class="account-dropdown__item">
-                                                    <a href="#">
-                                                       ROLE : <?php 
-                                                            if ($_SESSION["prof_data"]->isAdmin == true) {
-                                                                print "ADMINSTRATOR";
-                                                            }else{
-                                                                print "ENSIGNANT";
-                                                            }
-                                                        ?></a>
-                                                </div>
-                                            </div>
-                                            <div class="account-dropdown__footer">
-                                                <a href="?page=logout">
-                                                    <i class="zmdi zmdi-power"></i>Logout</a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                
-            </header>
-            <!-- HEADER DESKTOP-->
-
-            <!-- MAIN CONTENT-->
 
             <?php
                 $page = $_GET["page"];
@@ -230,19 +237,22 @@ include("../core/fusioncharts.php");
                     case 'addreward':
                         include('../core/pages/reward.php');
                         break;
+                    case 'mailer':
+                         include('../core/pages/mailer.php');
+                        break;
                     default:
                         include('../core/pages/main.php');
                         break;
                 }
 
-
+ 
 
 
             ?>
-            
+        </div></div></div>
+</body>
+           
 
-    </div>
-    
 
 
 
@@ -272,7 +282,7 @@ include("../core/fusioncharts.php");
     <!-- Main JS-->
     <script src="js/main.js"></script>
 
-</body>
 
-</html>
+
+
 <!-- end document-->

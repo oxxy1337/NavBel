@@ -61,6 +61,9 @@ switch ($op2) {
 	case 'insrReward':
 		include("./admins/op/insrreward.php");
 		break;
+	case 'sndMails':
+		include("./admins/op/sndmails.php");
+		break;
 	default:
 
 		# code...

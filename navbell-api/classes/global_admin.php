@@ -340,6 +340,27 @@ class Dashboard
 
 	}
 
+	public function getUsersEmail(){
+
+		$con = $this->db;
+		$query = "SELECT email FROM users ";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		$pre->setFetchMode(PDO::FETCH_ASSOC);
+			return  $pre->fetchall();
+
+	}
+	public function getAdmEmail(){
+
+		$con = $this->db;
+		$query = "SELECT email FROM admins ";
+		$pre = $con->prepare($query);
+		$pre->execute();
+		$pre->setFetchMode(PDO::FETCH_ASSOC);
+			return  $pre->fetchall();
+
+	}
+
 	
 
 

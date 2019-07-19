@@ -10,13 +10,12 @@
 <div class="card-header">Reward Informations</div>
 <div class="card-body">
 <div class="card-title">
-<h3 class="text-center title-2">REWARD</h3>
-</div>
+<i class="fas fa-calendar-alt"></i>&nbsp;</div>
 <hr>
 <form  enctype="multipart/form-data"  action="" method="post" novalidate="novalidate">
 <div class="form-group">
 <label for="cc-payment" class="control-label mb-1">Description</label>
-<textarea  rows="9"  id="cc-pament" name="description" type="text" class="form-control" aria-required="true" aria-invalid="false"></textarea>
+<textarea  rows="3"  id="cc-pament" name="description" type="text" class="form-control" aria-required="true" aria-invalid="false"></textarea>
 </div>
 <div class="form-group has-success">
 <label for="cc-name" class="control-label mb-1">Point</label>
@@ -27,15 +26,11 @@
 
 <div class="form-group">
 <label for="cc-exp" class="control-label mb-1">Reward Data (html) </label>
-<textarea rows="5" name="html" id="editor">&lt;p&gt;Reward Content.&lt;/p&gt;</textarea>
+<textarea rows="5" name="html" id="html">&lt;p&gt;Reward Content.&lt;/p&gt;</textarea>
+<script>
+ CKEDITOR.replace( 'html');
+</script>
 
-    <script>
-        ClassicEditor
-            .create( document.querySelector( '#editor' ) )
-            .catch( error => {
-                console.error( error );
-            } );
-    </script>
 </div></div>
  <div class="row form-group">
  <div class="col col-md-3">
@@ -45,8 +40,7 @@
 </div>
  </div>
 <input name="submit" value="SEND" id="payment-button" type="submit" class="btn btn-lg btn-info btn-block">
-<i class="fa fa-lock fa-lg"></i>&nbsp;
-<span id="payment-button-amount">SEND</span>
+
 <span id="payment-button-sending" style="display:none;">Sending…</span>
 </input>
 </div>
