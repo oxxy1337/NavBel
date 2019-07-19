@@ -1,9 +1,7 @@
 <?php
 $data = file_get_contents("php://input");
 $data = json_decode($data);
-// Import PHPMailer 
-use PHPMailer\PHPMailer\PHPMailer;
-use PHPMailer\PHPMailer\Exception;
+
 
 $subject = $data->subject;
 $emailfrom = $data->email;
@@ -20,19 +18,7 @@ switch ($data->to) {
 
 }
 
-require 'phpmailer/vendor/autoload.php';
-
-$mail = new PHPMailer(true);                              // Passing `true` enables exceptions
-
-    //Server settings
-    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
-    $mail->isSMTP();                                      // Set mailer to use SMTP
-    $mail->Host = 'mail.cjairport-gy.com';  // Specify main and backup SMTP servers
-    $mail->SMTPAuth = true;                               // Enable SMTP authentication
-    $mail->Username = 'info@cjairport-gy.com';                 // SMTP username
-    $mail->Password = '0dayismine';                           // SMTP password
-    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
-    $mail->Port = 465;                                    // TCP port to connect to
+               
 
     //Recipients
     $mail->setFrom($emailfrom, $emailname);

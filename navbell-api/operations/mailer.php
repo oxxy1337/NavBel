@@ -39,7 +39,7 @@ if($mailer =="reset") {
 ";
 } elseif ($mailer =="alert") {
     
-    $email = "m.slamat@esi-sba.dz";
+    $email = SYSADMIN;
     $subject = "Security Alert ! ";
     $html = "Our Security System detect bad using of Navbell-API from $ip || $useragent || at $date <br><br> this make your server in danger <br> go check your server ! ";
 }elseif ($mailer=="signin") {

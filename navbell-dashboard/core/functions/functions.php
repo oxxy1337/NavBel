@@ -4,8 +4,8 @@
 /* by this function :)  
 /**************************************/
 function post($op2,$data,$tooken){
-		$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
-		//$host = "http://127.0.0.7/project/NavBel/navbell-api/";
+		//$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
+		$host = "http://127.0.0.7/project/NavBel/navbell-api/";
 		$url = $host."/?tooken=$tooken&op=admins&op2=".$op2;
 		$data = json_encode($data);
 		$options = array(
@@ -103,50 +103,13 @@ $x=post("userinfo",array("email"=>$data->email),"");
 
 if($x->isSub !== 1){
 
-	$modal = '<button type="button" class="btn btn-danger btn-lg active">Unsubscribe</button>';
+	$modal = '<div  class="btn btn-danger btn-lg active">Unsubscribed</div>';
 }else {
 	$modal = '
 
-	<a href="?page=allstudent&userinfo=1" type="button" class="btn btn-success btn-lg active" data-toggle="modal" data-target="#smallmodal">
-	Subscribed
-	</a>
+	<div  class="btn btn-success btn-lg active" >Subscribed</div>
 	';
 }
-
-$userinfo = '<div class="modal fade show" id="mediumModal" tabindex="-1" role="dialog" aria-labelledby="mediumModalLabel" style="display: block;">
-<div class="modal-dialog modal-lg" role="document">
-<br><br><br><br><br>
-<div class="modal-content">
-<div class="modal-header">
-<h5 class="modal-title" id="mediumModalLabel">'.$x->data->lname.' '.$x->data->fname.'</h5>
-<a href="?page=allstudent" type="button" class="close" data-dismiss="modal" aria-label="Close"></a>
-<span aria-hidden="true">×</span>
-</button>
-</div>
-<div class="modal-body">
-		<p>Date of inscription : '.$x->data->date.' </p>
- 		<p>Point : '.$x->data->point.' </p>
- 		<p>Challenge Solved : '.$x->data->nbsolved.'</p> 
- 		<p>Picture :  </p><p> <img src = "'.$x->data->picture.'"  width="120" height="60" > </p>
-
-</div>
-<div class="modal-footer">
-
-</div>
-</div>
-</div>
-</div>
-	
-
-	
-	
-
-
-
-
-';
-if ($_GET["userinfo"] == 1) print($userinfo);
-
 
 // 148
 $html .='

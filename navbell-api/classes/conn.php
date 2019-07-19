@@ -9,18 +9,24 @@ coded by m.slamat
 class Database {
  
        
-    private $host = "23.101.131.75";
-    private $db_name = "navbell";
-    private $username = "slamat";
-    private $password = "slamat";
-    private $port ="1337";
+    private $host;
+    private $db_name;
+    private $username ;
+    private $password;
+    private $port ;
     public  $conn;
     
     // get the database connection
+    public function  __construct($host,$user,$pass,$port,$db_name){
+        $this->host = $host;
+        $this->db_name=$db_name;
+        $this->username=$user;
+        $this->password=$pass;
+        $this->port = $port;
+        
+    }
     public function getConnection(){
- 
         $this->conn = null;
- 
         try{
             $this->conn = new PDO("mysql:host=" . $this->host . ";port=".$this->port.";dbname=" . $this->db_name, $this->username, $this->password);
             $this->conn->exec("set names utf8");

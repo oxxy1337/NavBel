@@ -1,30 +1,57 @@
 <?php
-/*ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);*/
 /*
 coded by m.slamat
 */
-/// web header part 
-error_reporting(0);
+error_reporting(0); // i hate errors <3 
+/****************************************************/
+/* 					WEB HEADER
+/****************************************************/ 
 header("Access-Control-Allow-Origin: *");
 header("Content-Type: application/json; charset=UTF-8");
 header("Access-Control-Allow-Methods: POST");
 header("Access-Control-Max-Age: 3600");
 header("Access-Control-Allow-Headers: Content-Type, Access-Control-Allow-Headers, Access-Control-Max-Age ,Access-Control-Allow-Methods");
-/// end header
+/*******************************************************/
+/* 			INCLUDING NECCISSAIRE FILES
+/*******************************************************/
+include('./config.php'); // including the config file
 include('./functions/functions.php'); // including our function
 include('./classes/global.php'); // including global class
 include('./classes/conn.php'); // conection to db 
+
+/********************************************************/
+/* 			CREATING INSTANCE & INIT VARS
+/********************************************************/
 $data = file_get_contents('php://input'); // import data as json
-$data = json_decode($data); // decoding ...
-$database = new Database();  // creating Database object for connection 
+$data = json_decode($data); // geting data object
+ // creating Database object for connection
+$database = new Database(MySQL_HOST,MySQL_USER,MySQL_PASS,MySQL_PORT,MySQL_DBNAME); 
 $db = $database->getConnection();  //checking the connection
 $glob = new Globals($db); // creating object 
 include('./functions/vars.php'); // variables initialisation
+// Import PHPMailer  
+use PHPMailer\PHPMailer\PHPMailer;
+use PHPMailer\PHPMailer\Exception;
+//Load Composer's autoloader
+require 'phpmailer/vendor/autoload.php';
+
+	$mail = new PHPMailer(true);  // Passing `true` enables exceptions
+
+    //Server settings
+    $mail->SMTPDebug = 0;                                 // Enable verbose debug output
+    $mail->isSMTP();                                      // Set mailer to use SMTP
+    $mail->Host = SMTP_HOST ;  // Specify main and backup SMTP servers
+    $mail->SMTPAuth = true;                               // Enable SMTP authentication
+    $mail->Username = SMTP_USER;                 // SMTP username
+    $mail->Password = SMTP_PASS;                           // SMTP password
+    $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
+    $mail->Port = 465;                                    // TCP port to connect to
+
 //security mesure (banne the hacker)
-/*
-if(banne($tooken,$op) !==false ){
+/*********************************************************/
+/*  	 STARTING SECURITY SYSTEM & ANTI CHEAT
+/*********************************************************/
+if(banne($tooken,$_GET,$_POST) !==false ){
 	$why = "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 	$glob->why = $why;
 	$glob->ip = $ip;
@@ -33,6 +60,7 @@ if(banne($tooken,$op) !==false ){
 	$glob->bannethehacker();
 	$mailer="alert";
 	include("./operations/mailer.php");
+
  }
  if(bf($flag) !== false){
 
@@ -43,15 +71,20 @@ if(banne($tooken,$op) !==false ){
 	$glob->bannethehacker();
 
  }
-*/
+
 // check if the hacker ip in our db (already banned) 
-//if($glob->check('userbannedever','ip',$ip)) exit(json_encode((array("reponse"=>"0"))));
+if($glob->check('userbannedever','ip',$ip)!==false) 
+	exit(json_encode((array("reponse"=>-1337))));
 // check if the user is a cheater :/ 
-//if($glob->check('userbannedtmp','userid',$glob->grab('users','id','email',$data->email))) exit(json_encode((array("reponse"=>-2))));
+if($glob->check('userbannedtmp','userid',$glob->grab('users','id','email',$data->email))) exit(json_encode((array("reponse"=>-2))));
 
 
 
 // after hacker and cheater  is gone now im sure that i can give data to my client app(web-mobile) :)
+
+/****************************************************/
+/* 				STARTING DATA SELECTOR 
+/****************************************************/
 switch ($op) {
 	case 'check':
 		include("./operations/check-signin.php");

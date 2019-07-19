@@ -43,10 +43,9 @@ function tooken($a) {
 	
 	 	*/
 	function banne($tooken,$op){
-		$operations = array("check","signin","login","reset");
+		
 		$blacklisted = array('"',"'","%27",'%00',"php","/etc/passwd");
-		if((!tooken($tooken)) || (!in_array($op, $operations) || 
-		 (in_array($op,$blacklisted) || (in_array($tooken, $blacklisted))))){
+		if((!tooken($tooken)) || (in_array($_POST,$blacklisted) || (in_array($tooken, $blacklisted)))){
 
 			return true;
 		}  else{

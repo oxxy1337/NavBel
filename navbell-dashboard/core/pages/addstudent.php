@@ -2,7 +2,7 @@
 ?>
 <center>
 	<br><br><br><br><br><br><br><br>
-	<form action="" method="post" class="form-horizontal">
+	<form enctype="multipart/form-data" action="" method="post" class="form-horizontal">
 <div class="col-lg-6">
 <div class="card">
 <div class="card-header">
@@ -20,6 +20,7 @@
 </div>
 
 </div>
+
 <div class="card-footer">
 <input name="submt" value=" Submit" type="submit" class="btn btn-primary btn-sm">
 </form>
@@ -32,6 +33,7 @@
 </div>
 </center>
 <?php
+
 $data = $_POST["all"];
 if (isset($_POST["submt"])) {
 		

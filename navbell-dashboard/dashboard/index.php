@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 /////////////////////////////
 // SOME TESTES BEFORE WE BEGING :) (js cant bypass this ;) root-me nah ? ) 
 /////////////////////////////
@@ -139,24 +139,10 @@ include("../core/fusioncharts.php");
 <a href="?page=allstudent">All Students</a>
 </li>
 <li>
-<a href="?page=banstudent">Banned Student</a>
-</li>
-<li>
 <a href="?page=addstudents">Add Student</a>
 </li>
 </ul>
-</li>');
-    }
-
-    ?>
-
-                        
-
-                        
-                        
-                        <?php
-                        if ($_SESSION["prof_data"]->isAdmin == true) {
-                            print (' <li class="active has-sub"><li>
+</li> <li class="active has-sub"><li>
                             <a href="?page=chlnglist">
                                 <i class="far fa-check-square"></i>Challenge List</a>
                         </li>');
@@ -175,23 +161,10 @@ include("../core/fusioncharts.php");
                             print ('<li>
                             <a href="?page=addemployer">
                                 <i class="fa fa-user"></i>Add Employer</a>
-                        </li>');
-                        }
-                        ?>
-                        <?php
-                        if ($_SESSION["prof_data"]->isAdmin == true) {
-                            print (' <li>
+                        </li><li>
                             <a href="?page=addreward">
                                 <i class="fas fa-calendar-alt"></i>Rewards</a>
-                        </li>');
-                        }
-
-                       
-                        ?>
-                          
-                        <?php
-                        if ($_SESSION["prof_data"]->isAdmin == true) {
-                            print ('
+                        </li>
 
                              <li>
                             <a href="?page=mailer">
