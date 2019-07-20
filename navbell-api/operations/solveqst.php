@@ -5,10 +5,13 @@ coded by m.slamat
 $arr = file_get_contents('php://input');
 $arr = json_decode($arr);
 $userid = filter($arr->id);
+$challengeid = filter($arr->challengeid);
 $solvedperday= $glob->grab('users','solvedperday','id',$userid);
 $nbsolved= $glob->grab('users','nbsolved','id',$userid);
+$chlngpts = $glob->grab('challenges','point','id',$challengeid);
+$module = $glob->grab('challenges','module','id',$challengeid);
 //$timeperc = filter($arr->time);
-$challengeid = filter($arr->challengeid);
+
 //$fulltime = $glob->grab('challenges','time','id',$challengeid); app will get full time not me
 $challengepts =  $glob->grab('challenges','point','id',$challengeid);
 $out = array();
@@ -77,13 +80,24 @@ foreach($arr->challenges as $challenge) {
 
 	/// We hate who are not serious in our challenge those who solve <70% of pts and get out 
 	
-	if (((int)(69* $glob->grab('challenges','point','id',$challengeid)/100)) < $point) {
+	if (((int)(69*$chlngpts/100)) > $point) {
 		$point = 0;
 		$nbsolved = 0;
 		$solvedperday = 0; 
+	}else{
+		$glob->id = $userid;
+		$glob->challengeid = $challengeid;
+		$glob->point = $point ;
+		$glob->chlngpts = $chlngpts;
+		$glob->mdl = $module;
+
+		$glob->solvedChlng();
+
 	}
+
+
 	$usrpoint = $glob->grab('users','point','id',$userid);
-	$glob->id = $userid;
+	
 	$glob->point = (int)($usrpoint+$point);
 	$glob->nbsolved = $nbsolved;
 	$glob->solvedperday = $solvedperday;

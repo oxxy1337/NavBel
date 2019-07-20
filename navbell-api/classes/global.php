@@ -32,6 +32,9 @@ class Globals{
 	public $why ;
     public $ispublic;
     public $bio ;
+    public $mdl;
+    public $chlngpts;
+
 
     
     // [+] class constructures 
@@ -389,7 +392,31 @@ class Globals{
         }
         return $arr;
     }
+    //  add chlng solved
+    public function solvedChlng(){
+        
+        $con = $this->conn;
+        $query = " INSERT INTO solvedchallenge SET 
+        userid=:userid,
+        challengeid=:challengeid,
+        challengepts=:chlngpts,
+        mdl=:m,
+        resultpts=:point";
+        
+        $send = $con->prepare($query);
+        $send->bindParam(":m",$this->mdl);
+        $send->bindParam(":point",$this->point);
+        $send->bindParam(":userid",$this->id);
+        $send->bindParam(":chlngpts",$this->chlngpts);
+        $send->bindParam(":challengeid",$this->challengeid);
+        if($send->execute()){
+            return true;
+        }else{
+            return false;
+        }
 
+
+    }
 
 
 
