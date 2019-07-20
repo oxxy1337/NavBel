@@ -380,17 +380,17 @@ class Globals{
     // getting the solved chlngs
     public function solvedChallenges(){
         $con= $this->conn;
-        $query="SELECT * FROM solvedchallenge";
+        $query="SELECT * FROM solvedchallenge where userid=?";
         $send = $con->prepare($query);
-        if ($send->execute()) {
+        if ($send->execute([$this->id])) {
             $send->setFetchMode(PDO::FETCH_ASSOC);
             $arr["data"] = $send->fetchall();
-            $arr["reponse"] = 1;
-        }else{
-            $arr["reponse"] = 0 ;
+            
         }
         return $arr;
     }
+
+
 
 
     

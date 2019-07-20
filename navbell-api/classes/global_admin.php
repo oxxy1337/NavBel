@@ -86,8 +86,7 @@ class Dashboard
 	public function addChallenge(){
 		$conn = $this->db;
 		$query = "INSERT INTO challenges SET date=:date,year=:year,module=:module,isAproved=:isAproved,story=:story,point=:point,createdby=:createdby,
-			nbOfQuestions=:nbOfQuestions,url=:image,resource=:resource
-		";
+			nbOfQuestions=:nbOfQuestions,url=:image,resource=:resource,nbPersonSolved=0";
 		$pre=$conn->prepare($query);
 		$pre->bindParam(":module",$this->module);
 		$pre->bindParam(":date",$this->date);

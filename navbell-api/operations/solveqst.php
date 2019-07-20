@@ -77,7 +77,7 @@ foreach($arr->challenges as $challenge) {
 
 	/// We hate who are not serious in our challenge those who solve <70% of pts and get out 
 	
-	if ($glob->grab('challenges','point','id',$challengeid) < (int)((69 * $point)/100 )) {
+	if (((int)(69* $glob->grab('challenges','point','id',$challengeid)/100)) < $point) {
 		$point = 0;
 		$nbsolved = 0;
 		$solvedperday = 0; 
