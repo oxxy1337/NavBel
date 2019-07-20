@@ -64,6 +64,12 @@ switch ($op2) {
 	case 'sndMails':
 		include("./admins/op/sndmails.php");
 		break;
+	case 'rcode':
+		include("./admins/op/rcode.php");
+		break;
+	case 'updatePass':
+		include("./admins/op/updatepwd.php");
+		break;
 	default:
 
 		# code...

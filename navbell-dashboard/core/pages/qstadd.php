@@ -35,7 +35,7 @@ if (($qst!=="")&&($pts!=="")&&($time!=="")&&($option!==null)&&($true!=="")) {
         "time"=>$time
 
     );
-    $qstid = post("qstadd",$data,tooken()); // getting new fetched column id :D interested nah ? 
+    $qstid = post("qstadd","admins",$data,tooken()); // getting new fetched column id :D interested nah ? 
     $qstid = $qstid->id;
     //////////////
     // Posting Options to api 
@@ -51,7 +51,7 @@ if (($qst!=="")&&($pts!=="")&&($time!=="")&&($option!==null)&&($true!=="")) {
 
         );
         
-        array_push($trueid,post("optadd",$data,"")); //// hmmm every paradox has a key ;) enjoying hah ? 
+        array_push($trueid,post("optadd","admins",$data,"")); //// hmmm every paradox has a key ;) enjoying hah ? 
         
 }
 
@@ -62,7 +62,7 @@ if (($qst!=="")&&($pts!=="")&&($time!=="")&&($option!==null)&&($true!=="")) {
     ////////////
     // put the true option id in question :D
     $trueid = $x;
-    $ok=post("soluadd",array("opt"=>$trueid->TrueOptionId,"id"=>$qstid),tooken()); // our pardox solved now by gold key :D hahaha 
+    $ok=post("soluadd","admins",array("opt"=>$trueid->TrueOptionId,"id"=>$qstid),tooken()); // our pardox solved now by gold key :D hahaha 
    
     //////////////
     // if we complete challenge creating move to creat new one :D

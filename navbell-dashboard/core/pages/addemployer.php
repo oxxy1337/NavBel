@@ -92,7 +92,7 @@ if (($fname!=="")&&($email!=="")&&($image!=="")&&($role!=="")&&($password!==""))
 			"image"=>base64_encode($image),
 			"date"=>date("Y-m-d h:i:sa")
 		);
-	$rez = post("addemp",$data,tooken());
+	$rez = post("addemp","admins",$data,tooken());
 	if ($rez->reponse==1) {
 		echo"<script>alert('".$fname." Added successfully ');</script>";
 	}else{

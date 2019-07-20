@@ -54,13 +54,13 @@ if ($_SESSION["prof_data"]->isAdmin == false) die(print("<script>alert('Onley Ad
 /****************************/
 if ($_GET["op"] == "delete" ) {
 	$data=array("email"=>$_GET["email"]);
-	post("killuser",$data,tooken());
+	post("killuser","admins",$data,tooken());
 	echo "<script>alert('Etudiant Deleted !');</script>";
 }
 /**********************************/
 /* SHOW AllStudents 		TABLE*/ 
 /**********************************/
-$data= post("getallstudent","","");
+$data= post("getallstudent","admins","",tooken());
 
 
 print showAllStudentToRoot($data,$_GET["order"]);

@@ -64,7 +64,7 @@ class Dashboard
 		$query = "UPDATE challenges SET isAproved=0 WHERE id =:id";
 		$pre= $conn->prepare($query);
 		$pre->bindParam(":id",$this->id);
-		print_r($id);
+		
 		if ($pre->execute()) {
 				return true ;
 			}
@@ -358,6 +358,20 @@ class Dashboard
 		$pre->execute();
 		$pre->setFetchMode(PDO::FETCH_ASSOC);
 			return  $pre->fetchall();
+
+	}
+
+	public function chngPassword(){
+		$conn = $this->db;
+		$query = "UPDATE admins SET password=:password WHERE email=:email";
+		$pre= $conn->prepare($query);
+		$pre->bindParam(":password",$this->password);
+		$pre->bindParam(":email",$this->email);
+		
+		if ($pre->execute()) {
+				return true ;
+			}
+			return false ; 
 
 	}
 

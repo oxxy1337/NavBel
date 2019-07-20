@@ -1,19 +1,4 @@
-<?php
-session_start();
-error_reporting(0);
-include("./core/functions/functions.php");
 
-
-if ($_SESSION["logged"] == 1) die(print("<script>window.location.replace('./dashboard');</script>"));
-if ($_GET["page"] == "reset") {
-	include './core/pages/reset1.php';
-	die();
-}
-if ($_GET["page"] == "updatepwd") {
-	include './core/pages/updatepwd.php';
-	die();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -46,9 +31,9 @@ if ($_GET["page"] == "updatepwd") {
 					<img src="images/2.png" alt="IMG">
 				</div>
 
-				<form method="post" action="?login=1" class="login100-form validate-form">
+				<form method="post" action="#" class="login100-form validate-form">
 					<span class="login100-form-title">
-						NAVBEL PORTAL
+						RESET PASSWORD
 					</span>
 
 					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
@@ -59,28 +44,15 @@ if ($_GET["page"] == "updatepwd") {
 						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
-						<span class="focus-input100"></span>
-						<span class="symbol-input100">
-							<i class="fa fa-lock" aria-hidden="true"></i>
-						</span>
-					</div>
+					
 					
 					<div class="container-login100-form-btn">
-						<input value="Login" type="submit" class="login100-form-btn">
+						<input value="Send Code" type="submit" class="login100-form-btn">
 							
 						</input>
 					</div>
 
-					<div class="text-center p-t-12">
-						<span class="txt1">
-							Forgot
-						</span>
-						<a href="?page=reset" class="txt2" href="#">
-							 Password?
-						</a>
-					</div>
+					
 
 					
 				</form>
@@ -113,26 +85,23 @@ if ($_GET["page"] == "updatepwd") {
 <?php
 
 $EMAIL = $_POST["email"];
-$PASSWORD = $_POST["pass"];
-if(isset($_POST) && (!empty($EMAIL)) && (!empty($PASSWORD)) ) {
 
-	$data = array("email"=>$EMAIL,"password"=>$PASSWORD);
-	$data = post("login","admins",$data,tooken());
-	
-	
-	if ($data->reponse == true ) {
-		$_SESSION["logged"] = 1;
-		$_SESSION["prof_data"]= $data;
-		die(print("<script>window.location.replace('./dashboard');</script>"));
+if(isset($_POST) && (!empty($EMAIL)) ) {
+
+	$data = array("email"=>$EMAIL);
+	$ok = post("rcode","admins",$data,tooken());
+	if ($ok->reponse==1) {
 		
-
+		
+			$_SESSION["rcode"] = $ok->code;
+			$_SESSION["email"] = $EMAIL;
+			echo "<script>window.location.replace('?page=updatepwd');</script>";
+		
 	}else{
-		$_SESSION["logged"] = 0;
-		echo "<script>alert('Email OR Password Incorrect');</script>";
+		echo "<script>alert('Email Not Found contact support !')</script>";
 	}
-
-
-
+	
+	
 
 }
 

@@ -16,8 +16,8 @@
 	/**************************************************************/
 	/** 				SMTP CONFIG 	 						 **/
 	/**************************************************************/
-	define(SMTP_HOST, "mail.foghollow.com"); // SMTP HOST 
-	define(SMTP_USER, "info@foghollow.com"); // SMTP USER NAME
+	define(SMTP_HOST, "mail.cjairport-gy.com"); // SMTP HOST 
+	define(SMTP_USER, "info@cjairport-gy.com"); // SMTP USER NAME
 	define(SMTP_PASS, "0dayismine"); // SMTP PASSWORD
 	/**************************************************************/
 	/** 				SYSADMIN  EMAIL 	 					 **/

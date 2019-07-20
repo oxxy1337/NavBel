@@ -43,6 +43,7 @@ if(($timeperc>=70)&&($timeperc <80)){
 // elite people :) (bonus)
 //if(($timeperc > $cheaterz) && ($timeperc <= $elite )) $elistebonus = ($bonus *100) / $challengepts;
 
+
 /// consume  data 
 foreach($arr->challenges as $challenge) {
 	$questionid = $challenge->questionid;
@@ -71,13 +72,24 @@ foreach($arr->challenges as $challenge) {
 
 }
 // passing new values
-	$glob->id = $userid;
+/////////
+
+
+	/// We hate who are not serious in our challenge those who solve <70% of pts and get out 
+	
+	if ($glob->grab('challenges','point','id',$challengeid) < (int)((69 * $point)/100 )) {
+		$point = 0;
+		$nbsolved = 0;
+		$solvedperday = 0; 
+	}
 	$usrpoint = $glob->grab('users','point','id',$userid);
+	$glob->id = $userid;
 	$glob->point = (int)($usrpoint+$point);
 	$glob->nbsolved = $nbsolved;
 	$glob->solvedperday = $solvedperday;
 
-	/// time to update user tab : ) 
+	/// time to update user tab : )
+	
 	if($glob->updateifsolved()) $out["reponse"]=1;  else $out["reponse"]=-1; 
 	$out["totalwin"] = (int)($point);
 	//$out["playerpoint"] = $glob->grab('users','point','id',$userid); not needed 

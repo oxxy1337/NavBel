@@ -1,7 +1,7 @@
 <?php
-$count = post("count","", tooken());
-$topUsers = post("topusers","",tooken());
-$challenges=post("getchlng","",tooken());
+$count = post("count","admins","", tooken());
+$topUsers = post("topusers","admins","",tooken());
+$challenges=post("getchlng","admins","",tooken());
 /**************************************************************************/
 /*    COLUMN CHART top 10 player by number solved challenge               */
 /**************************************************************************/

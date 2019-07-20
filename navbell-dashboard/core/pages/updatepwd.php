@@ -1,23 +1,8 @@
-<?php
-session_start();
-error_reporting(0);
-include("./core/functions/functions.php");
 
-
-if ($_SESSION["logged"] == 1) die(print("<script>window.location.replace('./dashboard');</script>"));
-if ($_GET["page"] == "reset") {
-	include './core/pages/reset1.php';
-	die();
-}
-if ($_GET["page"] == "updatepwd") {
-	include './core/pages/updatepwd.php';
-	die();
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-	<title>Dashboard | Login</title>
+	<title>Dashboard | Update Password</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 <!--===============================================================================================-->	
@@ -46,41 +31,43 @@ if ($_GET["page"] == "updatepwd") {
 					<img src="images/2.png" alt="IMG">
 				</div>
 
-				<form method="post" action="?login=1" class="login100-form validate-form">
+				<form method="post" action="#" class="login100-form validate-form">
 					<span class="login100-form-title">
-						NAVBEL PORTAL
+						UPDATE PASSWORD
 					</span>
-
-					<div class="wrap-input100 validate-input" data-validate = "Valid email is required: ex@abc.xyz">
-						<input class="input100" type="text" name="email" placeholder="Email">
+					<div class="wrap-input100 validate-input" data-validate = "Valid code is required: ABC******">
+						<input class="input100" type="text" name="code" placeholder="Confirmation code">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
-							<i class="fa fa-envelope" aria-hidden="true"></i>
+							
 						</span>
 					</div>
 
-					<div class="wrap-input100 validate-input" data-validate = "Password is required">
-						<input class="input100" type="password" name="pass" placeholder="Password">
+
+					<div class="wrap-input100 validate-input" data-validate = "Valid password is required: **********">
+						<input class="input100" type="password" name="password1" placeholder="New Password">
 						<span class="focus-input100"></span>
 						<span class="symbol-input100">
 							<i class="fa fa-lock" aria-hidden="true"></i>
 						</span>
 					</div>
+					<div class="wrap-input100 validate-input" data-validate = "Valid password is required: **********">
+						<input class="input100" type="password" name="password2" placeholder="Confirme New Password">
+						<span class="focus-input100"></span>
+						<span class="symbol-input100">
+							<i class="fa fa-lock" aria-hidden="true"></i>
+						</span>
+					</div>
+
+					
 					
 					<div class="container-login100-form-btn">
-						<input value="Login" type="submit" class="login100-form-btn">
+						<input name="submit" value="CHANGE MY PASSWORD" type="submit" class="login100-form-btn">
 							
 						</input>
 					</div>
 
-					<div class="text-center p-t-12">
-						<span class="txt1">
-							Forgot
-						</span>
-						<a href="?page=reset" class="txt2" href="#">
-							 Password?
-						</a>
-					</div>
+					
 
 					
 				</form>
@@ -112,29 +99,30 @@ if ($_GET["page"] == "updatepwd") {
 </html>
 <?php
 
-$EMAIL = $_POST["email"];
-$PASSWORD = $_POST["pass"];
-if(isset($_POST) && (!empty($EMAIL)) && (!empty($PASSWORD)) ) {
+$pwd1 = $_POST["password1"];
+$pwd2 = $_POST["password2"];
+$code = $_POST["code"];
+$email = $_SESSION["email"];
+if((isset($_POST["submit"])) && (!empty($code)) && (!empty($pwd1)) &&(!empty($pwd2)))
+	{
+	if ($code == $_SESSION["rcode"]) {
+		if ($pwd1 !== $pwd2) echo "<script>alert('password misspatch');</script>"; 
+		if (strlen($pwd1)<8) echo "<script>alert('Weak password ! ');</script>"; 
+		$data = array("email"=>"$email","password"=>"$pwd1");
+		//die(print_r($data));
+		$ok=post("updatePass","admins",$data,tooken());
+		if ($ok->reponse == 1) {
+			echo "<script>alert('Password changed');</script>
+			<script>window.location.replace('./dashboard');</script>";
 
-	$data = array("email"=>$EMAIL,"password"=>$PASSWORD);
-	$data = post("login","admins",$data,tooken());
-	
-	
-	if ($data->reponse == true ) {
-		$_SESSION["logged"] = 1;
-		$_SESSION["prof_data"]= $data;
-		die(print("<script>window.location.replace('./dashboard');</script>"));
-		
-
+		}else{
+			echo "<script>alert('Connection error');</script>";
+		}
 	}else{
-		$_SESSION["logged"] = 0;
-		echo "<script>alert('Email OR Password Incorrect');</script>";
+		echo "<script>alert('Confirmation code missmatch');</script>";
+		}
 	}
 
-
-
-
-}
 
 
 ?> 

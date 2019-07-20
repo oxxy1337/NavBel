@@ -12,9 +12,9 @@ $glob->ispublic=True;
 $glob->point=0;
 $glob->currentrank=0;
 $glob->solvedperday=0;
-$glob->ranks=[];
+$glob->ranks=json_encode(array());
 $glob->nbsolved=0;
-$glob->bio = "Etudiant".$year." year";
+$glob->bio = "Etudiant ".$year." year";
 
 // crypting user password 
 $glob->password = cryptpwd($password,$glob->salt);

@@ -178,7 +178,7 @@ if (isset($_POST["send"])) {
 			);
 			
 			$_SESSION["nbqst"] = $nbqst;
-			$api = post("chlng-add",$data,tooken());
+			$api = post("chlng-add","admins",$data,tooken());
 			$_SESSION["chlng-id"] = $api->id;
 			die(print("<script>window.location.replace('?page=qstadd');</script>"));
 
