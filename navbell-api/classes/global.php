@@ -418,6 +418,19 @@ class Globals{
 
     }
 
+    public function getUserinfo(){
+        $con= $this->conn;
+        $query = "SELECT * FROM users WHERE email = ?";
+        $send = $con->prepare($query);
+        if($send->execute([$this->email])){
+            $send->setFetchMode(PDO::FETCH_ASSOC);
+            return $data = $send->fetchall()[0]; 
+        } else {
+            return Null ;
+        };
+
+    }
+
 
 
     

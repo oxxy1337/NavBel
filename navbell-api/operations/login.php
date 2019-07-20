@@ -23,7 +23,8 @@ if(($email == $email_from_db) && ($password == $password_from_db)){
 	$lname = $glob->grab('users','lname','email',$email);
 	$year =  $glob->grab('users','year','email',$email);
 	$point = $glob->grab('users','point','email',$email);
-	$ranks=  $glob->grab('users','ranks','email',$email);
+	$ranks= json_decode($glob->grab('users','ranks','email',$email));
+
 	$picture = $glob->grab('users','picture','email',$email);
 	$date = $glob->grab('users','date','email',$email);
 	$nbsolved = $glob->grab('users','nbsolved','email',$email);
