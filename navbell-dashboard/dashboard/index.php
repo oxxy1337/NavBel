@@ -1,6 +1,6 @@
 <?php
 session_start();
-//error_reporting(0);
+error_reporting(0);
 /////////////////////////////
 // SOME TESTES BEFORE WE BEGING :) (js cant bypass this ;) root-me nah ? ) 
 /////////////////////////////
@@ -221,9 +221,8 @@ include("../core/fusioncharts.php");
 
 
             ?>
-        </div></div></div>
+        
 </body>
-           
 
 
 

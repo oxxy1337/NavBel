@@ -132,6 +132,10 @@ switch ($op) {
 		break;
 	case 'sendReward':
 		include('./operations/sendreward.php');
+		break;
+	case 'solvedChallenge':
+		include('./operations/solvedchallenge.php');
+		break;
 	case 'admins':
 		include("./admins/core.php");
 		break;

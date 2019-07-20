@@ -1,5 +1,4 @@
 <?php
-<?php
 if ($_SESSION["prof_data"]->isAdmin == false) die(print("<script>alert('Onley Administrator have right to');</script>"));
 
 if (($_SESSION["nbqst"]) > ($_SESSION["nbqstcount"])+1) {

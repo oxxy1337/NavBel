@@ -67,9 +67,7 @@ if ($_SESSION["prof_data"]->isAdmin == false) die(print("<script>alert('Onley Ad
 <input type="submit" name="submit" value="Add Employer" class="btn btn-success btn-sm"></input>
 </div>
 </form>
-</div>
-</div>
-</div>
+
 </center>
 <?php
 $module = $_POST["module"];
