@@ -38,6 +38,39 @@ function post($op2,$op1,$data,$t){
 
 		return $response;
 }
+/********************************************************************/
+/* 				PUSH NOTIFICATION TO ANDROID DEVICE 
+/********************************************************************/
+
+function sendNotification($title = "", $body = "", $customData = [], $topic = "", $serverKey = ""){
+    if($serverKey != ""){
+        $url="https://fcm.googleapis.com/fcm/send";
+        $data = 
+        [
+            "to" => '/topics/'.$topic,
+            "notification" => [
+                "body" => $body,
+                "title" => $title,
+            ],
+            "data" => $customData
+        ];
+
+        $options = array(
+            'http' => array(
+                'method'  => 'POST',
+                'content' => json_encode( $data ),
+                'header'=>  "Content-Type: application/json\r\n" .
+                            "Accept: application/json\r\n" . 
+                            "Authorization:key=".$serverKey
+            )
+        );
+
+        $context  = stream_context_create( $options );
+        $result = file_get_contents( $url, false, $context );
+        return json_decode( $result );
+    }
+    return false;
+}
 /*************************************************/
 /* ROOT want some controle here he deserve to get all :) 
 /**************************************************/

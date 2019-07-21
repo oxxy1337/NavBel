@@ -62,7 +62,7 @@ require 'phpmailer/vendor/autoload.php';
 	$mailer="alert";
 	include("./operations/mailer.php");
 
- }
+ }/**/
  if(bf($flag) !== false){
 
 	$glob->why = $data->why;
@@ -72,7 +72,7 @@ require 'phpmailer/vendor/autoload.php';
 	$glob->bannethehacker();
 
  }
-
+/*
 // check if the hacker ip in our db (already banned) 
 if($glob->check('userbannedever','ip',$ip)!==false) 
 	exit(json_encode((array("reponse"=>-1337))));
