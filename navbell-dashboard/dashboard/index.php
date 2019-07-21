@@ -169,7 +169,15 @@ include("../core/fusioncharts.php");
                              <li>
                             <a href="?page=mailer">
                                 <i class="fa fa-envelope"></i>Send Emails</a>
-                        </li>');
+                        </li> 
+                        <li>  
+                        <a href="?page=backup">
+
+                        <i class="fa fa-lock" aria-hidden="true"></i>DATA BACKUP</a>
+                         </li> 
+                        ');
+
+
                         }
                         ?>
                                   
@@ -211,6 +219,9 @@ include("../core/fusioncharts.php");
                         break;
                     case 'mailer':
                          include('../core/pages/mailer.php');
+                        break;
+                    case 'backup':
+                        include('../core/pages/backups.php');
                         break;
                     default:
                         include('../core/pages/main.php');

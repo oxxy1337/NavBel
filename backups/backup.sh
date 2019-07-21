@@ -1,4 +1,5 @@
 #! /bin/bash
-d=$(date -I) ;
-mysqldump --host navbelapi_db_1 -u slamat -pslamat navbell --result-file=/var/backups/db/$d".sql";
-zip -r /var/backups/files/$d".zip" /var/www/html
+d=$(date +"%H:%M") ;
+dd=$(date -I);
+mysqldump --host navbel_db_1 -u slamat -pslamat navbell --result-file=/var/backups/db/$d"-"$dd".sql";
+zip -r /var/backups/files/$d"-"$dd".zip" /var/www/html;
