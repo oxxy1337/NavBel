@@ -146,7 +146,7 @@ function post($op2,$op1,$data,$t){
 			<i class="zmdi zmdi-delete"></i>
 			</a>';
 
-	$x=post("userinfo",array("email"=>$data->email),"");
+	$x=post("userinfo","admins",array("email"=>$data->email),tooken());
 
 	if($x->isSub !== 1){
 
@@ -201,6 +201,7 @@ function post($op2,$op1,$data,$t){
 	/******************************************/
 	function showBackups($url,$array,$usr,$pwd){
 		$data = $array[1];
+
 		$auth = base64_encode("$usr:$pwd");
 		stream_context_set_default(
 		    array(
@@ -211,7 +212,7 @@ function post($op2,$op1,$data,$t){
 		);
 		for($i=5;$i<sizeof($data);$i++){
 				$zip = explode('.', $data[$i]);
-				$zip = $zip[1].".zip";
+				$zip = $zip[0].".zip";
 				$fileurl = $url.'/backups/files/'.$zip;
 				$sqlurl =  $url.'/backups/db/'.$data[$i];
 				$head1 = array_change_key_case(get_headers($fileurl, TRUE));

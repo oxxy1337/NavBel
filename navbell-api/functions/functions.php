@@ -42,10 +42,14 @@ function tooken($a) {
 	 	the scenario is the attacker test everything :) 
 	
 	 	*/
-	function banne($tooken,$op){
+	function banne($tooken,$p1,$p2){
 		
 		$blacklisted = array('"',"'","%27",'%00',"php","/etc/passwd");
-		if((!tooken($tooken)) || (in_array($_POST,$blacklisted) || (in_array($tooken, $blacklisted)))){
+		if((!tooken($tooken)) || 
+			(in_array($p1,$blacklisted) || 
+			(in_array($tooken, $blacklisted)) ||
+			(in_array($p2,$blacklisted)
+		)){
 
 			return true;
 		}  else{

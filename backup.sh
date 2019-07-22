@@ -11,8 +11,8 @@ echo "$1 $DIR/backups/init.sh"  >> cronbackup ;
 crontab cronbackup ;
 rm cronbackup;
 
-echo "docker exec  navbel_api_1 bash /var/backups/backup.sh ; mv $DIR/backups/files/* /var/www/html/backups/files/ ;  mv $DIR/backups/db/* /var/www/html/backups/db/ ; chown www-data:www-data /var/www/html/backups" >>  backups/init.sh; 
-mkdir /var/www/html/backups/files; mkdir /var/www/html/backups/db;
+echo "docker exec  navbel_api_1 bash /var/backups/backup.sh ; mv $DIR/backups/files/* /var/www/html/backups/files/ ;  mv $DIR/backups/db/* /var/www/html/backups/db/ ; chown www-data:www-data /var/www/html/backups ; docker exec  navbel_api_1 php /var/www/html/cron.php" >>  backups/init.sh; 
+mkdir -p /var/www/html/backups/files; mkdir -p /var/www/html/backups/db;
 mv $DIR/backups/.htaccess /var/www/html/backups/.htaccess;
 mv $DIR/backups/.htpasswd /var/www/html/backups/.htpasswd;
 printf "\n[+] BACKUP SYSTEM INSTALLED SUCCESSFULLY !\n"
