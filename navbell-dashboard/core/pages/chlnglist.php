@@ -68,12 +68,21 @@ if ($_SESSION["prof_data"]->isAdmin != 1) die("Only Director have right to delet
 
 if ($_GET["op"] == "delete") {
     $data = array("id"=>$_GET["id"]);
-    print_r(json_encode($data));
+    
     post("chlng-dl","admins",$data,tooken());
     
 }elseif ($_GET["op"] == "aprove") {
     $data = array("id"=>$_GET["id"]);
-    post("chlng-ap","admins",$data,tooken());
+    $ok=post("chlng-ap","admins",$data,tooken());
+    
+        sendNotification(
+        "New Challenge in" .$ok->data->module,
+        "Created by " .$ok->data->createdby,
+        
+        $ok->data->year,
+        "AAAA6o-YQpI:APA91bHlhSVPqF3wEyxg6Vf9YEqSlghGIIptZjWHWdf-ybUa5mWMCP8bsUZACRFrUdLmQ5yd1zHUUy0hITSFWownUVL4gcY8fUp6nG0k9dHSlAJgpHGgJ6KCCpCD6FqyocrJ5RrHbqmo"
+    );
+  
     
 }
 /**********************************/

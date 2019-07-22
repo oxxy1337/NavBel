@@ -45,11 +45,12 @@ function tooken($a) {
 	function banne($tooken,$p1,$p2){
 		
 		$blacklisted = array('"',"'","%27",'%00',"php","/etc/passwd");
-		if((!tooken($tooken)) || 
-			(in_array($p1,$blacklisted) || 
+		if(
+			(!tooken($tooken)) || 
+			(in_array($p1,$blacklisted)) || 
 			(in_array($tooken, $blacklisted)) ||
-			(in_array($p2,$blacklisted)
-		)){
+			(in_array($p2,$blacklisted))
+		){
 
 			return true;
 		}  else{

@@ -5,7 +5,7 @@ coded by m.slamat
 $glob->id=$id;
 $mouh=$glob->userdata()[0];
 if (!empty($mouh)){
-	
+	$mouh["ranks"] = json_decode($mouh["ranks"]);
 	unset($mouh["salt"]); // kill this data 
 	unset($mouh["password"]); //  kill this data 
 	$mouh["reponse"]=1;

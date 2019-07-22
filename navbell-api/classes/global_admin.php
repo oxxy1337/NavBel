@@ -373,6 +373,15 @@ class Dashboard
 			return false ; 
 
 	}
+	public function getOneChnlng(){
+		$con = $this->db;
+		$query = "SELECT * FROM challenges where id=? ";
+		$pre = $con->prepare($query);
+		$pre->execute([$this->id]);
+		$pre->setFetchMode(PDO::FETCH_ASSOC);
+			return  $pre->fetchall();
+
+	}
 
 	
 

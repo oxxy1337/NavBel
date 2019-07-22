@@ -18,8 +18,8 @@ function tooken() {
 /**************************************/
 function post($op2,$op1,$data,$t){
 		
-		$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
-		//$host = "http://127.0.0.7/project/NavBel/navbell-api/";
+		//$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
+		$host = "http://127.0.0.7/project/NavBel/navbell-api/";
 		$url = $host."/?tooken=".$t."&op=".$op1."&op2=".$op2;
 		$data = json_encode($data);
 		$options = array(
@@ -42,8 +42,9 @@ function post($op2,$op1,$data,$t){
 	/* 				PUSH NOTIFICATION TO ANDROID DEVICE 
 	/********************************************************************/
 
-	function sendNotification($title = "", $body = "", $customData = [], $topic = "", $serverKey = ""){
-	    if($serverKey != ""){
+	function sendNotification(
+		$title = "", $body = "", $topic = "", $serverKey = ""){
+	    if(1){
 	        $url="https://fcm.googleapis.com/fcm/send";
 	        $data = 
 	        [
@@ -51,8 +52,8 @@ function post($op2,$op1,$data,$t){
 	            "notification" => [
 	                "body" => $body,
 	                "title" => $title,
-	            ],
-	            "data" => $customData
+	            ]
+	            
 	        ];
 
 	        $options = array(
@@ -67,7 +68,7 @@ function post($op2,$op1,$data,$t){
 
 	        $context  = stream_context_create( $options );
 	        $result = file_get_contents( $url, false, $context );
-	        return json_decode( $result );
+	        return json_decode($result);
 	    }
 	    return false;
 	}
