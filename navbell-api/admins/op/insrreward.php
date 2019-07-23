@@ -11,6 +11,7 @@ $admin->point=$data->point;
 
 if ($admin->insrReward() !==0) {
 	$d["reponse"] = 1;
+	//$d["url"] = $admin->image  ;
 
 }else{
 	$d["reponse"] = 0;

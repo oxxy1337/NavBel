@@ -68,26 +68,21 @@ if (isset($_POST["submit"])) {
 		);
 		$ok = post("insrReward","admins",$data,tooken());
 		if ($ok->reponse==1) {
-			echo "<script>alert('REward sent to db');</script>";
+			
 			sendNotification(
-		        "New Reaward added",
-		        "Reward point ".$point,
-		        
-		        "all",
-		        "AAAA6o-YQpI:APA91bHlhSVPqF3wEyxg6Vf9YEqSlghGIIptZjWHWdf-ybUa5mWMCP8bsUZACRFrUdLmQ5yd1zHUUy0hITSFWownUVL4gcY8fUp6nG0k9dHSlAJgpHGgJ6KCCpCD6FqyocrJ5RrHbqmo"
-		    );
+        "New Reward ".$point,
+       	$desc,
+        "jjjjjjjjjjj",
+       "reward",
+        "AAAA6o-YQpI:APA91bHlhSVPqF3wEyxg6Vf9YEqSlghGIIptZjWHWdf-ybUa5mWMCP8bsUZACRFrUdLmQ5yd1zHUUy0hITSFWownUVL4gcY8fUp6nG0k9dHSlAJgpHGgJ6KCCpCD6FqyocrJ5RrHbqmo"
+ 			   );
+			echo "<script>alert('REward sent to db');</script>";
 		}else{
 			echo "<script>alert('Connexion error');</script>";
 		}
 	}else{
 		echo "<script>alert('Fields are empty');</script>";
-	}sendNotification(
-        "New Challenge in" .$ok->data->module,
-        "Created by " .$ok->data->createdby,
-        
-        $ok->data->year,
-        "AAAA6o-YQpI:APA91bHlhSVPqF3wEyxg6Vf9YEqSlghGIIptZjWHWdf-ybUa5mWMCP8bsUZACRFrUdLmQ5yd1zHUUy0hITSFWownUVL4gcY8fUp6nG0k9dHSlAJgpHGgJ6KCCpCD6FqyocrJ5RrHbqmo"
-    );
+	}
 }
 
 ?>

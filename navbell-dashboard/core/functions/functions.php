@@ -43,7 +43,7 @@ function post($op2,$op1,$data,$t){
 	/********************************************************************/
 
 	function sendNotification(
-		$title = "", $body = "", $topic = "", $serverKey = ""){
+		$title = "", $body = "",$image="", $topic = "", $serverKey = ""){
 	    if(1){
 	        $url="https://fcm.googleapis.com/fcm/send";
 	        $data = 
@@ -52,6 +52,7 @@ function post($op2,$op1,$data,$t){
 	            "notification" => [
 	                "body" => $body,
 	                "title" => $title,
+	                "image"=>$image
 	            ]
 	            
 	        ];

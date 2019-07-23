@@ -76,9 +76,9 @@ if ($_GET["op"] == "delete") {
     $ok=post("chlng-ap","admins",$data,tooken());
     
         sendNotification(
-        "New Challenge in" .$ok->data->module,
-        "Created by " .$ok->data->createdby,
-        
+        $ok->data->module,
+        "New Challenge is posted by " .$ok->data->createdby. "in ". $ok->data->module ." hurry up it has ".$ok->data->point." point",
+        $ok->data->url,
         $ok->data->year,
         "AAAA6o-YQpI:APA91bHlhSVPqF3wEyxg6Vf9YEqSlghGIIptZjWHWdf-ybUa5mWMCP8bsUZACRFrUdLmQ5yd1zHUUy0hITSFWownUVL4gcY8fUp6nG0k9dHSlAJgpHGgJ6KCCpCD6FqyocrJ5RrHbqmo"
     );
