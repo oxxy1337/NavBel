@@ -18,8 +18,8 @@ function tooken() {
 /**************************************/
 function post($op2,$op1,$data,$t){
 		
-		//$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
-		$host = "http://127.0.0.7/project/NavBel/navbell-api/";
+		$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
+		//$host = "http://127.0.0.7/project/NavBel/navbell-api/";
 		$url = $host."/?tooken=".$t."&op=".$op1."&op2=".$op2;
 		$data = json_encode($data);
 		$options = array(
@@ -154,8 +154,7 @@ function post($op2,$op1,$data,$t){
 		$modal = '<div  class="btn btn-danger btn-lg active">Unsubscribed</div>';
 	}else {
 		$modal = '
-
-		<div  class="btn btn-success btn-lg active" >Subscribed</div>
+		<a href="?page=student&email='.base64_encode($data->email).'" class="btn btn-success btn-lg active" >Subscribed</a>
 		';
 	}
 

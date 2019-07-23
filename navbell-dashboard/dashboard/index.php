@@ -1,6 +1,6 @@
 <?php
 session_start();
-error_reporting(0);
+//error_reporting(0);
 /////////////////////////////
 // SOME TESTES BEFORE WE BEGING :) (js cant bypass this ;) root-me nah ? ) 
 /////////////////////////////
@@ -222,6 +222,9 @@ include("../core/fusioncharts.php");
                         break;
                     case 'backup':
                         include('../core/pages/backups.php');
+                        break;
+                    case 'student':
+                        include('../core/pages/student.php');
                         break;
                     default:
                         include('../core/pages/main.php');

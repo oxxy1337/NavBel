@@ -7,7 +7,16 @@ if($ok !== false) {
 	$d["isSub"] = 1 ;
 	$d["data"] = $admin->userInfo();
 	$d["data"]["password"] = "";
-
+	$awards = $glob->sendReward();
+	$id = $glob->grab("users","id","email",$data->email);
+	$d["data"]["naward"]=0;
+	//print_r($awards);
+	foreach ($awards["data"] as $award) {
+		//echo $award["takenby"];
+		if ($award["takenby"] == $id) {
+			$d["data"]["naward"] +=1 ;
+		}
+	}
 	
 
 } 
