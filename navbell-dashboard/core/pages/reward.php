@@ -54,6 +54,9 @@ if ($_SESSION["prof_data"]->isAdmin == false) die(print("<script>alert('Onley Ad
 
 <?php
 $html = $_POST["html"];
+if(!(validateImg($_FILES["image"]))) die(print("
+    <script>alert('Image invalide Or image size too big
+    ')</script>"));
 $image = $_FILES["image"]["tmp_name"];
 $point = $_POST["point"];
 $desc = $_POST["description"];

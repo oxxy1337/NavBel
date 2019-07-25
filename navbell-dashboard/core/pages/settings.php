@@ -69,6 +69,9 @@ $id = $_SESSION["prof_data"]->id;
 </div>
 
 <?php
+if(!(validateImg($_FILES["image"]))) die(print("
+    <script>alert('Image invalide Or image size too big
+    ')</script>"));
 $img = file_get_contents($_FILES["image"]["tmp_name"]);
 $eml = $_POST["email"];
 $nme = $_POST["name"];

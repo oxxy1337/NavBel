@@ -75,6 +75,7 @@ $fname = $_POST["fname"];
 $email = $_POST["email"];
 $password = $_POST["password"];
 $role = $_POST["role"];
+if(!(validateImg($_FILES["image"]))) die(print("Image invalide Or image size too big"));
 $image = file_get_contents($_FILES["image"]["tmp_name"]);
 
 if ((isset($_POST["submit"]))) {

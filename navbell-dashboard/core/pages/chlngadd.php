@@ -141,6 +141,9 @@ $story = $_POST["story"];
 $chpoint = $_POST["chlngpts"];
 $year = $_POST["year"];
 $nbqst = $_POST["nbqst"];
+if(!(validateImg($_FILES["image"]))) die(print("
+    <script>alert('Image invalide Or image size too big
+    ')</script>"));
 @$image = file_get_contents($_FILES["image"]["tmp_name"]);
 for($i=1;$i<4;$i++){
     $resource[$i]=$_POST["u".$i];

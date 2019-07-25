@@ -62,6 +62,7 @@ $ docker-compose up -d
 ```
 It will take a time 
 4- Activating [Backup](https://github.com/oxxy1337/NavBel/blob/master/docs/backup.pdf) System : 
+
 Chmod files : 
 ```bash
 $ chmod +x backup.sh 

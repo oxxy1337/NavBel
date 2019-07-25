@@ -12,10 +12,27 @@ function tooken() {
     $secret = hash_hmac('sha256',$string,$key) ;// final hash using sha-256 algorithm
     return $secret; 
 }
+
+
+/*****************************************/
+/* FUNCTION CHECK IF IS VALIDE IMAGE 
+/*****************************************/
+function validateImg($image){
+	$ext = array("jpg","jpeg","gif","png");
+	$extimg = explode(".", $image["name"]);
+	$isimagebyext = in_array($extimg[1],$ext);
+	$isimage = (exif_imagetype($image["tmp_name"]) !== false ) ;
+
+	$size = (filesize($image["tmp_name"]) < 3000000 ) ; // 3mb 
+	
+	return (($isimagebyext)&&($isimage)&&($size));
+
+}
 /*********************************************************************/
 /* Lets post our data to my lovely restfull API and see what she say :D 
 /* by this function :)  
 /**************************************/
+
 function post($op2,$op1,$data,$t){
 		
 		$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
