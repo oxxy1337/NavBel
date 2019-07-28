@@ -379,6 +379,21 @@ class Globals{
 
 
     }
+    /// update user point 
+    public function takenBy(){
+        $con = $this->conn;
+        $query = "UPDATE rewards SET takenby=:takenby WHERE id=:id";
+        $send = $con->prepare($query);
+        $send->bindParam(":takenby",$this->id);
+        $send->bindParam(":id",$this->rewardid);
+        if($send->execute()){
+            return true;
+        }else{
+            return false;
+        }
+
+
+    }
 
     // getting the solved chlngs
     public function solvedChallenges(){

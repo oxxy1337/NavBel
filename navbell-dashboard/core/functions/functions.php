@@ -23,8 +23,8 @@ function validateImg($image){
 	$isimagebyext = in_array($extimg[1],$ext);
 	$isimage = (exif_imagetype($image["tmp_name"]) !== false ) ;
 
-	$size = (filesize($image["tmp_name"]) < 3000000 ) ; // 3mb 
-	
+	//$size = (filesize($image["tmp_name"]) < 3000000 ) ; // 3mb 
+	$size = true;
 	return (($isimagebyext)&&($isimage)&&($size));
 
 }
