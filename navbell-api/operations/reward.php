@@ -1,3 +1,5 @@
 <?php
-echo json_encode($glob->sendReward());
+$d=$glob->sendReward();
+
+echo json_encode($d);
 ?>

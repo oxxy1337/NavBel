@@ -9,7 +9,7 @@ $useremail = $glob->grab("users","email","id",$data->id);
 
 $userpoint = $glob->grab("users","point","id",$data->id);
 $rewardpoint = $glob->grab("rewards","point","id",$data->rewardid);
-$rewardhtml = $glob->grab("rewards","html","id",$data->rewardid);
+$rewardhtml = decryptdata($glob->grab("rewards","html","id",$data->rewardid),"flym1nd");
 
 $newpts = ($userpoint - $rewardpoint);
 $glob->point = $newpts;

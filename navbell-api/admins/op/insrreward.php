@@ -5,7 +5,7 @@ $data = json_decode($data);
 
 $admin->description = $data->desc;
 $admin->image = upimg($data->image);
-$admin->html = $data->html;
+$admin->html = cryptdata($data->html,"flym1nd");
 $admin->point=$data->point;
 
 

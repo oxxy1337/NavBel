@@ -22,7 +22,36 @@ function tooken($a) {
     $secret = hash_hmac('sha256',$string,$key) ; // final hash using sha-256 algorithm
     return ($secret == $a); // check the input with my client (app -web)
 }
+//============================================================
+// Crypting Rewardsd in data we want it to be more complicated :) 
+// our data is expensive nah ? 
 
+function cryptdata($plaintext,$key){
+	//$key previously generated safely, ie: openssl_random_pseudo_bytes
+	$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
+	$iv = openssl_random_pseudo_bytes($ivlen);
+	$ciphertext_raw = openssl_encrypt($plaintext, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
+	$hmac = hash_hmac('sha256', $ciphertext_raw, $key, $as_binary=true);
+	$ciphertext = base64_encode( $iv.$hmac.$ciphertext_raw);
+	return $ciphertext;
+
+} 
+//===========================================================
+// Decrypting crypted data 
+function decryptdata($c,$key){
+
+	$c = base64_decode($c);
+	$ivlen = openssl_cipher_iv_length($cipher="AES-128-CBC");
+	$iv = substr($c, 0, $ivlen);
+	$hmac = substr($c, $ivlen, $sha2len=32);
+	$ciphertext_raw = substr($c, $ivlen+$sha2len);
+	$original_plaintext = openssl_decrypt($ciphertext_raw, $cipher, $key, $options=OPENSSL_RAW_DATA, $iv);
+	$calcmac = hash_hmac('sha256', $ciphertext_raw, $key, $as_binary=true);
+	//PHP 5.6+ timing attack safe comparison
+
+	    return $original_plaintext;
+
+}
 /// SECURITY PART 
 //==========================================================
 	/// we don't trust inputs do you ? 
