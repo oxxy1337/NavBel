@@ -57,7 +57,7 @@ $html = $_POST["html"];
 if(!(validateImg($_FILES["image"]))) die(print("
     <script>alert('Image invalide Or image size too big
     ')</script>"));
-$image = $_FILES["image"]["tmp_name"];
+$image = file_get_contents($_FILES["image"]["tmp_name"]);
 $point = $_POST["point"];
 $desc = $_POST["description"];
 
@@ -75,7 +75,7 @@ if (isset($_POST["submit"])) {
 			sendNotification(
         "New Reward ".$point,
        	$desc,
-        "jjjjjjjjjjj",
+        "j",
        "reward",
         "AAAA6o-YQpI:APA91bHlhSVPqF3wEyxg6Vf9YEqSlghGIIptZjWHWdf-ybUa5mWMCP8bsUZACRFrUdLmQ5yd1zHUUy0hITSFWownUVL4gcY8fUp6nG0k9dHSlAJgpHGgJ6KCCpCD6FqyocrJ5RrHbqmo"
  			   );

@@ -20,7 +20,8 @@ if($comments !== []) {
 	$d["data"]=$output;
 	$d["reponse"] = 1;
 }else{
-	$d["reponse"] = 0;
+	$d["data"] = [];
+	
 }
 
 echo json_encode($d);

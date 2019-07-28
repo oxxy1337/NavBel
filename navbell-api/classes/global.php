@@ -351,7 +351,7 @@ class Globals{
     /// Send reward info :) 
     public function sendReward(){
         $con= $this->conn;
-        $query="SELECT * FROM rewards ";
+        $query="SELECT * FROM rewards where takenby=NULL ";
         $send = $con->prepare($query);
         if ($send->execute()) {
             $send->setFetchMode(PDO::FETCH_ASSOC);

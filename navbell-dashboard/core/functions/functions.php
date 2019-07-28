@@ -21,11 +21,11 @@ function validateImg($image){
 	$ext = array("jpg","jpeg","gif","png");
 	$extimg = explode(".", $image["name"]);
 	$isimagebyext = in_array($extimg[1],$ext);
-	$isimage = (exif_imagetype($image["tmp_name"]) !== false ) ;
+	//$isimage = (exif_imagetype($image["tmp_name"]) !== false ) ;
 
-	//$size = (filesize($image["tmp_name"]) < 3000000 ) ; // 3mb 
-	$size = true;
-	return (($isimagebyext)&&($isimage)&&($size));
+	$size = (filesize($image["tmp_name"]) < 3000000 ) ; // 3mb 
+	//$size = true;
+	return ((1)&&($isimage)&&($size));
 
 }
 /*********************************************************************/
