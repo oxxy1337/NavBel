@@ -142,6 +142,12 @@ switch ($op) {
 	case 'sndPost':
 		include('./operations/sendposts.php');
 		break;
+	case 'getComments':
+		include('./operations/getcomments.php');
+		break;
+	case 'sndComment':
+		include('./operations/sndComments.php');
+		break;
 	case 'admins':
 		include("./admins/core.php");
 		break;

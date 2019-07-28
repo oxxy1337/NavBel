@@ -455,6 +455,34 @@ class Globals{
        }
         return false ;
     } 
+
+    public function getComments(){
+        $con= $this->conn;
+        $query = "SELECT * FROM comments where postid=?";
+        $send = $con->prepare($query);
+        if($send->execute([$this->id])){
+            $send->setFetchMode(PDO::FETCH_ASSOC);
+            return $data = $send->fetchall(); 
+        } else {
+            return Null ;
+        }
+    }
+
+    public function sndComment(){
+    $con = $this->conn;
+       $query = "INSERT INTO comments SET 
+       userid=:userid , content=:content ,postid=:postid"; 
+       $send = $con->prepare($query);
+       $send->bindParam(":userid",$this->userid);
+       $send->bindParam(":content",$this->bio);
+       $send->bindParam(":postid",$this->id);
+       
+       if($send->execute()){
+        return true ;
+       }
+        return false ;
+    } 
+    
     
 
 
