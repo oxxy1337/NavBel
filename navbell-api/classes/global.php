@@ -243,8 +243,8 @@ class Globals{
        $con = $this->conn;
        $query = "INSERT INTO ".$this->tables[3]." SET challengeid=:challengeid , userid=:userid "; 
        $send = $con->prepare($query);
-       $send->bindParam("challengeid",$this->challengeid);
-       $send->bindParam("userid",$this->id);
+       $send->bindParam(":challengeid",$this->challengeid);
+       $send->bindParam(":userid",$this->id);
        if($send->execute()){
         return true ;
        }
@@ -430,6 +430,32 @@ class Globals{
         };
 
     }
+    public function getPosts(){
+        $con= $this->conn;
+        $query = "SELECT * FROM posts";
+        $send = $con->prepare($query);
+        if($send->execute()){
+            $send->setFetchMode(PDO::FETCH_ASSOC);
+            return $data = $send->fetchall(); 
+        } else {
+            return Null ;
+        };
+    }
+    public function sndPosts(){
+    $con = $this->conn;
+       $query = "INSERT INTO posts SET 
+       userid=:id , description=:description ,postimg=:image"; 
+       $send = $con->prepare($query);
+       $send->bindParam(":id",$this->id);
+       $send->bindParam(":image",$this->image);
+       $send->bindParam(":description",$this->bio);
+       
+       if($send->execute()){
+        return true ;
+       }
+        return false ;
+    } 
+    
 
 
 
