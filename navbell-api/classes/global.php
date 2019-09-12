@@ -129,11 +129,11 @@ class Globals{
     public function updateuser(){
         
             $con = $this->conn ;
-            $query = "UPDATE ".$this->tables[0]." SET fname=:fname,lname=:lname,password=:password,salt=:salt,picture=:picture,ispublic=:ispublic WHERE id=:id";
+            $query = "UPDATE ".$this->tables[0]." SET fname=:fname,lname=:lnamesalt=:salt,picture=:picture,ispublic=:ispublic WHERE id=:id";
             $send = $con->prepare($query);
             $send->bindParam(":fname",$this->fname);
             $send->bindParam(":lname",$this->lname);
-            $send->bindParam(":password",$this->password);
+            //$send->bindParam(":password",$this->password);
             $send->bindParam(":salt",$this->salt);
             $send->bindParam(":picture",$this->picture);
             $send->bindParam(":id",$this->id);

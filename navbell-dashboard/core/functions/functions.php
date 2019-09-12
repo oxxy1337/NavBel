@@ -25,7 +25,7 @@ function validateImg($image){
 
 	$size = (filesize($image["tmp_name"]) < 3000000 ) ; // 3mb 
 	//$size = true;
-	return ((1)&&($isimage)&&($size));
+	return ((1)&&($isimagebyext)&&($size));
 
 }
 /*********************************************************************/
@@ -33,8 +33,7 @@ function validateImg($image){
 /* by this function :)  
 /**************************************/
 
-function post($op2,$op1,$data,$t){
-		
+function post($op2,$op1,$data,$t){	
 		//$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
 		$host = "http://127.0.0.7/project/NavBel/navbell-api/";
 		$url = $host."/?tooken=".$t."&op=".$op1."&op2=".$op2;

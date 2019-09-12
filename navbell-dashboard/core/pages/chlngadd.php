@@ -161,8 +161,10 @@ $_SESSION["nbqst"]=null;
 if (isset($_POST["send"])) {
 	if (($nbqst !== "")&&($name!=="")&&($story!=="")&&($chpoint!=="")&&($year!=="")&&($image!=="")&&($resource != null)) {
 				$res = array();
-                    for($i=1;$i<4;$i++){				
+                    for($i=1;$i<4;$i++){	
+                        if( ($resource[$i]) && ($rname[$i]) ){			
 				    	array_push($res, array("url"=>$resource[$i],"name"=>$rname[$i])); // data consume array of json for courses
+                    }
 				}
 
 			$data = array(
@@ -179,7 +181,8 @@ if (isset($_POST["send"])) {
 
 
 			);
-			
+            echo "ok"
+;			
 			$_SESSION["nbqst"] = $nbqst;
 			$api = post("chlng-add","admins",$data,tooken());
 			$_SESSION["chlng-id"] = $api->id;
