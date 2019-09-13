@@ -34,8 +34,8 @@ function validateImg($image){
 /**************************************/
 
 function post($op2,$op1,$data,$t){	
-		//$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
-		$host = "http://127.0.0.7/project/NavBel/navbell-api/";
+		$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
+		//$host = "http://127.0.0.7/project/NavBel/navbell-api/";
 		$url = $host."/?tooken=".$t."&op=".$op1."&op2=".$op2;
 		$data = json_encode($data);
 		$options = array(
