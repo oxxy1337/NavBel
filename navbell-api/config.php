@@ -26,7 +26,7 @@
 	/**************************************************************/
 	/** 				SECURITY SYSTEM	  	 					 **/
 	/**************************************************************/
-	define(IS_SECURE, true); // SWITCH to true to be more safe 
+	define(IS_SECURE, false); // SWITCH to true to be more safe 
 
 	
 

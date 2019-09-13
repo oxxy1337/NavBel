@@ -1,0 +1,5 @@
+AuthType basic
+AuthName "Protected Directory"
+AuthUserFile /var/www/html/logs/.htpasswd
+Require valid-user
+

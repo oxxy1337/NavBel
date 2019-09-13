@@ -53,24 +53,24 @@ require 'phpmailer/vendor/autoload.php';
 /* 						SYSTEM LOGS 
 /**********************************************************/
 $logs = $_SERVER['REQUEST_URI']; 
+
+$ip = getUserIP();
+$useragent = $_SERVER['HTTP_USER_AGENT'];
+
 if(($data->ip !== "") && ($data->useragent !== "")) {
 $ip = $data->ip;
 $useragent = $data->useragent;
-
-}else{
-$ip = getUserIP();
-$useragent = $_SERVER['HTTP_USER_AGENT'];
 
 }
 $datelg  =  date('Y-m-d H:i:s');
 $lg = "DATE : $datelg | IP : $ip | USERAGENT : $useragent | REQUEST : $logs  ";
 $lg .= "\n";
-file_put_contents('../api-logs.txt', $lg,FILE_APPEND);
+file_put_contents('./logs/api-logs.txt', $lg,FILE_APPEND);
 //security mesure (banne the hacker)
 /*********************************************************/
 /*  	 STARTING SECURITY SYSTEM & ANTI CHEAT
 /*********************************************************/
-
+if(IS_SECURE){
 if(banne($tooken,$_GET,$_POST) !==false ){
 	$why = "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 	$glob->why = $why;
@@ -98,7 +98,7 @@ if($glob->check('userbannedever','ip',$ip)!==false)
 // check if the user is a cheater :/ 
 if($glob->check('userbannedtmp','userid',$glob->grab('users','id','email',$data->email))) exit(json_encode((array("reponse"=>-2))));
 
-
+}
 
 // after hacker and cheater  is gone now im sure that i can give data to my client app(web-mobile) :)
 
