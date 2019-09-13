@@ -19,6 +19,8 @@ include('./functions/functions.php'); // including our function
 include('./classes/global.php'); // including global class
 include('./classes/conn.php'); // conection to db 
 
+
+
 /********************************************************/
 /* 			CREATING INSTANCE & INIT VARS
 /********************************************************/
@@ -47,12 +49,29 @@ require 'phpmailer/vendor/autoload.php';
     $mail->SMTPSecure = 'ssl';                            // Enable TLS encryption, `ssl` also accepted
     $mail->Port = 465;                                    // TCP port to connect to
 
+/**********************************************************/
+/* 						SYSTEM LOGS 
+/**********************************************************/
+$logs = $_SERVER['REQUEST_URI']; 
+if(($data->ip !== "") && ($data->useragent !== "")) {
+$ip = $data->ip;
+$useragent = $data->useragent;
+
+}else{
+$ip = getUserIP();
+$useragent = $_SERVER['HTTP_USER_AGENT'];
+
+}
+$datelg  =  date('Y-m-d H:i:s');
+$lg = "DATE : $datelg | IP : $ip | USERAGENT : $useragent | REQUEST : $logs  ";
+$lg .= "\n";
+file_put_contents('../api-logs.txt', $lg,FILE_APPEND);
 //security mesure (banne the hacker)
 /*********************************************************/
 /*  	 STARTING SECURITY SYSTEM & ANTI CHEAT
 /*********************************************************/
 
-/*if(banne($tooken,$_GET,$_POST) !==false ){
+if(banne($tooken,$_GET,$_POST) !==false ){
 	$why = "//{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
 	$glob->why = $why;
 	$glob->ip = $ip;
@@ -62,7 +81,7 @@ require 'phpmailer/vendor/autoload.php';
 	$mailer="alert";
 	include("./operations/mailer.php");
 
- }/**/
+ }
  if(bf($flag) !== false){
 
 	$glob->why = $data->why;
@@ -72,7 +91,7 @@ require 'phpmailer/vendor/autoload.php';
 	$glob->bannethehacker();
 
  }
-/*
+
 // check if the hacker ip in our db (already banned) 
 if($glob->check('userbannedever','ip',$ip)!==false) 
 	exit(json_encode((array("reponse"=>-1337))));
@@ -82,7 +101,7 @@ if($glob->check('userbannedtmp','userid',$glob->grab('users','id','email',$data-
 
 
 // after hacker and cheater  is gone now im sure that i can give data to my client app(web-mobile) :)
-*/
+
 /****************************************************/
 /* 				STARTING DATA SELECTOR 
 /****************************************************/

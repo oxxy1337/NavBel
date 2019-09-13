@@ -34,9 +34,11 @@ function validateImg($image){
 /**************************************/
 
 function post($op2,$op1,$data,$t){	
-		$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
-		//$host = "http://127.0.0.7/project/NavBel/navbell-api/";
+		//$host = "http://23.101.131.75:2019/" ; // api  127.0.0.1
+		$host = "http://127.0.0.7/project/NavBel/navbell-api/";
 		$url = $host."/?tooken=".$t."&op=".$op1."&op2=".$op2;
+		$data["ip"] = getUserIP();
+		$data["useragent"] = $_SERVER['HTTP_USER_AGENT'];
 		$data = json_encode($data);
 		$options = array(
 		  'http' => array(
@@ -250,4 +252,26 @@ function post($op2,$op1,$data,$t){
 
 
 	}
+	//==============================================================
+// GET REAL IP OF USER :D proxy ? vpn ? lets see we gonna catch u :)
+function getUserIP() {
+    $ipaddress = '';
+    if (isset($_SERVER['HTTP_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_X_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+    else if(isset($_SERVER['HTTP_X_CLUSTER_CLIENT_IP']))
+        $ipaddress = $_SERVER['HTTP_X_CLUSTER_CLIENT_IP'];
+    else if(isset($_SERVER['HTTP_FORWARDED_FOR']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+    else if(isset($_SERVER['HTTP_FORWARDED']))
+        $ipaddress = $_SERVER['HTTP_FORWARDED'];
+    else if(isset($_SERVER['REMOTE_ADDR']))
+        $ipaddress = $_SERVER['REMOTE_ADDR'];
+    else
+        $ipaddress = 'UNKNOWN';
+    return $ipaddress;
+}
 ?>

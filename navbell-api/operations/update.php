@@ -7,9 +7,9 @@ coded by m.slamat
 $glob->fname = $fname;
 $glob->lname = $lname;
 if ($ispublic==true) {
-	$ispublic = 0;
-}elseif ($ispublic==false) {
 	$ispublic = 1;
+}elseif ($ispublic==false) {
+	$ispublic = 0;
 }
 $glob->ispublic = $ispublic;
 $glob->id=$id;
