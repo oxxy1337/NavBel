@@ -6,9 +6,14 @@ coded by m.slamat
 
 $glob->fname = $fname;
 $glob->lname = $lname;
+if ($ispublic==true) {
+	$ispublic = 1;
+}elseif ($ispublic==false) {
+	$ispublic = 0;
+}
 $glob->ispublic = $ispublic;
 $glob->id=$id;
-$glob->salt = "$".substr(base64_encode(md5(microtime())), 30)."$"; // random salt 
+//$glob->salt = "$".substr(base64_encode(md5(microtime())), 30)."$"; // random salt 
 
 // crypting user password 
 $glob->password = cryptpwd($password,$glob->salt);

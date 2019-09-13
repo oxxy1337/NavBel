@@ -129,12 +129,12 @@ class Globals{
     public function updateuser(){
         
             $con = $this->conn ;
-            $query = "UPDATE ".$this->tables[0]." SET fname=:fname,lname=:lnamesalt=:salt,picture=:picture,ispublic=:ispublic WHERE id=:id";
+            $query = "UPDATE ".$this->tables[0]." SET fname=:fname,lname=:lname,picture=:picture,ispublic=:ispublic WHERE id=:id";
             $send = $con->prepare($query);
             $send->bindParam(":fname",$this->fname);
             $send->bindParam(":lname",$this->lname);
             //$send->bindParam(":password",$this->password);
-            $send->bindParam(":salt",$this->salt);
+            //$send->bindParam(":salt",$this->salt);
             $send->bindParam(":picture",$this->picture);
             $send->bindParam(":id",$this->id);
             $send->bindParam(":ispublic",$this->ispublic);
@@ -351,7 +351,7 @@ class Globals{
     /// Send reward info :) 
     public function sendReward(){
         $con= $this->conn;
-        $query="SELECT * FROM rewards where takenby=NULL ";
+        $query="SELECT * FROM rewards where takenby IS NULL ";
         $send = $con->prepare($query);
         if ($send->execute()) {
             $send->setFetchMode(PDO::FETCH_ASSOC);
