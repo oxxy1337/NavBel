@@ -1,4 +1,5 @@
 <?php
+    include("./functions/functions.php");
     include('./pages/resetpwd/code_verification.php');
 ?>
 
@@ -55,11 +56,28 @@
               </div>
             </div>
 
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <i class="input-group-text fas fa-unlock"></i>
+                </div>
+
+                <input
+                  type="Password"
+                  name="newPassword"
+                  class="form-control"
+                  placeholder="Enter your new Password"
+                />
+              </div>
+            </div>
+
+
+
             
 
             <input
               type="submit"
-              value="Verify code"
+              value="Submit"
               class="btn btn-primary btn-block mt-4"
               name="submit"
             />

@@ -1,0 +1,50 @@
+.pw-background {
+  background: #eee;
+  padding: 2px;
+}
+
+.pw-container {
+  max-width: 900px;
+  background: white;
+  font-family: sans-serif;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+img {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 10px;
+}
+
+p {
+  margin-top: 150px;
+  margin-bottom: 50px;
+  font-size: 15px;
+  font-weight: 250;
+  color: rgb(39, 39, 39);
+  line-height: 1.5;
+}
+
+.form-container {
+  margin-left: 260px;
+  margin-right: 260px;
+  margin-bottom: 230px;
+}
+
+.form-contained {
+  margin-left: 260px;
+  margin-right: 260px;
+  margin-bottom: 330px;
+}
+.cta a {
+  text-decoration: none;
+  display: block;
+  background: #3d87f5;
+  color: white;
+  padding: 10px 60px;
+
+  border-radius: 5px;
+  text-align: center;
+}

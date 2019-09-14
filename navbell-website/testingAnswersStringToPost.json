@@ -1,0 +1,10 @@
+{
+	"challengeid" : "variable from php", 
+	"id" : "user id from php", 
+	"challenges" : [
+		{"time" : "true", "questionid" : "1", "optionid" : "1"},
+		{"time" : "true", "questionid" : "2", "optionid" : "2"},
+		{"time" : "true", "questionid" : "3", "optionid" : "2"},
+		{"time" : "true", "questionid" : "4", "optionid" : "1"}
+	]
+}

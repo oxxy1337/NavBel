@@ -1,6 +1,6 @@
 <?php
     if(isset($_POST['submit'])){
-        session_start();
+        // session_start();
         $op = 'reset';
         $data = array("email"=>$_SESSION['email'], "password"=>$_POST['newPassword']);
         $result = postapi($url, $op, $data);
