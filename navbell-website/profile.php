@@ -1,5 +1,53 @@
 <?php
-  include 'pages/profile_info.php';
+include 'pages/profile_info.php';
+    include 'fusioncharts.php';
+  include './functions/functions.php';
+  $op="solvedChallenge";
+  $data  = array("id" => $user_profile_info->id);
+  $result = postapi($url ,$op , $data ) ;
+$arrChartConfig = array(
+    "chart" => array(
+        "caption" => "Countries With Most Oil Reserves [2017-18]",
+        "subCaption" => "In MMbbl = One Million barrels",
+        "xAxisName" => "Country",
+        "yAxisName" => "Reserves (MMbbl)",
+        "numberSuffix" => "K",
+        "theme" => "fusion"
+    )
+);
+// An array of hash objects which stores data
+$arrChartData = array(
+    ["Venezuela", "290"],
+    ["Saudi", "260"],
+    ["Canada", "180"],
+    ["Iran", "140"],
+    ["Russia", "115"],
+    ["UAE", "100"],
+    ["US", "30"],
+    ["China", "30"]
+);
+
+$arrLabelValueData = array();
+
+// Pushing labels and values
+for($i = 0; $i < count($arrChartData); $i++) {
+    array_push($arrLabelValueData, array(
+        "label" => $arrChartData[$i][0], "value" => $arrChartData[$i][1]
+    ));
+}
+
+$arrChartConfig["data"] = $arrLabelValueData;
+
+// JSON Encode the data to retrieve the string containing the JSON representation of the data in the array.
+$jsonEncodedData = json_encode($arrChartConfig);
+
+// chart object
+$Chart = new FusionCharts("column2d", "MyFirstChart" , "700", "400", "chart-container", "json", $jsonEncodedData);
+
+// Render the chart
+$Chart->render();
+
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +58,8 @@
     <title>Profile</title>
 
     <script src="jquery-3.3.1.js"></script>
+      <script src="https://cdn.fusioncharts.com/fusioncharts/latest/fusioncharts.js"></script>
+      <script src="https://cdn.fusioncharts.com/fusioncharts/latest/themes/fusioncharts.theme.fusion.js"></script>
    
 
     <link
@@ -20,7 +70,7 @@
     />
 
     <link rel="stylesheet" href="css/bootstrap.css" crossorigin="anonymous" />
-    <link rel="stylesheet" href="css/style.css" />
+    <link rel="stylesheet" href="css/styles.css" />
 
     <script
       src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
@@ -43,7 +93,7 @@
           <div class="container ">
             <a href="index.php" class="navbar-brand">
                 <img src="img/navlogo.png" width="70" height="35" />
-                <h5 class="d-inline align-middle">NavBel</h3>
+                <h5 class="d-inline align-middle">NavBel</h5>
             </a>
   
             <button
@@ -67,12 +117,14 @@
   
                   </a>
                   <div class="dropdown-menu">
-                    <a href="profile.html" class="dropdown-item">
-                      <i class="fas fa-user-circle">
-                      </i> Profile
-                    </a>
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
+                    <!-- <a href="" class="dropdown-item"> -->
+                      <!-- <i class="fas fa-user-circle"></i> -->
+                      <button type="submit" name="get_profile_info" class="dropdown-item">Profile</button>
+                    <!-- </a> -->
+                  </form>
   
-                    <a href="settings.html" class="dropdown-item">
+                    <a href="settings.php" class="dropdown-item">
                         <i class="fas fa-cog">
                         </i> Settings
                       </a>
@@ -102,7 +154,7 @@
             <!-- SIDEBAR USERPIC -->
             <div class="profile-userpic">
               <img
-                src="https://static.change.org/profile-img/default-user-profile.svg"
+                src="<?php echo $user_profile_info->picture; ?>"
                 class="img-responsive"
                 alt=""
               />
@@ -194,9 +246,14 @@
           </div>
         </div>
       </div>
-    </div>
 
-    <script>
+    </div>
+  <div class="container">
+      <div id="chart-container">Chart will render here!</div>
+  </div>
+
+
+  <script>
       // Get the current year for the copyright
       $('#year').text(new Date().getFullYear());
     </script>

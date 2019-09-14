@@ -19,15 +19,16 @@ if(isset($_POST["signin"])){
 			$challenges_result = postapi($url, $op, $data);
 			switch($challenges_result->reponse) {
 				case "-1" :
-				echo '<script>alert("some thing went wrong or there is no challenges for you");</script>';
+				echo '<script>alert("there are no challenges for you");</script>';
+				$_SESSION['challenges'] = $challenges_result->challenges;
+				header('location: main.php');
 				break;
 				case "1" :
 				$_SESSION['challenges'] = $challenges_result->challenges;
-				echo  '<script>alert("raw ymchi go session part");</script>';
 				header('location: main.php');
 				break;
 				default : 
-				echo '<script>alert("the switch default");</script>';
+				echo '<script>alert("some thing went wrong");</script>';
 			}
 			break;
 	}

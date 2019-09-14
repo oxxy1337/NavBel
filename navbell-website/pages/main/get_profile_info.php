@@ -1,9 +1,9 @@
 <?php  
 	if(isset($_POST['get_profile_info'])) {
-		session_start();
-		if($_SESSION['user_signup_info']) {
+		// session_start();
+		if(isset($_SESSION['user_signup_info'])) {
 			$id = $_SESSION['user_signup_info']->id;
-		} else if($_SESSION['user_login_info']){
+		} else if(isset($_SESSION['user_login_info'])){
 			$id = $_SESSION['user_login_info']->id;
 		}
 
@@ -15,7 +15,7 @@
 			echo '<script>alert("something went wrong");</script>';
 			break;
 			case "1" : 
-			session_start();
+			// session_start();
 			$_SESSION['user_profile_info'] = $result;
 			header('location: profile.php');
 			break;
