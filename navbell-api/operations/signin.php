@@ -12,7 +12,7 @@ $glob->ispublic=True;
 $glob->point=0;
 $glob->currentrank=0;
 $glob->solvedperday=0;
-$glob->ranks=json_encode(array());
+$glob->ranks=json_encode(array(0,0,0,0,0,0,0,0,0,0,0,0,0,0,0));
 $glob->nbsolved=0;
 $glob->bio = "Etudiant ".$year." year";
 

@@ -71,22 +71,26 @@ function decryptdata($c,$key){
 	 	the scenario is the attacker test everything :) 
 	
 	 	*/
-	function banne($tooken,$p1,$p2){
+	function banne($tooken,$p1){
 		
-		$blacklisted = array('"',"'","%27",'%00',"php","/etc/passwd");
+		$blacklisted = array('%27','%00',"php","/etc/passwd","..%2F",'..../','../','..%252F');
+
+		foreach ($blacklisted as $bug) {
+			if($bug == $p1){
+				$x = true  ; 
+				break;
+			}
+		}
 		if(
-			(!tooken($tooken)) || 
-			(in_array($p1,$blacklisted)) || 
-			(in_array($tooken, $blacklisted)) ||
-			(in_array($p2,$blacklisted))
+			(!tooken($tooken))
 		){
 
-			return true;
+			$x=true;
 		}  else{
-			return false;
+			$x= false;
 		}
 
-
+		return $x;
 	}    
 	/*
 	function anti brutforce :) 

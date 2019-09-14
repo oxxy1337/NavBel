@@ -1,10 +1,7 @@
 <?php
-  session_start();// i commented all these pages //session_start()
   include('./functions/functions.php');
-  include('pages/main/get_profile_info.php');
   include 'pages/main/challenges.php';// i should include get_challenges not challenges.php this is fake data
   include('./pages/main/start.php');//start the challenge and get the questions from api
-
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -49,11 +46,11 @@
 
 
    <!-- MAIN NAVBAR --> 
-      <nav class="navbar navi navbar-expand-md navbar-light fixed-top py-1" role="navigation" style="background-color:white;">
+      <nav class="navbar navi navbar-expand-md navbar-light fixed-top py-1" role="navigation">
         <div class="container ">
-          <a href="index.php" class="navbar-brand">
+          <a href="index.html" class="navbar-brand">
               <img src="img/navlogo.png" width="70" height="35" />
-              <h5 class="d-inline align-middle" style="color:black;">NavBel</h5>
+              <h5 class="d-inline align-middle">NavBel</h3>
           </a>
 
           <button
@@ -66,7 +63,7 @@
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav">
               <li class="nav-item px-2">
-                <a href="main.php" class="nav-link active">Main</a>
+                <a href="main.html" class="nav-link active">Main</a>
               </li>
             </ul>
 
@@ -77,14 +74,12 @@
 
                 </a>
                 <div class="dropdown-menu">
-                  <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                    <!-- <a href="" class="dropdown-item"> -->
-                      <!-- <i class="fas fa-user-circle"></i> -->
-                      <button type="submit" name="get_profile_info" class="dropdown-item">Profile</button>
-                    <!-- </a> -->
-                  </form>
+                  <a href="profile.html" class="dropdown-item">
+                    <i class="fas fa-user-circle">
+                    </i> Profile
+                  </a>
 
-                  <a href="settings.php" class="dropdown-item">
+                  <a href="settings.html" class="dropdown-item">
                       <i class="fas fa-cog">
                       </i> Settings
                     </a>
@@ -113,21 +108,20 @@
 
 
 <!-- FILTER NAVBAR -->
-    <nav class="navbar navi navbar-expand-sm  navbar-light" style="background-color:white;border-bottom: 1px solid black;">
+    <nav class="navbar navi navbar-expand-sm  navbar-light">
       <div class="container">
          <a href="" class="navbar-brand text-monospace mr-5">Filter by: </a>
           
         <form class="form-row" action="<?php echo $_SERVER['PHP_SELF']; ?>" method="POST">
 
           
-              <label class="my-2 col-xl-1 text-monospace" for="inlineFormCustomSelectMod text-muted" style="color:black;">Module </label>
+              <label class="my-2 col-xl-1 text-monospace" for="inlineFormCustomSelectMod text-muted">Module </label>
              
               <select class="my-3 custom-select mr-2 col-xl-1" id="inlineFormCustomSelectMod" name="module">
                 <option selected value="all">None</option>
                 <option value="math">Math</option>
                 <option value="physics">Physics</option>
                 <option value="poo">Poo</option>
-                <option value="bdd">Bdd</option>
               </select>
             
           
@@ -207,58 +201,35 @@
                     ?>
 
 
-                 <div class="col-sm-12 col-lg-4">
-                      <div
-                        class="card ml-1 "
-                        style="width: 20rem; height: 28rem;"
-                      >
-                        <img
-                          src="<?php echo $challenges[$i]->url; ?>"
-                          class=" card-img-top"
-                          alt=""
-                          style="width: 318px; height: 153px;"
-                        />
-                        <div class="card-body">
-                          <h4 class="card-title" style="color:black;">
-                            <?php echo $challenges[$i]->module; ?>
-                          </h4>
-                          
-                          <p class="text-center text-muted text-monospace ">
-                            <?php echo $challenges[$i]->point; ?> points | <?php echo $challenges[$i]->nbPersonSolved; ?>/5 | <?php echo $challenges[$i]->nbOfQuestions; ?> questions
-                          </p>
-                        </div>
-                        <div class="card-footer ">
-                          <button
-                            onclick="load('<?php echo $challenges[$i]->story; ?>', <?php echo $challenges[$i]->id; ?>)"
-                            type="button"
-                            class="btn btn-outline-primary"
-                            data-toggle="modal"
-                            data-target="#moreInfo"
-                          >
-                            More Info
-                          </button>
-                          <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                            <input type="hidden" name="id" value="<?php echo $challenges[$i]->id;?>">
-                          <button
-                            name="start"
-                            type="submit"
-                            class="btn btn-primary "
-                            style="margin-left: 105px;"
-                          >
-                            Start
-                          </button>
-                          </form>
-
-                          <!-- Make a pop up here to access when clicking on "More Info" containing: 1. Full decription 2. Resources-->
-
-                          <!-- ### Modal ###-->
-
-                          <!-- ### Modal ### -->
+                      <div class="col-sm-12 col-lg-4">
+                        <div class="card ml-4" style="width: 20rem; height: 27rem;">
+                          <img src="img/mcomp.jpg" class=" card-img-top"alt="" style="width: 318px; height: 153px;">
+                          <div class="card-body">
+                            <h4 class="card-title">
+                              <?php echo $challenges[$i]->module; ?>
+                            </h4>
+                            <p class="card-text">
+                              <?php 
+                                if(strlen($challenges[$i]->story) <= 30) {
+                                  echo $challenges[$i]->story;
+                                }
+                               ?>
+                            </p>
+                            
+                            <p class="text-center text-muted text-monospace "><?php echo $challenges[$i]->point; ?> points | <?php echo $challenges[$i]->nbPersonSolved; ?>/5  | <?php echo $challenges[$i]->nbOfQuestions; ?> questions </p>
+                            
+                          </div>
+                          <div class="card-footer ">
+                            <form action="challenge_discription.php" method="post">
+                              <!-- <button type="button" class="btn btn-outline-primary"><a href="<?php echo $challenges[$i]->resource[0]->url; ?>">Resources</a></button> --> 
+                              <input type="hidden" name="id" value="<?php echo $challenges[$i]->id; ?>"> 
+                          <!-- <button type="submit" name="start" class="btn btn-primary " style="margin-left: 117px;">Start</button> -->
+                          <button type="submit" class="btn btn-outline-primary">Show discription</button> 
+                            </form>
+                          </div>
 
                         </div>
-                      </div>
-                    </div>
-                       <!--class="col-sm-12 col-lg-4"-->
+                      </div> <!--class="col-sm-12 col-lg-4"-->
 
 
                     <?php
@@ -315,59 +286,35 @@
                     ?>
 
 
-                <div class="col-sm-12 col-lg-4">
-                      <div
-                        class="card ml-1 "
-                        style="width: 20rem; height: 28rem;"
-                      >
-                        <img
-                          src="<?php echo $challenges[$i]->url; ?>"
-                          class=" card-img-top"
-                          alt=""
-                          style="width: 318px; height: 153px;"
-                        />
-                        <div class="card-body">
-                          <h4 class="card-title" style="color:black;">
-                            <?php echo $challenges[$i]->module; ?>
-                          </h4>
-                          
-                          <p class="text-center text-muted text-monospace ">
-                            <?php echo $challenges[$i]->point; ?> points | <?php echo $challenges[$i]->nbPersonSolved; ?>/5 | <?php echo $challenges[$i]->nbOfQuestions; ?> questions
-                          </p>
-                        </div>
-                        <div class="card-footer ">
-                          <button
-                            onclick="load('<?php echo $challenges[$i]->story; ?>', <?php echo $challenges[$i]->id; ?>)"
-                            type="button"
-                            class="btn btn-outline-primary"
-                            data-toggle="modal"
-                            data-target="#moreInfo"
-                          >
-                            More Info
-                          </button>
-
-                          <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                          <input type="hidden" name="id" value="<?php echo $challenges[$i]->id;?>">
-                          <button
-                            name="start"
-                            type="submit"
-                            class="btn btn-primary "
-                            style="margin-left: 105px;"
-                          >
-                            Start
-                          </button>
-                          </form>
-
-                          <!-- Make a pop up here to access when clicking on "More Info" containing: 1. Full decription 2. Resources-->
-
-                          <!-- ### Modal ###-->
-
-                          <!-- ### Modal ### -->
+                      <div class="col-sm-12 col-lg-4">
+                        <div class="card ml-4" style="width: 20rem; height: 27rem;">
+                          <img src="img/mcomp.jpg" class=" card-img-top"alt="" style="width: 318px; height: 153px;">
+                          <div class="card-body">
+                            <h4 class="card-title">
+                              <?php echo $challenges[$i]->module; ?> 
+                            </h4>
+                            <p class="card-text">
+                              <?php 
+                                if(strlen($challenges[$i]->story) <= 30) {
+                                  echo $challenges[$i]->story;
+                                }
+                               ?>
+                            </p>
+                            
+                            <p class="text-center text-muted text-monospace "><?php echo $challenges[$i]->point; ?> points | <?php echo $challenges[$i]->nbPersonSolved; ?>/5  | <?php echo $challenges[$i]->nbOfQuestions; ?> questions </p>
+                            
+                          </div>
+                          <div class="card-footer ">
+                            <form action="challenge_discription.php" method="post">
+                              <!-- <button type="button" class="btn btn-outline-primary"><a href="<?php echo $challenges[$i]->resource[0]->url; ?>">Resources</a></button>  -->
+                              <input type="hidden" name="id" value="<?php echo $challenges[$i]->id; ?>"> 
+                          <!-- <button type="submit" name="start" class="btn btn-primary " style="margin-left: 117px;">Start</button> -->
+                          <button type="submit" class="btn btn-outline-primary">Show discription</button>
+                            </form>
+                          </div>
 
                         </div>
-                      </div>
-                    </div>
-                       <!--class="col-sm-12 col-lg-4"-->
+                      </div> <!--class="col-sm-12 col-lg-4"-->
 
 
                     <?php
@@ -423,58 +370,35 @@
                   ?>
                   <?php if(isset($challenges[$i])) : ?> 
                   <div class="col-sm-12 col-lg-4">
-                      <div
-                        class="card ml-1 "
-                        style="width: 20rem; height: 28rem;"
-                      >
-                        <img
-                          src="<?php echo $challenges[$i]->url; ?>"
-                          class=" card-img-top"
-                          alt=""
-                          style="width: 318px; height: 153px;"
-                        />
-                        <div class="card-body">
-                          <h4 class="card-title" style="color:black;">
-                            <?php echo $challenges[$i]->module; ?>
-                          </h4>
-                          
-                          <p class="text-center text-muted text-monospace ">
-                            <?php echo $challenges[$i]->point; ?> points | <?php echo $challenges[$i]->nbPersonSolved; ?>/5 | <?php echo $challenges[$i]->nbOfQuestions; ?> questions
-                          </p>
-                        </div>
-                        <div class="card-footer ">
-                          <button
-                            onclick="load('<?php echo $challenges[$i]->story; ?>', <?php echo $challenges[$i]->id; ?>)"
-                            type="button"
-                            class="btn btn-outline-primary"
-                            data-toggle="modal"
-                            data-target="#moreInfo"
-                          >
-                            More Info
-                          </button>
-                          <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
-                            <input type="hidden" name="id" value="<?php echo $challenges[$i]->id;?>">
-                            <button
-                              name="start"
-                              type="submit"
-                              class="btn btn-primary "
-                              style="margin-left: 105px;"
-                            >
-                              Start
-                              <!-- the button type  was "button" before i added the form -->
-                            </button>
-                          </form>
-
-                          <!-- Make a pop up here to access when clicking on "More Info" containing: 1. Full decription 2. Resources-->
-
-                          <!-- ### Modal ###-->
-
-                          <!-- ### Modal ### -->
-
-                        </div>
+                    <div class="card ml-4" style="width: 20rem; height: 27rem;">
+                      <img src="img/mcomp.jpg" class=" card-img-top"alt="" style="width: 318px; height: 153px;">
+                      <div class="card-body">
+                        <h4 class="card-title">
+                          <?php echo $challenges[$i]->module; ?>
+                        </h4>
+                        <p class="card-text">
+                          <?php 
+                            if(strlen($challenges[$i]->story) <= 30) {
+                              echo $challenges[$i]->story;
+                            }
+                          ?>
+                        </p>
+                        
+                        <p class="text-center text-muted text-monospace "><?php echo $challenges[$i]->point; ?> points | <?php echo $challenges[$i]->nbPersonSolved; ?>/5  | <?php echo $challenges[$i]->nbOfQuestions; ?> questions </p>
+                        
                       </div>
+                      <div class="card-footer ">
+                        
+                        <form action="challenge_discription.php" method="post"> 
+                          <!-- <button type="button" class="btn btn-outline-primary"><a href="<?php echo $challenges[$i]->resource[0]->url; ?>">Resources</a></button> --> 
+                          <input type="hidden" name="id" value="<?php echo $challenges[$i]->id; ?>"> 
+                          <!-- <button type="submit" name="start" class="btn btn-primary " style="margin-left: 117px;">Start</button> -->
+                          <button type="submit" class="btn btn-outline-primary">Show discription</button>
+                        </form> 
+                      </div>
+
                     </div>
-                   <!--class="col-sm-12 col-lg-4"-->
+                  </div> <!--class="col-sm-12 col-lg-4"-->
                   <?php endif; ?>
                   <?php
                     $i++;
@@ -497,80 +421,9 @@
 
       
 
-          <!-- ### More info Modal ###-->
-
-                          <div class="modal" id="moreInfo">
-                            <div class="modal-dialog">
-                              <div class="modal-content">
-                                <div class="modal-header">
-                                  <h3 class="modal-title" style="color:blue;">More Info</h3>
-                                  <button class="close" data-dismiss="modal">
-                                    &times;
-                                  </button>
-                                </div>
-                                <div class="modal-body">
-                                  <h4>
-                                    <strong style="color:black;">
-                                      Challenge Description
-                                    </strong>
-                                  </h4>
-                                  <p id="challengeStory" style="color:black;">
-                                    the challenge discription
-                                  </p>
-                                  <hr />
-                                  <h4>
-                                    <strong style="color:black;">
-                                      Resources
-                                    </strong>
-                                  </h4>
-                                  <p style="color:black;" >
-                                    Here you can find some useful resources to
-                                    not miss out on if you want to have a better
-                                    chance at winning the challenge!
-                                    <p id="resources" style="color:blue;"></p>
-                                  </p>
-                                </div>
-                                <div class="modal-footer">
-                                  <button
-                                    class="btn btn-outline-primary"
-                                    data-dismiss="modal"
-                                  >
-                                    Close
-                                  </button>
-                                </div>
-                              </div>
-                            </div>
-                          </div>
-
-                          <br />
-                          <br />
-
-            <!-- ### More info Modal ###-->
 
 
-            <!-- the script to handle the more info modal -->
-            <script type="text/javascript">
-              function load(story, id) {
-                document.getElementById('challengeStory').innerHTML = story;
-                var x = new XMLHttpRequest();
-                x.open('GET', './pages/main/get_challenge_resources.php?id='+id);
-                x.send();
-                x.onreadystatechange = function() {
-                  if(this.readyState == 4 && this.status == 200) {
-                    var resources = JSON.parse(this.responseText);
-                    var i;
-                    var resourcesString = '';
-                    for(i = 0; i < resources.length; i++) {
-                      resourcesString += '<br><a style="color:blue;" href='+resources[i].url+'>'+resources[i].name+'</a>';
-                     
-                    }
-                    document.getElementById('resources').innerHTML = resourcesString;
 
-                  }
-                }
-              }
-            </script>
-            <!-- the script to handle the more info modal -->
 
 
 

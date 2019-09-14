@@ -1,5 +1,6 @@
 <?php
-    include('./pages/resetpwd/code_verification.php');
+  include('./functions/functions.php');
+  include('./pages/resetpwd/r2.php');
 ?>
 
 <!DOCTYPE html>
@@ -36,7 +37,7 @@
 
         <div class="form-container ">
           <p>
-            Please enter the code that you recieved in your E-mail
+            Please use the form below to create a new password
           </p>
 
           <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post">
@@ -47,19 +48,32 @@
                 </div>
 
                 <input
-                  type="text"
-                  name="code"
+                  type="password"
+                  name="newPassword"
                   class="form-control"
-                  placeholder="Enter the code"
+                  placeholder="Enter a new password"
                 />
               </div>
             </div>
 
-            
+            <div class="form-group">
+              <div class="input-group mb-3">
+                <div class="input-group-prepend">
+                  <i class="input-group-text fas fa-redo"></i>
+                </div>
+
+                <input
+                  type="password"
+                  name="confirmNewPassword"
+                  class="form-control"
+                  placeholder="Confirm your new password"
+                />
+              </div>
+            </div>
 
             <input
               type="submit"
-              value="Verify code"
+              value="Reset my password"
               class="btn btn-primary btn-block mt-4"
               name="submit"
             />

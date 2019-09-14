@@ -51,7 +51,7 @@ if (($qst!=="")&&($pts!=="")&&($time!=="")&&($option!==null)&&($true!=="")) {
 
         );
         
-        array_push($trueid,post("optadd","admins",$data,"")); //// hmmm every paradox has a key ;) enjoying hah ? 
+        array_push($trueid,post("optadd","admins",$data,tooken())); //// hmmm every paradox has a key ;) enjoying hah ? 
         
 }
 
