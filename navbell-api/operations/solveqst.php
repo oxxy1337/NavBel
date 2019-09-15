@@ -60,7 +60,7 @@ foreach($arr->challenges as $challenge) {
 		$win = $qstpoint;
 		//$totalwin +=$win; 
 		$solvedperday++; // increment the question solved by user / per day  in db  
-		$nbsolved++; // increment all nb qst solved by user 
+		
 		$point += $qstpoint  ;// adding point a777 rba7 :D 
 
 	}
@@ -90,7 +90,7 @@ foreach($arr->challenges as $challenge) {
 		$glob->point = $point ;
 		$glob->chlngpts = $chlngpts;
 		$glob->mdl = $module;
-
+		$nbsolved +=1; 
 		$glob->solvedChlng();
 
 	}
